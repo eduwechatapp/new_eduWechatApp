@@ -1,0 +1,13 @@
+<view class="home_pages">
+  <view class="image_area">
+
+    <view class = "home_area" bindtap="toSubject" wx:for="{{subject}}" data-id="{{item.unique}}">
+      <view class="home_icon" hover-class='tap_performance' hover-stay-time='100'>
+        <image class ="icon" src="{{item.url}}"></image>
+      </view>
+      <view class = "icon_text">{{item.name}}</view>
+    </view>
+
+  </view>
+</view>  
+

@@ -1,0 +1,12 @@
+<view class="pages">
+  <view class="image_area">
+
+    <view class = "area" bindtap="toList" wx:for="{{menu}}" data-id="{{item.module}}">
+      <view class="img_icon" hover-class='tap_performance' hover-stay-time='100'>
+        <image class ="icon" src="{{item.url}}"></image>
+      </view>
+      <view class = "icon_text">{{item.module}}</view>
+    </view>
+
+  </view>
+</view>
