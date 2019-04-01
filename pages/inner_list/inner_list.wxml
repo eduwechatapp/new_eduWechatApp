@@ -1,0 +1,9 @@
+<view class="list_area">
+  <view class="list" bindtap="toText" wx:for="{{menuList}}" hover-class='tap_performance' hover-stay-time='100'>
+    <view class="left_text">{{item.title}}</view>
+    <view class = "icon_display">
+      <image src ="../icon/right.png" class="right_icon"></image>
+    </view>
+  </view>
+
+</view>

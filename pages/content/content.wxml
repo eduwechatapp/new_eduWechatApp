@@ -1,0 +1,20 @@
+<view class="page">
+    <view class="top_area">
+        <view class="button_area">
+            <button class="button" size="mini">不放心上</button>
+            <button class="button" size="mini">需要留意</button>
+            <button class="button" size="mini">重点关注</button>
+        </view>
+        <view class="title">{{title}}</view>
+    </view>
+    <view class="text_area">
+        <import src="../../wxParse/wxParse.wxml" />
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+    <view class="bottom_area">
+        <view class="button_area_bottom">
+            <button class="button" size="mini">上一页</button>
+            <button class="button" size="mini">下一页</button>
+        </view>
+    </view>
+</view>

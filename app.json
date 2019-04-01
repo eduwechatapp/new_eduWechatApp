@@ -1,5 +1,7 @@
 {
   "pages":[
+    "pages/content/content",
+    "pages/inner_list/inner_list",
     "pages/home/home",
     "pages/index/index",
     "pages/logs/logs",
