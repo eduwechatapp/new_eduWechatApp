@@ -75,8 +75,22 @@ Page({
     var that = this
     
     request.post(path,args).then(res=>{
+      var menuList = res.data
+      that.setData({
+        menuList
+      })
       
-      console.log(res)
     })
+  },
+
+  // 
+  toText:function(e){
+    var that = this,
+    id = e.currentTarget.id,
+    menuList = that.data.menuList,
+    title = menuList[id].title,
+    content = menuList[id].content
+
+    wx.navigateTo({ url: '../content/content?title='+title+'&content='+content });
   }
 })
