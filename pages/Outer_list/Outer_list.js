@@ -1,46 +1,33 @@
 Page({
   data:{
-    listName:[
-    ]
+    listName:{
+    },
+    subject:''
   },
   onLoad:function(options){
     console.log(options)
-    if(options.arg=='知识点' && options.sub=='english'){
-      this.setData({
-        listName:[
-          "必修一词汇表与重点语法",
-          "必修二词汇表与重点语法",
-          "必修三词汇表与重点语法",
-          "必修四词汇表与重点语法",
-          "必修五词汇表与重点语法",
-          "选修六词汇表与重点语法",
-          "选修七词汇表与重点语法",
-          "选修八词汇表与重点语法",
-          "选修九词汇表与重点语法",
-          "选修十词汇表与重点语法",
-          "选修十一词汇表与重点语法",
-        ]
+    var that = this;
+    if(options.arg=='知识点'){
+      wx.request({
+        url: 'http://129.204.216.249:8008/'+options.sub+'/knowledge/mapping/get', 
+        header: {
+          "Accept": "*/*" 
+        },
+        success: function (res) {
+          console.log(res.data.data)
+          that.setData({
+            listName: res.data.data,
+            subject: options.sub
+          })
+          console.log(that.data.listName);
+        }
       })
       }
-    else if (options.arg == '专题' && options.sub == 'english'){
-        this.setData({
-          listName:[
-            "阅读理解",
-            "语法",
-            "写作指导"
-          ]
-        })
-      }
-    else if (options.arg == '归纳总结' && options.sub == 'english'){
-      this.setData({
-        listName:[
-          "高考知识点",
-          "高考核心单词"
-        ]
-      })
-    }
-    else if(options.arg == ''){
-      
-    }
+  },
+  toInnerList:function(event){
+    var id = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../inner_list/inner_list?sub=' + this.data.subject + '&which=' + id,
+    })
   }
 })

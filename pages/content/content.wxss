@@ -29,6 +29,7 @@
     height: 10%;
     align-items: center;
     display: flex;
+
 }
 
 .button {

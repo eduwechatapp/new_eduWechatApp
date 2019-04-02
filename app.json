@@ -1,8 +1,11 @@
 {
   "pages":[
-    "pages/content/content",
-    "pages/inner_list/inner_list",
     "pages/home/home",
+    "pages/inner_list/inner_list",
+
+    "pages/content/content",
+
+ 
     "pages/index/index",
     "pages/logs/logs",
     "pages/Secondary_menu/Secondary_menu",

@@ -22,7 +22,7 @@ Page({
       }
       else if (event.currentTarget.dataset.id == 'mathematics'){
         wx.navigateTo({
-          url: '../Secondary_menu/Secondary_menu?subject=mathematics',
+          url: '../Secondary_menu/Secondary_menu?subject=math',
         })
       }
       else if (event.currentTarget.dataset.id == 'chinese') {
@@ -47,11 +47,11 @@ Page({
         })
       } else if (event.currentTarget.dataset.id == 'zhengzhi') {
         wx.navigateTo({
-          url: '../Secondary_menu/Secondary_menu?subject=zhengzhi',
+          url: '../Secondary_menu/Secondary_menu?subject=political',
         })
       } else if (event.currentTarget.dataset.id == 'time') {
         wx.navigateTo({
-          url: '../Secondary_menu/Secondary_menu?subject=time',
+          url: '../Secondary_menu/Secondary_menu?subject=history',
         })
       }
   }

@@ -6,18 +6,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    menuList:[],
+    article:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this,
-    title = options.title,
-    content = options.content
+    var that = this;
+    var arti='';
+    //var offset = options.id;
+    var str=options.array;
+    var array = str.split(',');
+    console.log(array[0]);
+    // var subject = options.subject;
+    // var title = options.title;
+    // var which = options.which;
+    wx.request({
+      url: 'http://129.204.216.249:8008/' + array[0] + '/knowledge/get/test/' + array[1] + '/20/0',
+      header: {
+        "Accept": "*/*"
+      },
+      success: function (res) {
+        console.log(res.data.data)
+        that.setData({
+          menuList: res.data.data,
+        })
+        //console.log(res.data.data.content);
+        //console.log("content:"+that.data.menuList[0].content);
+        WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
+      }
+    })
+    //content = options.content
 
-    WxParse.wxParse('article', 'html', content, that, 5)
+
   },
 
   /**
