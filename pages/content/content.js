@@ -22,22 +22,43 @@ Page({
     console.log(array[0]);
     // var subject = options.subject;
     // var title = options.title;
+    // var title = options.title;
     // var which = options.which;
-    wx.request({
-      url: 'http://129.204.216.249:8008/' + array[0] + '/knowledge/get/test/' + array[1] + '/20/0',
-      header: {
-        "Accept": "*/*"
-      },
-      success: function (res) {
-        console.log(res.data.data)
-        that.setData({
-          menuList: res.data.data,
-        })
-        //console.log(res.data.data.content);
-        //console.log("content:"+that.data.menuList[0].content);
-        WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
-      }
-    })
+    if(array[3]=='知识点'){
+      wx.request({
+        url: 'http://129.204.216.249:8008/' + array[0] + '/knowledge/get/test/' + array[1] + '/20/0',
+        header: {
+          "Accept": "*/*"
+        },
+        success: function (res) {
+          console.log(res.data.data)
+          that.setData({
+            menuList: res.data.data,
+          })
+          //console.log(res.data.data.content);
+          //console.log("content:"+that.data.menuList[0].content);
+          WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
+        }
+      })
+    }
+    if(array[3]=='归纳总结'){
+      wx.request({
+        url: 'http://129.204.216.249:4000/'+array[0]+'/summary/get/test/'+array[1]+'/20/0',
+        header: {
+          "Accept": "*/*"
+        },
+        success: function (res) {
+          console.log(res.data.data)
+          that.setData({
+            menuList: res.data.data,
+          })
+          //console.log(res.data.data.content);
+          //console.log("content:"+that.data.menuList[0].content);
+          WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
+        }
+      })
+    }
+    
     //content = options.content
 
 

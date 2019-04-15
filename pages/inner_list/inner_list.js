@@ -9,7 +9,8 @@ Page({
     menuList:[],
     subject:'',
     which:'',
-    offset:''
+    offset:'',
+    module:''
   },
 
   /**
@@ -17,23 +18,47 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    var subject=options.sub;
-    var which = options.which;
-    wx.request({
-      url: 'http://129.204.216.249:8008/'+subject+'/knowledge/get/test/'+which+'/200/0',
-      header: {
-        "Accept": "*/*"
-      },
-      success: function (res) {
-        console.log(res.data.data)
-        that.setData({
-          menuList: res.data.data,
-          subject: options.sub,
-          which: options.which
-        })
-        console.log(that.data.menuList);
-      }
-    })
+    var str = options.array;
+    console.log(str);
+    var array = str.split(',');
+    console.log(array);
+    if(array[2]=='知识点'){
+      wx.request({
+        url: 'http://129.204.216.249:8008/' + array[0] + '/knowledge/get/test/' + array[1] + '/200/0',
+        header: {
+          "Accept": "*/*"
+        },
+        success: function (res) {
+          console.log(res.data.data)
+          that.setData({
+            menuList: res.data.data,
+            subject: array[0],
+            which: array[1],
+            module: array[2]
+          })
+          console.log(that.data.menuList);
+        }
+      })
+    }
+    if(array[2]=='归纳总结'){
+      wx.request({
+        url: 'http://129.204.216.249:4000/'+array[0]+'/summary/get/test/'+array[1]+'/20/0',
+        header: {
+          "Accept": "*/*"
+        },
+        success: function (res) {
+          console.log(res.data.data)
+          that.setData({
+            menuList: res.data.data,
+            subject: array[0],
+            which: array[1],
+            module: array[2]
+          })
+          console.log(that.data.menuList);
+        }
+      })
+    }
+    
     
 
   },
@@ -110,7 +135,7 @@ Page({
     var title = menuList[id].title;
     var content = menuList[id].content;
     console.log("title :" + title+"content"+content);
-    console.log("subject :" + that.data.subject + "which :" + that.data.which+"id: "+id);
-    wx.navigateTo({ url: '../content/content?array=' + [that.data.subject, that.data.which, id]});
+    console.log("subject :" + that.data.subject + " which :" + that.data.which+" id: "+id+" module :"+that.data.module);
+    wx.navigateTo({ url: '../content/content?array=' + [that.data.subject, that.data.which, id,that.data.module]});
   }
 })

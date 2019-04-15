@@ -2,7 +2,8 @@ Page({
   data:{
     listName:{
     },
-    subject:''
+    subject:'',
+    module:'',
   },
   onLoad:function(options){
     console.log(options)
@@ -17,17 +18,36 @@ Page({
           console.log(res.data.data)
           that.setData({
             listName: res.data.data,
-            subject: options.sub
+            subject: options.sub,
+            module: options.arg
           })
           console.log(that.data.listName);
         }
       })
       }
+    if(options.arg=='归纳总结'){
+      wx.request({
+        url: 'http://129.204.216.249:4000/'+options.sub+'/summary/mapping/get',
+        header: {
+          "Accept": "*/*"
+        },
+        success: function (res) {
+          console.log(res.data.data)
+          that.setData({
+            listName: res.data.data,
+            subject: options.sub,
+            module: options.arg
+          })
+          console.log(that.data.listName);
+        }
+      })
+    }
   },
   toInnerList:function(event){
     var id = event.currentTarget.dataset.id;
+    console.log(this.data.module);
     wx.navigateTo({
-      url: '../inner_list/inner_list?sub=' + this.data.subject + '&which=' + id,
+      url: '../inner_list/inner_list?array=' + [this.data.subject, id,this.data.module],
     })
   }
 })
