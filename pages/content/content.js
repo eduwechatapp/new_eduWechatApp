@@ -75,6 +75,23 @@ Page({
         }
       })
     }
+    if (array[3] == '答题模版') {
+      wx.request({
+        url: 'http://129.204.216.249:4000/' + array[0] + '/template/get/test/' + array[1] + '/20/0',
+        header: {
+          "Accept": "*/*"
+        },
+        success: function (res) {
+          console.log(res.data.data)
+          that.setData({
+            menuList: res.data.data,
+          })
+          //console.log(res.data.data.content);
+          //console.log("content:"+that.data.menuList[0].content);
+          WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
+        }
+      })
+    }
     
     //content = options.content
 

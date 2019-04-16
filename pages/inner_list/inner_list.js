@@ -24,7 +24,7 @@ Page({
     console.log(array);
     if(array[2]=='知识点'){
       wx.request({
-        url: 'http://129.204.216.249:4000/' + array[0] + '/knowledge/get/test/' + array[1] + '/200/0',
+        url:'http://129.204.216.249:4000/'+array[0]+'/template/get/test/'+array[1]+'/20/0',
         header: {
           "Accept": "*/*"
         },
@@ -61,6 +61,24 @@ Page({
     if(array[2]=='专题'){
       wx.request({
         url: 'http://129.204.216.249:4000/' + array[0] + '/topic/get/test/' + array[1] + '/20/0',
+        header: {
+          "Accept": "*/*"
+        },
+        success: function (res) {
+          console.log(res.data.data)
+          that.setData({
+            menuList: res.data.data,
+            subject: array[0],
+            which: array[1],
+            module: array[2]
+          })
+          console.log(that.data.menuList);
+        }
+      })
+    }
+    if (array[2] == '答题模版') {
+      wx.request({
+        url: 'http://129.204.216.249:4000/' + array[0] + '/template/get/test/' + array[1] + '/20/0',
         header: {
           "Accept": "*/*"
         },
