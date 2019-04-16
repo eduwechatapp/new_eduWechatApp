@@ -26,7 +26,7 @@ Page({
     // var which = options.which;
     if(array[3]=='知识点'){
       wx.request({
-        url: 'http://129.204.216.249:8008/' + array[0] + '/knowledge/get/test/' + array[1] + '/20/0',
+        url: 'http://129.204.216.249:4000/' + array[0] + '/knowledge/get/test/' + array[1] + '/20/0',
         header: {
           "Accept": "*/*"
         },

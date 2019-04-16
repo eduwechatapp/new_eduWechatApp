@@ -10,7 +10,7 @@ Page({
     var that = this;
     if(options.arg=='知识点'){
       wx.request({
-        url: 'http://129.204.216.249:8008/'+options.sub+'/knowledge/mapping/get', 
+        url: 'http://129.204.216.249:4000/'+options.sub+'/knowledge/mapping/get', 
         header: {
           "Accept": "*/*" 
         },
