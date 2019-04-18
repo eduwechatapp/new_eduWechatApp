@@ -1,5 +1,4 @@
 var WxParse = require('../../wxParse/wxParse.js');
-
 Page({
 
   /**
@@ -7,9 +6,12 @@ Page({
    */
   data: {
     menuList:[],
-    article:{}
+    article:{},
+    argument:[],
   },
-
+  contentRequest: function (array) {
+    
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -19,12 +21,15 @@ Page({
     //var offset = options.id;
     var str=options.array;
     var array = str.split(',');
+    that.setData({
+      argument:array
+    })
     console.log(array[0]);
     // var subject = options.subject;
     // var title = options.title;
     // var title = options.title;
     // var which = options.which;
-    if(array[3]=='知识点'){
+    if (array[3] == '知识点') {
       wx.request({
         url: 'https://www.vaskka.com/mp/' + array[0] + '/knowledge/get/test/' + array[1] + '/20/0',
         header: {
@@ -41,9 +46,9 @@ Page({
         }
       })
     }
-    if(array[3]=='归纳总结'){
+    if (array[3] == '归纳总结') {
       wx.request({
-        url: 'https://www.vaskka.com/mp/'+array[0]+'/summary/get/test/'+array[1]+'/20/0',
+        url: 'https://www.vaskka.com/mp/' + array[0] + '/summary/get/test/' + array[1] + '/20/0',
         header: {
           "Accept": "*/*"
         },
@@ -58,7 +63,7 @@ Page({
         }
       })
     }
-    if(array[3]=='专题'){
+    if (array[3] == '专题') {
       wx.request({
         url: 'https://www.vaskka.com/mp/' + array[0] + '/topic/get/test/' + array[1] + '/20/0',
         header: {
@@ -97,7 +102,50 @@ Page({
 
 
   },
+  
 
+
+  pageUp: function(){
+    var that = this;
+    var which = that.data.argument;
+    
+    if(which[2] == 0){
+      wx.showToast({
+        title: '已经是第一页！',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+    else{
+      which[2] -= 1;
+      that.setData({
+        argument: which,
+      })
+      var array=that.data.argument;
+      WxParse.wxParse('arti', 'html', that.data.menuList[which[2]].content, that, 5);
+    }
+  },
+  pageDown: function(){
+    var that = this;
+    var which = that.data.argument;
+    var length = that.data.menuList.length-1
+    if(which[2]==length){
+      wx.showToast({
+        title: '已经是最后一页！',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+    else{
+      which[2] += 1;
+
+        that.setData({
+          argument: which,
+        })
+        var array = that.data.argument;
+        WxParse.wxParse('arti', 'html', that.data.menuList[which[2]].content, that, 5);
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
