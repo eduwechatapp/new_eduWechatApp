@@ -1,28 +1,111 @@
-.home_pages{
+.home_pages {
   height: 100%;
 }
-.icon{
+
+.icon {
   height: 100%;
   width: 100%
 }
-.home_area{
-  width:30%;
+
+.home_area {
+  width: 30%;
   height: 250rpx;
 }
-.image_area{
+
+.image_area {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 }
-.icon_text{
+
+.icon_text {
   text-align: center;
 }
-.home_icon{
-  width:100%;
+
+.home_icon {
+  width: 100%;
   height: 80%;
 }
+
 .tap_performance {
   background-color: rgba(0, 0, 0, 0.1);
   opacity: 0.7;
+}
+
+.swiper {
+  margin-top: 20rpx;
+  height: 250rpx;
+  width: 100%;
+  z-index: 10;
+  position: relative;
+}
+
+.swiper-image {
+  width: 670rpx;
+  height: 100%;
+  z-index: inherit;
+  border-radius: 10rpx;
+  margin-left: 40rpx;
+}
+
+.indicator-dots {
+  position: absolute;
+  bottom: 5rpx;
+  height: 20rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.indicator-dots .dot {
+  width: 20rpx;
+  height: 4rpx;
+  margin: 0 5rpx;
+  background-color: rgba(0, 0, 0, .3)
+}
+
+.indicator-dots .dot.dot-active {
+  background-color: #437be8
+}
+
+.subject-card {
+  width: 630rpx;
+  /* height: 200rpx; */
+  margin: 40rpx auto;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 6px 18px 0 rgba(200, 200, 200, 0.4);
+  flex-direction: column;
+}
+
+.subject-card .subjects {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.icon-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 100%;
+}
+
+.search-box {
+  width: 630rpx;
+  /* height: 200rpx; */
+  margin: 40rpx auto;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 6px 18px 0 rgba(200, 200, 200, 0.4);
+}
+
+input{
+  width: 100%;
+  background: #fafafa;
+  padding: 20rpx
 }

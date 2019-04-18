@@ -1,13 +1,32 @@
 <view class="home_pages">
-  <view class="image_area">
-
-    <view class = "home_area" bindtap="toSubject" wx:for="{{subject}}" data-id="{{item.unique}}">
-      <view class="home_icon" hover-class='tap_performance' hover-stay-time='100'>
-        <image class ="icon" src="{{item.url}}"></image>
-      </view>
-      <view class = "icon_text">{{item.name}}</view>
+  <view class="swiper" bindtap="previewImage">
+    <swiper indicator-dots="{{false}}" duration="200" style="height:100%;" bindchange="swiperChange" autoplay="true" circular="true">
+      <block wx:for="{{bannerList}}" wx:key="{{index}}">
+        <swiper-item>
+          <image class="swiper-image" src="{{item}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="indicator-dots">
+      <view class="dot {{swiperIndex==index?'dot-active':''}}" wx:for="{{bannerList}}"></view>
     </view>
-
   </view>
-</view>  
+  <view class="subject-card">
+    <view class="subjects">
+      <view wx:for="{{mainSubject}}" id="{{index}}" bindtap="toSubject" hover-class="tap_performance" class="icon-box" data-type="main">
+        <image src="{{item.url}}" style="width:160rpx;height:160rpx" />
+        <text style="font-size:26rpx;font-weight:bold">{{item.name}}</text>
+      </view>
+    </view>
+    <view class="subjects" style="margin-top:40rpx">
+      <view wx:for="{{secSubject}}" id="{{index}}" bindtap="toSubject" hover-class="tap_performance" class="icon-box" data-type="sec">
+        <image src="{{item.url}}" style="width:110rpx;height:110rpx" />
+        <text style="font-size:26rpx;font-weight:bold">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
 
+  <view class="search-box">
+    <input placeholder="输入知识点进行搜索" />
+  </view>
+</view>
