@@ -8,6 +8,7 @@
   border-bottom: #eee 3rpx solid;
   display: flex;
   align-items: center;
+  font-size: 30rpx;
 }
 .left_text{
   width: 80%;

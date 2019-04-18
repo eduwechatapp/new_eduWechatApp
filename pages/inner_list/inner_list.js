@@ -24,7 +24,7 @@ Page({
     console.log(array);
     if(array[2]=='知识点'){
       wx.request({
-        url:'http://129.204.216.249:4000/'+array[0]+'/knowledge/get/test/'+array[1]+'/20/0',
+        url:'https://www.vaskka.com/mp/'+array[0]+'/knowledge/get/test/'+array[1]+'/20/0',
         header: {
           "Accept": "*/*"
         },
@@ -42,7 +42,7 @@ Page({
     }
     if(array[2]=='归纳总结'){
       wx.request({
-        url: 'http://129.204.216.249:4000/'+array[0]+'/summary/get/test/'+array[1]+'/20/0',
+        url: 'https://www.vaskka.com/mp/'+array[0]+'/summary/get/test/'+array[1]+'/20/0',
         header: {
           "Accept": "*/*"
         },
@@ -60,7 +60,7 @@ Page({
     }
     if(array[2]=='专题'){
       wx.request({
-        url: 'http://129.204.216.249:4000/' + array[0] + '/topic/get/test/' + array[1] + '/20/0',
+        url: 'https://www.vaskka.com/mp/' + array[0] + '/topic/get/test/' + array[1] + '/20/0',
         header: {
           "Accept": "*/*"
         },
@@ -78,7 +78,7 @@ Page({
     }
     if (array[2] == '答题模版') {
       wx.request({
-        url: 'http://129.204.216.249:4000/' + array[0] + '/template/get/test/' + array[1] + '/20/0',
+        url: 'https://www.vaskka.com/mp/' + array[0] + '/template/get/test/' + array[1] + '/20/0',
         header: {
           "Accept": "*/*"
         },

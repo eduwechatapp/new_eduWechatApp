@@ -10,7 +10,7 @@ Page({
     var that = this;
     if(options.arg=='知识点'){
       wx.request({
-        url: 'http://129.204.216.249:4000/'+options.sub+'/knowledge/mapping/get', 
+        url: 'https://www.vaskka.com/mp/'+options.sub+'/knowledge/mapping/get', 
         header: {
           "Accept": "*/*" 
         },
@@ -27,7 +27,7 @@ Page({
       }
     if(options.arg=='归纳总结'){
       wx.request({
-        url: 'http://129.204.216.249:4000/'+options.sub+'/summary/mapping/get',
+        url: 'https://www.vaskka.com/mp/'+options.sub+'/summary/mapping/get',
         header: {
           "Accept": "*/*"
         },
@@ -44,7 +44,7 @@ Page({
     }
     if(options.arg=='专题'){
       wx.request({
-        url: 'http://129.204.216.249:4000/'+options.sub+'/topic/mapping/get',
+        url: 'https://www.vaskka.com/mp/'+options.sub+'/topic/mapping/get',
         header: {
           "Accept": "*/*"
         },
@@ -61,7 +61,7 @@ Page({
     }
     if(options.arg=='答题模版'){
       wx.request({
-        url: 'http://129.204.216.249:4000/'+options.sub+'/template/mapping/get',
+        url: 'https://www.vaskka.com/mp/'+options.sub+'/template/mapping/get',
         header: {
           "Accept": "*/*"
         },
