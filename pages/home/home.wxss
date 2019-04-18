@@ -8,6 +8,7 @@
 .home_area{
   width:30%;
   height: 250rpx;
+
 }
 .image_area{
   display: flex;

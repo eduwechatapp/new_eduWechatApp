@@ -1,6 +1,9 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/new_home/new_home",
+    
+    "pages/Outer_list/Outer_list",
     "pages/inner_list/inner_list",
 
     "pages/content/content",
@@ -8,8 +11,8 @@
  
     "pages/index/index",
     "pages/logs/logs",
-    "pages/Secondary_menu/Secondary_menu",
-    "pages/Outer_list/Outer_list"
+    "pages/Secondary_menu/Secondary_menu"
+
   ],
   "window":{
     "backgroundTextStyle":"light",
