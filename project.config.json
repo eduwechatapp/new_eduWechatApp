@@ -13,11 +13,9 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.4",
-<<<<<<< HEAD
-	"appid": "wxca749ba76d8ea54b",
-=======
+
 	"appid": "wx34f69a4b4a8c4829",
->>>>>>> 4ad60cfddcf8c945879471483eb41f00f01f1f25
+
 	"projectname": "cg_eduWechatApp",
 	"debugOptions": {
 		"hidedInDevtools": []

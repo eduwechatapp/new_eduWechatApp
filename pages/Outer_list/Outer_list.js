@@ -6,7 +6,7 @@ Page({
     module:'',
   },
   onLoad:function(options){
-    console.log(options)
+    //console.log(options)
     var that = this;
     if(options.arg=='知识点'){
       wx.request({
@@ -15,13 +15,13 @@ Page({
           "Accept": "*/*" 
         },
         success: function (res) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           that.setData({
             listName: res.data.data,
             subject: options.sub,
             module: options.arg
           })
-          console.log(that.data.listName);
+          //console.log(that.data.listName);
         }
       })
       }
@@ -32,13 +32,13 @@ Page({
           "Accept": "*/*"
         },
         success: function (res) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           that.setData({
             listName: res.data.data,
             subject: options.sub,
             module: options.arg
           })
-          console.log(that.data.listName);
+          //console.log(that.data.listName);
         }
       })
     }
@@ -49,13 +49,13 @@ Page({
           "Accept": "*/*"
         },
         success: function (res) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           that.setData({
             listName: res.data.data,
             subject: options.sub,
             module: options.arg
           })
-          console.log(that.data.listName);
+          //console.log(that.data.listName);
         }
       })
     }
@@ -66,20 +66,20 @@ Page({
           "Accept": "*/*"
         },
         success: function (res) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           that.setData({
             listName: res.data.data,
             subject: options.sub,
             module: options.arg
           })
-          console.log(that.data.listName);
+          //console.log(that.data.listName);
         }
       })
     }
   },
   toInnerList:function(event){
     var id = event.currentTarget.dataset.id;
-    console.log(this.data.module);
+    //console.log(this.data.module);
     wx.navigateTo({
       url: '../inner_list/inner_list?array=' + [this.data.subject, id,this.data.module],
     })

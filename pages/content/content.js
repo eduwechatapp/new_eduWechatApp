@@ -24,19 +24,20 @@ Page({
     that.setData({
       argument:array
     })
-    console.log(array[0]);
+    console.log("onLoad: "+array);
+    //console.log(array[0]);
     // var subject = options.subject;
     // var title = options.title;
     // var title = options.title;
     // var which = options.which;
     if (array[3] == '知识点') {
       wx.request({
-        url: 'https://www.vaskka.com/mp/' + array[0] + '/knowledge/get/test/' + array[1] + '/20/0',
+        url: 'https://www.vaskka.com/mp/' + array[0] + '/knowledge/get/test/' + array[1] + '/100/0',
         header: {
           "Accept": "*/*"
         },
         success: function (res) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           that.setData({
             menuList: res.data.data,
           })
@@ -48,12 +49,12 @@ Page({
     }
     if (array[3] == '归纳总结') {
       wx.request({
-        url: 'https://www.vaskka.com/mp/' + array[0] + '/summary/get/test/' + array[1] + '/20/0',
+        url: 'https://www.vaskka.com/mp/' + array[0] + '/summary/get/test/' + array[1] + '/100/0',
         header: {
           "Accept": "*/*"
         },
         success: function (res) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           that.setData({
             menuList: res.data.data,
           })
@@ -65,12 +66,12 @@ Page({
     }
     if (array[3] == '专题') {
       wx.request({
-        url: 'https://www.vaskka.com/mp/' + array[0] + '/topic/get/test/' + array[1] + '/20/0',
+        url: 'https://www.vaskka.com/mp/' + array[0] + '/topic/get/test/' + array[1] + '/100/0',
         header: {
           "Accept": "*/*"
         },
         success: function (res) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           that.setData({
             menuList: res.data.data,
           })
@@ -82,12 +83,12 @@ Page({
     }
     if (array[3] == '答题模版') {
       wx.request({
-        url: 'https://www.vaskka.com/mp/' + array[0] + '/template/get/test/' + array[1] + '/20/0',
+        url: 'https://www.vaskka.com/mp/' + array[0] + '/template/get/test/' + array[1] + '/100/0',
         header: {
           "Accept": "*/*"
         },
         success: function (res) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           that.setData({
             menuList: res.data.data,
           })
@@ -115,6 +116,7 @@ Page({
         icon: 'none',
         duration: 2000
       })
+      console.log("which: "+which);
     }
     else{
       which[2] -= 1;
@@ -122,14 +124,15 @@ Page({
         argument: which,
       })
       var array=that.data.argument;
-      WxParse.wxParse('arti', 'html', that.data.menuList[which[2]].content, that, 5);
+      WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
+      console.log("which: " + which);
     }
   },
   pageDown: function(){
     var that = this;
     var which = that.data.argument;
     var length = that.data.menuList.length-1
-    if(which[2]==length){
+    if(which[2] == length){
       wx.showToast({
         title: '已经是最后一页！',
         icon: 'none',
@@ -138,12 +141,25 @@ Page({
     }
     else{
       which[2] += 1;
-
+      wx.request({
+        url: 'https://www.vaskka.com/mp/' + which[0] + '/template/get/test/' + which[1] + '/100/0',
+        header: {
+          "Accept": "*/*"
+        },
+        success: function (res) {
+          //console.log(res.data.data)
+          that.setData({
+            menuList: res.data.data,
+          })
+          //console.log(res.data.data.content);
+          //console.log("content:"+that.data.menuList[0].content);
+          WxParse.wxParse('arti', 'html', that.data.menuList[which[2]].content, that, 5);
+        }
+      })
         that.setData({
           argument: which,
         })
-        var array = that.data.argument;
-        WxParse.wxParse('arti', 'html', that.data.menuList[which[2]].content, that, 5);
+      WxParse.wxParse('arti', 'html', that.data.menuList[that.data.argument[2]].content, that, 5);
     }
   },
   /**
