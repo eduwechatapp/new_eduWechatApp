@@ -18,7 +18,7 @@
         <text style="font-size:26rpx;font-weight:bold">{{item.name}}</text>
       </view>
     </view>
-    <view class="subjects" style="margin-top:40rpx">
+    <view class="subjects" style="margin-top:60rpx">
       <view wx:for="{{secSubject}}" id="{{index}}" bindtap="toSubject" hover-class="tap_performance" class="icon-box" data-type="sec">
         <image src="{{item.url}}" style="width:110rpx;height:110rpx" />
         <text style="font-size:26rpx;font-weight:bold">{{item.name}}</text>

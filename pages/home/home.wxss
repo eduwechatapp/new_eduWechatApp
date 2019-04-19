@@ -73,8 +73,8 @@
 
 .subject-card {
   width: 630rpx;
-  height: 400rpx; 
-  margin: 20rpx auto;
+  height: 450rpx; 
+  margin: 40rpx auto;
   padding: 20rpx;
   display: flex;
   align-items: center;
