@@ -20,9 +20,7 @@
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {
-    "selectedColor": "#19b076",
     "backgroundColor": "#ffffff",
-    "color": "#8a8a8a",
     "list": [
       {
         "pagePath": "pages/home/home",
@@ -33,8 +31,8 @@
       {
         "pagePath": "pages/video/video",
         "text": "视频",
-        "iconPath": "pages/icon/circle_1.png",
-        "selectedIconPath": "pages/icon/circle_2.png"
+        "iconPath": "pages/icon/video_2.png",
+        "selectedIconPath": "pages/icon/video_1.png"
       },
       {
         "pagePath": "pages/more/more",
