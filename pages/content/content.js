@@ -20,7 +20,9 @@ Page({
     var arti='';
     //var offset = options.id;
     var str=options.array;
-    var array = str.split(',');
+    var array_str = str.split(',');
+    var array = [array_str[0], array_str[1]-'0', array_str[2]-'0',array_str[3]]
+    console.log(array);
     that.setData({
       argument:array
     })
@@ -82,6 +84,7 @@ Page({
       })
     }
     if (array[3] == '答题模版') {
+      
       wx.request({
         url: 'https://www.vaskka.com/mp/' + array[0] + '/template/get/test/' + array[1] + '/100/0',
         header: {
@@ -109,29 +112,57 @@ Page({
   pageUp: function(){
     var that = this;
     var which = that.data.argument;
-    
-    if(which[2] == 0){
+    var length = that.data.menuList.length - 1;
+    console.log("which: " + which);
+    if (which[2] == 0) {
       wx.showToast({
-        title: '已经是第一页！',
+        title: '这是第一页噢',
         icon: 'none',
         duration: 2000
       })
-      console.log("which: "+which);
     }
-    else{
-      which[2] -= 1;
+    else {
+      which[2] = which[2] - 1;
+      switch (which[3]) {
+        case "答题模版":
+          module = "template";
+          break;
+        case "知识点":
+          module = "knowledge";
+          break;
+        case "专题":
+          module = "topic";
+          break;
+        case "归纳总结":
+          module = "summary";
+          break;
+      }
+      wx.request({
+        url: 'https://www.vaskka.com/mp/' + which[0] + '/' + module + '/get/test/' + which[1] + '/100/0',
+        header: {
+          "Accept": "*/*"
+        },
+        success: function (res) {
+          //console.log(res.data.data)
+          that.setData({
+            menuList: res.data.data,
+          })
+          //console.log(res.data.data.content);
+          //console.log("content:"+that.data.menuList[0].content);
+          WxParse.wxParse('arti', 'html', that.data.menuList[which[2]].content, that, 5);
+        }
+      })
       that.setData({
         argument: which,
       })
-      var array=that.data.argument;
-      WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
-      console.log("which: " + which);
+      WxParse.wxParse('arti', 'html', that.data.menuList[that.data.argument[2]].content, that, 5);
     }
   },
   pageDown: function(){
     var that = this;
     var which = that.data.argument;
-    var length = that.data.menuList.length-1
+    var length = that.data.menuList.length-1;
+    console.log("which: " + which);
     if(which[2] == length){
       wx.showToast({
         title: '已经是最后一页！',
@@ -140,9 +171,23 @@ Page({
       })
     }
     else{
-      which[2] += 1;
+      which[2] =which[2]+ 1;
+      switch (which[3]) {
+        case "答题模版":
+          module = "template";
+          break;
+        case "知识点":
+          module = "knowledge";
+          break;
+        case "专题":
+          module = "topic";
+          break;
+        case "归纳总结":
+          module = "summary";
+          break;
+      }
       wx.request({
-        url: 'https://www.vaskka.com/mp/' + which[0] + '/template/get/test/' + which[1] + '/100/0',
+        url: 'https://www.vaskka.com/mp/' + which[0] + '/'+module+'/get/test/' + which[1] + '/100/0',
         header: {
           "Accept": "*/*"
         },

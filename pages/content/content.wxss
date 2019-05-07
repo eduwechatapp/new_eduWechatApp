@@ -23,7 +23,7 @@
 .text_area {
     height: 80%;
     width: 95%;
-    margin-top:97rpx; 
+    /*margin-top:97rpx; */
     overflow: scroll;
     margin-left: auto;
     margin-right: auto;

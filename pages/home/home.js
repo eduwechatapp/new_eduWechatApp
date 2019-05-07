@@ -23,11 +23,12 @@ Page({
       { name: "物理", url: "/pages/icon/physics.png", unique: "physics" },
       { name: "生物", url: "/pages/icon/biology.png", unique: "biology" },
       { name: "地理", url: "/pages/icon/geography.png", unique: "geography" },
-      { name: "政治", url: "/pages/icon/political.png", unique: "zhengzhi" },
-      { name: "历史", url: "/pages/icon/history.png", unique: "time" },
+      { name: "政治", url: "/pages/icon/political.png", unique: "political" },
+      { name: "历史", url: "/pages/icon/history.png", unique: "history" },
     ],
     swiperIndex: 0,
-    bannerList: ['http://pq1t2zu2n.bkt.clouddn.com/const/introduce.png', 'http://pq1t2zu2n.bkt.clouddn.com/const/notice.png']
+    bannerList: ['http://pq1t2zu2n.bkt.clouddn.com/const/introduce.png', 'http://pq1t2zu2n.bkt.clouddn.com/const/notice.png'],
+    swiperList:['../introduction/introduction','../notice/notice']
   },
   //滑动swiper
   swiperChange: function (e) {
@@ -77,7 +78,12 @@ Page({
   //     })
   //   }
   // },
-
+  toPage:function(e){
+    var list = this.data.swiperList
+    wx.navigateTo({
+      url: list[this.data.swiperIndex],
+    })
+  },
   toSubject: function (e) {
     var that = this,
       id = e.currentTarget.id,
