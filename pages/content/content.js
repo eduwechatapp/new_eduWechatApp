@@ -8,6 +8,7 @@ Page({
     menuList:[],
     article:{},
     argument:[],
+    currentSelect:'notCare',
   },
   contentRequest: function (array) {
     
@@ -101,12 +102,70 @@ Page({
         }
       })
     }
+    var that = this;
+    wx.getStorage({
+      key: "button" + that.data.argument[0] + that.data.argument[1] + that.data.argument[2] + that.data.argument[3],
+      success: function(res) {
+        console.log(res.data)
+        that.setData({
+          currentSelect:res.data
+        })
+      },
+    })
     
     //content = options.content
 
 
   },
-  
+  switchStatus:function(e){
+    this.setData({
+      currentSelect:e.currentTarget.dataset.id
+    })
+    console.log(this.data.argument)
+    if (this.data.currentSelect == "notCare"){
+      wx.removeStorage({
+        key: "attention" + this.data.argument[0] + this.data.argument[1] + this.data.argument[2]           + this.data.argument[3],
+        success: function(res) {
+          console.log(res)
+        },
+      })
+      wx.removeStorage({
+        key: "focus" + this.data.argument[0] + this.data.argument[1] + this.data.argument[2] + this.data.argument[3],
+        success: function (res) {
+          console.log(res)
+        },
+      })
+    }
+    else if (this.data.currentSelect == "attention"){
+      wx.removeStorage({
+        key: "focus" + this.data.argument[0] + this.data.argument[1] + this.data.argument[2] + this.data.argument[3],
+        success: function (res) {
+          console.log(res)
+        },
+      })
+      wx.setStorage({
+        key: e.currentTarget.dataset.id + this.data.argument[0] + this.data.argument[1] + this.data.argument[2] + this.data.argument[3],
+        data: this.data.menuList[this.data.argument[2]],
+      })
+    }
+    else{
+      wx.removeStorage({
+        key: "attention" + this.data.argument[0] + this.data.argument[1] + this.data.argument[2] + this.data.argument[3],
+        success: function (res) {
+          console.log(res)
+        },
+      })
+      wx.setStorage({
+        key: e.currentTarget.dataset.id + this.data.argument[0] + this.data.argument[1] + this.data.argument[2]           + this.data.argument[3],
+        data: this.data.menuList[this.data.argument[2]],
+      })
+      console.log(this.data.currentSelect);
+    }
+    wx.setStorage({
+      key: "button" + this.data.argument[0] + this.data.argument[1] + this.data.argument[2] + this.data.argument[3],
+      data: this.data.currentSelect,
+    })
+  },
 
 
   pageUp: function(){

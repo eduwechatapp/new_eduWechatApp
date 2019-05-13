@@ -44,6 +44,12 @@
     display: inline-flex;
 }
 
+.selected{
+  width:30%;
+  display: inline-flex;
+  background-color: #7D88E9;
+  color: white
+}
 .button_area {
     display: flex;
     justify-content: space-around;
