@@ -93,8 +93,8 @@ Page({
           console.log(key);
           for (var i = 0; i < key.length; i++) {
             string = key[i].split('_');
-            //console.log(string[0]+string[1])
-            if (string[0] == "attention" && string[1] == "english") {
+            console.log(string)
+            if (string[0] == "attention" && string[1] == options.sub) {
               key_index[count] = i;
               count++;
             }
@@ -112,8 +112,8 @@ Page({
           that.setData({
             listName: temp_listName,
             storage: temp_storage,
-            module: "需要留意",
-            subject: options.arg,
+            module: options.arg,
+            subject: options.sub,
             wxml_type: "storage"
           })
         },
@@ -124,8 +124,18 @@ Page({
   toInnerList:function(event){
     var id = event.currentTarget.dataset.id;
     //console.log(this.data.module);
-    wx.navigateTo({
-      url: '../inner_list/inner_list?array=' + [this.data.subject, id,this.data.module],
-    })
+    if(this.data.module=="需要留意"||this.data.module=="重点关注"){
+      console.log(event)
+      wx.navigateTo({
+        url: '../content/content?array=' + [this.data.subject, id, this.data.module],
+      })
+    }
+    else{
+      console.log(event)
+      wx.navigateTo({
+        url: '../inner_list/inner_list?array=' + [this.data.subject, id, this.data.module],
+      })
+    }
+    
   }
 })
