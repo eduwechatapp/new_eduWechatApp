@@ -26,7 +26,8 @@ Page({
     var array = [array_str[0], array_str[1]-'0', array_str[2]-'0',array_str[3]]
     var str_storage = options.array;
     //console.log(str);
-    var array_storage = str.split(',');
+    var str_storage_split = str.split(',');
+    var array_storage = [str_storage_split[0], str_storage_split[1] - '0', str_storage_split[2]]
     console.log(options);
     console.log(array);
     console.log(array_storage)
@@ -151,6 +152,52 @@ Page({
           WxParse.wxParse('arti', 'html', that.data.menuList[array_storage[1]].content, that, 5);
         },
         
+      })
+
+    }
+    if (array_storage[2] == '重点关注') {
+      var key = new Array();
+      var key_index = new Array();
+      var string;
+      var that = this;
+      var length = 0;
+      var count = 0;
+      var temp_listName = new Array();
+      var temp_storage = new Array();
+      var storage_value;
+      wx.getStorageInfo({
+        success: function (res) {
+          key = res.keys;
+          console.log(key);
+          for (var i = 0; i < key.length; i++) {
+            string = key[i].split('_');
+            //console.log(string[0]+string[1])
+            if (string[0] == "focus" && string[1] == array_storage[0]) {
+              key_index[count] = i;
+              count++;
+            }
+          }
+          count = 0;
+          console.log(key_index)
+          console.log(key[key_index[2]])
+          for (var i = 0; i < key_index.length; i++) {
+
+            storage_value = wx.getStorageSync(key[key_index[i]])
+            console.log(storage_value)
+            temp_listName.push(storage_value["title"])
+            temp_storage.push(storage_value)
+          }
+          that.setData({
+            listName: temp_listName,
+            storage: temp_storage,
+            module: array_storage[2],
+            subject: array_storage[0],
+            menuList: temp_storage,
+            storage_argument: array_storage
+          })
+          WxParse.wxParse('arti', 'html', that.data.menuList[array_storage[1]].content, that, 5);
+        },
+
       })
 
     }
@@ -285,6 +332,18 @@ Page({
           argument: which,
         })
         WxParse.wxParse('arti', 'html', that.data.menuList[that.data.argument[2]].content, that, 5);
+        that.setData({
+          currentSelect: ""
+        })
+        wx.getStorage({
+          key: "button_" + that.data.argument[0] + "_" + that.data.argument[1] + "_" + that.data.argument[2] + "_" + that.data.argument[3],
+          success: function (res) {
+            console.log(res.data)
+            that.setData({
+              currentSelect: res.data
+            })
+          },
+        })
       }
     }
     
@@ -358,6 +417,18 @@ Page({
           argument: which,
         })
         WxParse.wxParse('arti', 'html', that.data.menuList[that.data.argument[2]].content, that, 5);
+        that.setData({
+          currentSelect: ""
+        })
+        wx.getStorage({
+          key: "button_" + that.data.argument[0] + "_" + that.data.argument[1] + "_" + that.data.argument[2] + "_" + that.data.argument[3],
+          success: function (res) {
+            console.log(res.data)
+            that.setData({
+              currentSelect: res.data
+            })
+          },
+        })
       }
     }
 

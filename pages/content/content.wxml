@@ -1,13 +1,18 @@
 <view class="page">
-    <view class="top_area">
+    <block wx:if="{{storage_argument[2]=='需要留意'||storage_argument[2]=='重点关注'}}">
+    </block>
+    <block wx:else>
+      <view class="top_area">
         <view class="button_area">
             <button class="{{currentSelect=='notCare'? 'selected':'button'}}" size="mini" bindtap='switchStatus' data-id="notCare">不放心上</button>
             <button class="{{currentSelect=='attention'? 'selected':'button'}}" size="mini" bindtap='switchStatus' data-id="attention">需要留意</button>
             <button class="{{currentSelect=='focus'? 'selected':'button'}}" size="mini" bindtap='switchStatus' data-id="focus">重点关注</button>
         </view>
         <view class="title">{{title}}</view>
-    </view>
-    <view class="text_area">
+      </view>
+    </block>
+
+    <view class="{{storage_argument[2]=='需要留意'||storage_argument[2]=='重点关注'? 'storage_text_area' : 'text_area'}}">
         <import src="../../wxParse/wxParse.wxml" />
         <template is="wxParse" data="{{wxParseData:arti.nodes}}" />
     </view>

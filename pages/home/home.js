@@ -28,7 +28,8 @@ Page({
     ],
     swiperIndex: 0,
     bannerList: ['http://pq1t2zu2n.bkt.clouddn.com/const/introduce.png', 'http://pq1t2zu2n.bkt.clouddn.com/const/notice.png'],
-    swiperList:['../introduction/introduction','../notice/notice']
+    swiperList:['../introduction/introduction','../notice/notice'],
+    titleName:"学霸の口袋高中"
   },
   //滑动swiper
   swiperChange: function (e) {
@@ -78,6 +79,12 @@ Page({
   //     })
   //   }
   // },
+  onLoad:function(){
+    var that = this;
+    wx.setNavigationBarTitle({
+      title: that.data.titleName
+    })
+  },
   toPage:function(e){
     var list = this.data.swiperList
     wx.navigateTo({

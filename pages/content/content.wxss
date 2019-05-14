@@ -19,7 +19,14 @@
 .title {
     text-align: center;
 }
-
+.storage_text_area{
+  height: 80%;
+    width: 95%;
+    overflow: scroll;
+    margin-top:10rpx;
+    margin-left: auto;
+    margin-right: auto;
+}
 .text_area {
     height: 80%;
     width: 95%;
