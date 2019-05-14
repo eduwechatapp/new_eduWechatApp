@@ -104,7 +104,7 @@ Page({
     }
     var that = this;
     wx.getStorage({
-      key: "button" + that.data.argument[0] + that.data.argument[1] + that.data.argument[2] + that.data.argument[3],
+      key: "button_" + that.data.argument[0] + "_" + that.data.argument[1] + "_" + that.data.argument[2] + "_" +that.data.argument[3],
       success: function(res) {
         console.log(res.data)
         that.setData({
@@ -124,13 +124,13 @@ Page({
     console.log(this.data.argument)
     if (this.data.currentSelect == "notCare"){
       wx.removeStorage({
-        key: "attention" + this.data.argument[0] + this.data.argument[1] + this.data.argument[2]           + this.data.argument[3],
+        key: "attention" + "_" + this.data.argument[0] + "_" + this.data.argument[1] + "_" + this.data.argument[2] + "_" + this.data.argument[3],
         success: function(res) {
           console.log(res)
         },
       })
       wx.removeStorage({
-        key: "focus" + this.data.argument[0] + this.data.argument[1] + this.data.argument[2] + this.data.argument[3],
+        key: "focus" + "_" + this.data.argument[0] + "_" + this.data.argument[1] + "_" + this.data.argument[2] + "_" + this.data.argument[3],
         success: function (res) {
           console.log(res)
         },
@@ -138,31 +138,31 @@ Page({
     }
     else if (this.data.currentSelect == "attention"){
       wx.removeStorage({
-        key: "focus" + this.data.argument[0] + this.data.argument[1] + this.data.argument[2] + this.data.argument[3],
+        key: "focus" + "_" + this.data.argument[0] + "_" + this.data.argument[1] + "_" + this.data.argument[2] + "_" + this.data.argument[3],
         success: function (res) {
           console.log(res)
         },
       })
       wx.setStorage({
-        key: e.currentTarget.dataset.id + this.data.argument[0] + this.data.argument[1] + this.data.argument[2] + this.data.argument[3],
+        key: e.currentTarget.dataset.id + "_" + this.data.argument[0] + "_" + this.data.argument[1] + "_" + this.data.argument[2] + "_" + this.data.argument[3],
         data: this.data.menuList[this.data.argument[2]],
       })
     }
     else{
       wx.removeStorage({
-        key: "attention" + this.data.argument[0] + this.data.argument[1] + this.data.argument[2] + this.data.argument[3],
+        key: "attention" + "_" + this.data.argument[0] + "_" + this.data.argument[1] + "_" + this.data.argument[2] + "_" + this.data.argument[3],
         success: function (res) {
           console.log(res)
         },
       })
       wx.setStorage({
-        key: e.currentTarget.dataset.id + this.data.argument[0] + this.data.argument[1] + this.data.argument[2]           + this.data.argument[3],
+        key: e.currentTarget.dataset.id + "_" + this.data.argument[0] + "_" + this.data.argument[1] + "_" + this.data.argument[2] + "_" + this.data.argument[3],
         data: this.data.menuList[this.data.argument[2]],
       })
       console.log(this.data.currentSelect);
     }
     wx.setStorage({
-      key: "button" + this.data.argument[0] + this.data.argument[1] + this.data.argument[2] + this.data.argument[3],
+      key: "button" + "_" + this.data.argument[0] + "_" + this.data.argument[1] + "_" + this.data.argument[2] + "_" + this.data.argument[3],
       data: this.data.currentSelect,
     })
   },
