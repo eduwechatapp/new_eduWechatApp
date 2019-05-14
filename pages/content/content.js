@@ -9,7 +9,8 @@ Page({
     article:{},
     argument:[],
     currentSelect:'notCare',
-    storage_argument:[]
+    storage_argument:[],
+    titleName:''
   },
   contentRequest: function (array) {
     
@@ -51,6 +52,12 @@ Page({
           that.setData({
             menuList: res.data.data,
           })
+          that.setData({
+            titleName: that.data.menuList[array[2]].title
+          })
+          wx.setNavigationBarTitle({
+            title: that.data.titleName
+          })
           //console.log(res.data.data.content);
           //console.log("content:"+that.data.menuList[0].content);
           WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
@@ -67,6 +74,12 @@ Page({
           //console.log(res.data.data)
           that.setData({
             menuList: res.data.data,
+          })
+          that.setData({
+            titleName: that.data.menuList[array[2]].title
+          })
+          wx.setNavigationBarTitle({
+            title: that.data.titleName
           })
           //console.log(res.data.data.content);
           //console.log("content:"+that.data.menuList[0].content);
@@ -85,6 +98,12 @@ Page({
           that.setData({
             menuList: res.data.data,
           })
+          that.setData({
+            titleName: that.data.menuList[array[2]].title
+          })
+          wx.setNavigationBarTitle({
+            title: that.data.titleName
+          })
           //console.log(res.data.data.content);
           //console.log("content:"+that.data.menuList[0].content);
           WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
@@ -102,6 +121,12 @@ Page({
           //console.log(res.data.data)
           that.setData({
             menuList: res.data.data,
+          })
+          that.setData({
+            titleName: that.data.menuList[array[2]].title
+          })
+          wx.setNavigationBarTitle({
+            title: that.data.titleName
           })
           //console.log(res.data.data.content);
           //console.log("content:"+that.data.menuList[0].content);
@@ -149,6 +174,12 @@ Page({
             menuList: temp_storage,
             storage_argument:array_storage
           })
+          that.setData({
+            titleName: that.data.menuList[array_storage[1]].title
+          })
+          wx.setNavigationBarTitle({
+            title: that.data.titleName
+          })
           WxParse.wxParse('arti', 'html', that.data.menuList[array_storage[1]].content, that, 5);
         },
         
@@ -194,6 +225,12 @@ Page({
             subject: array_storage[0],
             menuList: temp_storage,
             storage_argument: array_storage
+          })
+          that.setData({
+            titleName: that.data.menuList[array_storage[1]].title
+          })
+          wx.setNavigationBarTitle({
+            title: that.data.titleName
           })
           WxParse.wxParse('arti', 'html', that.data.menuList[array_storage[1]].content, that, 5);
         },
@@ -286,6 +323,12 @@ Page({
         that.setData({
           storage_argument: storage_which
         })
+        that.setData({
+          titleName: that.data.menuList[that.data.storage_argument[1]].title
+        })
+        wx.setNavigationBarTitle({
+          title: that.data.titleName
+        })
         WxParse.wxParse('arti', 'html', that.data.menuList[that.data.storage_argument[1]].content, that, 5);
       }
     }
@@ -323,6 +366,12 @@ Page({
             that.setData({
               menuList: res.data.data,
             })
+            that.setData({
+              titleName: that.data.menuList[which[2]].title
+            })
+            wx.setNavigationBarTitle({
+              title: that.data.titleName
+            })
             //console.log(res.data.data.content);
             //console.log("content:"+that.data.menuList[0].content);
             WxParse.wxParse('arti', 'html', that.data.menuList[which[2]].content, that, 5);
@@ -330,6 +379,12 @@ Page({
         })
         that.setData({
           argument: which,
+        })
+        that.setData({
+          titleName: that.data.menuList[that.data.argument[2]].title
+        })
+        wx.setNavigationBarTitle({
+          title: that.data.titleName
         })
         WxParse.wxParse('arti', 'html', that.data.menuList[that.data.argument[2]].content, that, 5);
         that.setData({
@@ -371,6 +426,13 @@ Page({
         that.setData({
           storage_argument: storage_which
         })
+        that.setData({
+          titleName: that.data.menuList[that.data.storage_argument[1]].title
+        })
+        wx.setNavigationBarTitle({
+          title: that.data.titleName
+        })
+
         WxParse.wxParse('arti', 'html', that.data.menuList[that.data.storage_argument[1]].content, that, 5);
       }
     }
@@ -410,11 +472,23 @@ Page({
             })
             //console.log(res.data.data.content);
             //console.log("content:"+that.data.menuList[0].content);
+            that.setData({
+              titleName: that.data.menuList[which[2]].title
+            })
+            wx.setNavigationBarTitle({
+              title: that.data.titleName
+            })
             WxParse.wxParse('arti', 'html', that.data.menuList[which[2]].content, that, 5);
           }
         })
         that.setData({
           argument: which,
+        })
+        that.setData({
+          titleName: that.data.menuList[that.data.argument[2]].title
+        })
+        wx.setNavigationBarTitle({
+          title: that.data.titleName
         })
         WxParse.wxParse('arti', 'html', that.data.menuList[that.data.argument[2]].content, that, 5);
         that.setData({
