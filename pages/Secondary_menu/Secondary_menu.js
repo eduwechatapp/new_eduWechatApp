@@ -113,16 +113,11 @@ Page({
   toList:function(event){
     var id = event.currentTarget.dataset.id
     console.log(id)
-    if(id=="需要留意"||id=="重点关注"){
-      wx.navigateTo({
-        url: '../Outer_storage_list/Outer_storage_list?arg=' + id + '&sub=' + this.data.subject,
-      })
-    }
-    else{
       wx.navigateTo({
         url: '../Outer_list/Outer_list?arg=' + id + '&sub=' + this.data.subject,
       })
-    }
+
+    
    
   }
 })

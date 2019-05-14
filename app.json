@@ -12,8 +12,7 @@
     "pages/video/video",
     "pages/mine/mine",
     "pages/introduction/introduction",
-    "pages/notice/notice",
-    "pages/Outer_storage_list/Outer_storage_list"
+    "pages/notice/notice"
   ],
   "window": {
     "backgroundTextStyle": "light",

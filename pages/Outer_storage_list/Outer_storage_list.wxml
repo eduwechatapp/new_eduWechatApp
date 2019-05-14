@@ -1,9 +1,0 @@
-<view class="list_area">
-  <view class="list" bindtap="toInnerList" wx:for="{{listName}}" wx:for-item="value" hover-class='tap_performance' hover-stay-time='100' data-id="{{item.which}}">
-    <view class="left_text">{{value}}</view>
-    <view class = "icon_display">
-      <image src ="../icon/right.png" class="right_icon"></image>
-    </view>
-  </view>
-
-</view>
