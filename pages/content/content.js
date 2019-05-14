@@ -105,7 +105,7 @@ Page({
           })
           //console.log(res.data.data.content);
           //console.log("content:"+that.data.menuList[0].content);
-
+          WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
         }
       })
     }
