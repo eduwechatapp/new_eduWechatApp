@@ -1,6 +1,6 @@
 <view class="home_pages">
   <view class="swiper" bindtap="previewImage">
-    <swiper indicator-dots="{{false}}" duration="200" style="height:100%;" bindchange="swiperChange" autoplay="true" circular="true">
+    <swiper indicator-dots="{{false}}" duration="200" style="height:100%;" bindchange="swiperChange" autoplay="true" circular="true" bindtap='toPage'>
       <block wx:for="{{bannerList}}" wx:key="{{index}}">
         <swiper-item>
           <image class="swiper-image" src="{{item}}" />
@@ -18,7 +18,7 @@
         <text style="font-size:26rpx;font-weight:bold">{{item.name}}</text>
       </view>
     </view>
-    <view class="subjects" style="margin-top:40rpx">
+    <view class="subjects" style="margin-top:60rpx">
       <view wx:for="{{secSubject}}" id="{{index}}" bindtap="toSubject" hover-class="tap_performance" class="icon-box" data-type="sec">
         <image src="{{item.url}}" style="width:110rpx;height:110rpx" />
         <text style="font-size:26rpx;font-weight:bold">{{item.name}}</text>
@@ -26,7 +26,7 @@
     </view>
   </view>
 
-  <view class="search-box">
+  <!--<view class="search-box">
     <input placeholder="输入知识点进行搜索" />
-  </view>
+  </view>-->
 </view>

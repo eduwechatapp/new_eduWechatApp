@@ -1,9 +1,24 @@
 <view class="list_area">
-  <view class="list" bindtap="toInnerList" wx:for="{{listName}}" hover-class='tap_performance' hover-stay-time='100' data-id="{{item.which}}">
-    <view class="left_text">{{item.titleName}}</view>
-    <view class = "icon_display">
-      <image src ="../icon/right.png" class="right_icon"></image>
+
+  <block wx:if="{{wxml_type=='storage'}}">
+    <view class="list" bindtap="toInnerList" wx:for="{{listName}}"  hover-class='tap_performance' hover-stay-time='100' data-id="{{index}}">
+        <view class="left_text">{{item}}</view>
+        <view class = "icon_display">
+          <image src ="../icon/right.png" class="right_icon"></image>
+        </view>
     </view>
-  </view>
+  </block>
+  
+  <block wx:else>
+    <view  class="list" bindtap="toInnerList" wx:for="{{listName}}" hover-class='tap_performance' hover-stay-time='100' data-id="{{item.which}}">
+      <view class="left_text">{{item.titleName}}</view>
+      <view class = "icon_display">
+        <image src ="../icon/right.png" class="right_icon"></image>
+      </view>
+    </view>
+  </block>
+
+
+  
 
 </view>

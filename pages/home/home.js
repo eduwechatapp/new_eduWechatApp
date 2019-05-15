@@ -2,20 +2,20 @@
 Page({
   data: {
     subject: [
-      { name: "英语", url: "/pages/icon/english.png", unique: "english" },
-      { name: "数学", url: "/pages/icon/mathematics.png", unique: "mathematics" },
-      { name: "语文", url: "/pages/icon/chinese.png", unique: "chinese" },
-      { name: "化学", url: "/pages/icon/chemistry.png", unique: "chemistry" },
-      { name: "物理", url: "/pages/icon/physics.png", unique: "physics" },
-      { name: "生物", url: "/pages/icon/biology.png", unique: "biology" },
-      { name: "地理", url: "/pages/icon/geography.png", unique: "geography" },
-      { name: "政治", url: "/pages/icon/zhengzhi.png", unique: "zhengzhi" },
-      { name: "历史", url: "/pages/icon/time.png", unique: "time" },
+      { name: "英语", url: "/pages/icon/英语.png", unique: "english" },
+      { name: "数学", url: "/pages/icon/数学.png", unique: "mathematics" },
+      { name: "语文", url: "/pages/icon/语文.png", unique: "chinese" },
+      { name: "化学", url: "/pages/icon/化学.png", unique: "chemistry" },
+      { name: "物理", url: "/pages/icon/物理.png", unique: "physics" },
+      { name: "生物", url: "/pages/icon/生物.png", unique: "biology" },
+      { name: "地理", url: "/pages/icon/地理.png", unique: "geography" },
+      { name: "政治", url: "/pages/icon/政治.png", unique: "zhengzhi" },
+      { name: "历史", url: "/pages/icon/历史.png", unique: "time" },
     ],
 
     mainSubject: [
       { name: "英语", url: "/pages/icon/english.png", unique: "english" },
-      { name: "数学", url: "/pages/icon/mathematics.png", unique: "mathematics" },
+      { name: "数学", url: "/pages/icon/math.png", unique: "math" },
       { name: "语文", url: "/pages/icon/chinese.png", unique: "chinese" },
     ],
     secSubject: [
@@ -23,11 +23,13 @@ Page({
       { name: "物理", url: "/pages/icon/physics.png", unique: "physics" },
       { name: "生物", url: "/pages/icon/biology.png", unique: "biology" },
       { name: "地理", url: "/pages/icon/geography.png", unique: "geography" },
-      { name: "政治", url: "/pages/icon/zhengzhi.png", unique: "zhengzhi" },
-      { name: "历史", url: "/pages/icon/time.png", unique: "time" },
+      { name: "政治", url: "/pages/icon/political.png", unique: "political" },
+      { name: "历史", url: "/pages/icon/history.png", unique: "history" },
     ],
     swiperIndex: 0,
-    bannerList: ['http://pq1t2zu2n.bkt.clouddn.com/const/introduce.png', 'http://pq1t2zu2n.bkt.clouddn.com/const/notice.png']
+    bannerList: ['http://pq1t2zu2n.bkt.clouddn.com/const/introduce.png', 'http://pq1t2zu2n.bkt.clouddn.com/const/notice.png'],
+    swiperList:['../introduction/introduction','../notice/notice'],
+    titleName:"学霸の口袋高中"
   },
   //滑动swiper
   swiperChange: function (e) {
@@ -77,7 +79,18 @@ Page({
   //     })
   //   }
   // },
-
+  onLoad:function(){
+    var that = this;
+    wx.setNavigationBarTitle({
+      title: that.data.titleName
+    })
+  },
+  toPage:function(e){
+    var list = this.data.swiperList
+    wx.navigateTo({
+      url: list[this.data.swiperIndex],
+    })
+  },
   toSubject: function (e) {
     var that = this,
       id = e.currentTarget.id,

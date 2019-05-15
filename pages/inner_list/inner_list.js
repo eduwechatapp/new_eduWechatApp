@@ -19,9 +19,9 @@ Page({
   onLoad: function (options) {
     var that = this;
     var str = options.array;
-    console.log(str);
+    //console.log(str);
     var array = str.split(',');
-    console.log(array);
+    //console.log(array);
     if(array[2]=='知识点'){
       wx.request({
         url:'https://www.vaskka.com/mp/'+array[0]+'/knowledge/get/test/'+array[1]+'/20/0',
@@ -29,14 +29,14 @@ Page({
           "Accept": "*/*"
         },
         success: function (res) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           that.setData({
             menuList: res.data.data,
             subject: array[0],
             which: array[1],
             module: array[2]
           })
-          console.log(that.data.menuList);
+          //console.log(that.data.menuList);
         }
       })
     }
@@ -47,14 +47,14 @@ Page({
           "Accept": "*/*"
         },
         success: function (res) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           that.setData({
             menuList: res.data.data,
             subject: array[0],
             which: array[1],
             module: array[2]
           })
-          console.log(that.data.menuList);
+          //console.log(that.data.menuList);
         }
       })
     }
@@ -65,14 +65,14 @@ Page({
           "Accept": "*/*"
         },
         success: function (res) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           that.setData({
             menuList: res.data.data,
             subject: array[0],
             which: array[1],
             module: array[2]
           })
-          console.log(that.data.menuList);
+          //console.log(that.data.menuList);
         }
       })
     }
@@ -83,17 +83,18 @@ Page({
           "Accept": "*/*"
         },
         success: function (res) {
-          console.log(res.data.data)
+          //console.log(res.data.data)
           that.setData({
             menuList: res.data.data,
             subject: array[0],
             which: array[1],
             module: array[2]
           })
-          console.log(that.data.menuList);
+          //console.log(that.data.menuList);
         }
       })
     }
+
     
     
 
@@ -164,14 +165,14 @@ Page({
   // 
   toText:function(e){
     var that = this;
-    console.log(e)
+    //console.log(e)
     var id = e.currentTarget.id;
     var menuList = that.data.menuList;
-    console.log("inner menulist: "+menuList);
+    //console.log("inner menulist: "+menuList);
     var title = menuList[id].title;
     var content = menuList[id].content;
-    console.log("title :" + title+"content"+content);
-    console.log("subject :" + that.data.subject + " which :" + that.data.which+" id: "+id+" module :"+that.data.module);
+    //console.log("title :" + title+"content"+content);
+    //console.log("subject :" + that.data.subject + " which :" + that.data.which+" id: "+id+" module :"+that.data.module);
     wx.navigateTo({ url: '../content/content?array=' + [that.data.subject, that.data.which, id,that.data.module]});
   }
 })

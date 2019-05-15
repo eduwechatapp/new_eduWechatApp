@@ -19,7 +19,14 @@
 .title {
     text-align: center;
 }
-
+.storage_text_area{
+  height: 80%;
+    width: 95%;
+    overflow: scroll;
+    margin-top:10rpx;
+    margin-left: auto;
+    margin-right: auto;
+}
 .text_area {
     height: 80%;
     width: 95%;
@@ -44,6 +51,12 @@
     display: inline-flex;
 }
 
+.selected{
+  width:30%;
+  display: inline-flex;
+  background-color: #7D88E9;
+  color: white
+}
 .button_area {
     display: flex;
     justify-content: space-around;

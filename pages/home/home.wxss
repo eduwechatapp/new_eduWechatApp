@@ -73,7 +73,7 @@
 
 .subject-card {
   width: 630rpx;
-  /* height: 200rpx; */
+  height: 450rpx; 
   margin: 40rpx auto;
   padding: 20rpx;
   display: flex;
