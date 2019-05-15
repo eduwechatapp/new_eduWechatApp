@@ -1,0 +1,15 @@
+<view class="my">
+    <open-data class="avatar" type="userAvatarUrl" />
+    <open-data type="userNickName" style="font-size:32rpx;font-weight:bold"/>
+    <view class="lists" style="margin-top:150rpx;">
+        <block wx:for="{{infoList}}">
+            <r-list imageUrl="{{item.imageUrl}}" title="{{item.title}}" bind:listFunction="{{item.function}}" params="{{item.params}}"/>
+        </block>
+    </view>
+
+    <view class="lists">
+        <block wx:for="{{funcList}}">
+            <r-list imageUrl="{{item.imageUrl}}" title="{{item.title}}" params="{{item.params}}" bind:listFunction="{{item.function}}" />
+        </block>
+    </view>
+</view>

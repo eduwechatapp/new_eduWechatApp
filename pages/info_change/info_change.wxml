@@ -1,0 +1,31 @@
+<view class="info-change">
+    <view style="width:100%" wx:if="{{type=='subject'}}">
+        <text class="title">选择您的分科</text>
+        <radio-group class="radio-group" bindchange="radioChange">
+            <label class="radio" wx:for="{{subjectItems}}">
+                <radio value="{{item.value}}" checked="{{item.checked}}" color="#409EFF"/>
+                {{item.name}}
+            </label>
+        </radio-group>
+    </view>
+
+    <view style="width:100%" wx:if="{{type=='grade'}}">
+        <text class="title">选择您的年级</text>
+        <radio-group class="radio-group" bindchange="radioChange">
+            <label class="radio" wx:for="{{gradeItems}}">
+                <radio value="{{item.value}}" checked="{{item.checked}}" color="#409EFF"/>
+                {{item.name}}
+            </label>
+        </radio-group>
+    </view>
+
+    <view style="width:100%" wx:if="{{type=='score'}}">
+        <text class="title">选择您的模考分数区间</text>
+        <view style="font-size:30rpx;margin:20rpx 0;">区间：{{score}}</view>
+        <wux-slider step="50" defaultValue="{{ [400, 650] }}" min="200" max="750" showValue bind:afterChange="afterChange"/>
+    </view>
+
+    <view class="btn" hover-class="hover-class" bindtap="submit">
+        <text class="btn-text">完成</text>
+    </view>
+</view>

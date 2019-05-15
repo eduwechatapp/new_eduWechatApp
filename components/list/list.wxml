@@ -1,0 +1,11 @@
+<view class="list" bindtap="_listFunction" hover-class="hover-class" hover-stay-time="200">
+    <image class="icon" src="{{imageUrl}}"/>
+    
+    <view class="title">
+        <text class="title-text">{{title}}</text>
+    </view>
+    <view class="description">
+        <text class="description-text"></text>
+    </view>
+    <text class="iconfont icon-right-arrow right-arrow"></text>
+</view>

@@ -1,0 +1,43 @@
+.info-change{
+    padding: 40rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title{
+    font-size:40rpx;
+    font-weight: bold;
+}
+
+.radio-group{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20rpx;
+}
+
+.radio-group .radio{
+    margin-top: 10rpx;
+}
+
+.btn{
+    margin-top: 40rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #409EFF;
+    height: 80rpx;
+    width: 250rpx;
+    border-radius: 10rpx;
+}
+
+.btn .btn-text{
+    font-size:32rpx;
+    font-weight: bold;
+    color:#ffffff;
+
+}
+
+.hover-class{
+    opacity: .7;
+}

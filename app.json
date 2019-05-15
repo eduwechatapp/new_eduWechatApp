@@ -12,7 +12,10 @@
     "pages/video/video",
     "pages/mine/mine",
     "pages/introduction/introduction",
-    "pages/notice/notice"
+    "pages/notice/notice",
+    "pages/info_change/info_change",
+    "pages/feedback/feedback",
+    "pages/my/my"
   ],
   "window": {
     "backgroundTextStyle": "light",
