@@ -3,12 +3,14 @@
   opacity: 0.7;
 }
 .list{
-  width: 100%;
+  width: 95%;
   height:120rpx;
-  border-bottom: #eee 3rpx solid;
+  border-bottom: #c5c5c5 3rpx solid;
   display: flex;
   align-items: center;
   font-size: 30rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
 }
 .left_text{
   width: 80%;
@@ -16,8 +18,8 @@
 
 }
 .right_icon{
-  height: 60%;
-  width: 45%;
+  height: 30%;
+  width: 25%;
   float: right;
 }
 .icon_display{

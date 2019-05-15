@@ -29,8 +29,12 @@ Page({
     swiperIndex: 0,
     bannerList: ['http://pq1t2zu2n.bkt.clouddn.com/const/introduce.png', 'http://pq1t2zu2n.bkt.clouddn.com/const/notice.png'],
     swiperList:['../introduction/introduction','../notice/notice'],
-    titleName:"学霸の口袋高中"
+    titleName:"学霸の口袋高中",
+    input_value:'搜索资料',
+    showMask: false,
+    animation:''
   },
+
   //滑动swiper
   swiperChange: function (e) {
     this.setData({
@@ -107,6 +111,17 @@ Page({
     }
     wx.navigateTo({
       url: '../Secondary_menu/Secondary_menu?subject='+subject,
+    })
+  },
+  showMask:function(){
+    
+    this.setData({
+      showMask:true
+    })
+  },
+  cancle:function(){
+    this.setData({
+      showMask: !this.data.showMask
     })
   }
 })
