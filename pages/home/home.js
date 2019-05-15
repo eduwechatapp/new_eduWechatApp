@@ -114,9 +114,8 @@ Page({
     })
   },
   showMask:function(){
-    
     this.setData({
-      showMask:true
+      showMask:true,
     })
   },
   cancle:function(){

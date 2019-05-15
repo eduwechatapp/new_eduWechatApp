@@ -1,6 +1,6 @@
 <view class="home_pages">
 
-  <view wx:if="{{!showMask}}" class="top_input_area" bindtap="showMask">
+  <view  class="top_input_area" bindtap="showMask">
     <image class="left_icon" src="../icon/find.png"></image>
     <text class="input">搜索资料</text>
     <!--<input type="text" confirm-type="search" placeholder="{{input_value}}" class="input"></input> -->
@@ -35,7 +35,7 @@
 
   </view>
 
-  <view wx:if="{{showMask}}" animation="{{animation}}">  
+  <view wx:if="{{showMask}}" class= "shade">  
        <!--遮罩层  -->
     <view class="shade">  
       <!--面板内容  -->
