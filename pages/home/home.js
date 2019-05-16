@@ -32,7 +32,13 @@ Page({
     titleName:"学霸の口袋高中",
     input_value:'搜索资料',
     showMask: false,
-    animation:''
+
+    animation_group:{
+      className:'wux-animate--fadeIn',
+      enter:true,
+      exit: true,
+      in:false
+    }
   },
 
   //滑动swiper
@@ -115,12 +121,14 @@ Page({
   },
   showMask:function(){
     this.setData({
-      showMask:true,
+      ["animation_group.in"]:true,
+      showMask: true,
     })
   },
   cancle:function(){
     this.setData({
-      showMask: !this.data.showMask
+      ["animation_group.in"]: false,
+      showMask: false
     })
   }
 })

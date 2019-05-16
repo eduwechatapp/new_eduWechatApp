@@ -34,24 +34,20 @@
     </view>
 
   </view>
+  <wux-animation-group  in="{{ animation_group.in }}" enter="{{ animation_group.enter }}" exit="{{ animation_group.exit }}" class-names="{{ animation_group.className }}">
 
-  <view wx:if="{{showMask}}" class= "shade">  
-       <!--遮罩层  -->
-    <view class="shade">  
-      <!--面板内容  -->
-      <view class="mask_input_area">
-        <image class="left_icon" src="../icon/find.png"></image>
-        <input type="text" confirm-type="search" placeholder="{{input_value}}" class="mask_input" auto-focus />
+        <!--遮罩层  -->
+      <view wx:if="{{showMask}}" class="shade">  
+        <!--面板内容  -->
+        <view class="mask_input_area">
+          <image class="left_icon" src="../icon/find.png"></image>
+          <input type="text" confirm-type="search" placeholder="{{input_value}}" class="mask_input" auto-focus />
+        </view>
+        <view class="cancle" bindtap="cancle">取消</view>
       </view>
-      <view class="cancle" bindtap="cancle">取消</view>
 
 
-
-    </view>
-  
-
-   </view> 
-
+  </wux-animation-group>
   <!--<view class="search-box">
     <input placeholder="输入知识点进行搜索" />
   </view>-->
