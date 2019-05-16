@@ -181,15 +181,16 @@
   position: absolute;  
   display: flex;
   flex-flow: nowrap;
-  animation: fadein 0.25s
+  animation: fadein 0.25s;
+  animation-timing-function: ease;
 } 
 .show{
   display: none
 }
 
 @keyframes fadein {
-  0%{opacity:0}
+  from{opacity:0}
   50%{opacity:0.5}
-  100%{opacity:1}
+  to{opacity:1}
 }
 
