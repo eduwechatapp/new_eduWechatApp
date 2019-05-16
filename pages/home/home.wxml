@@ -1,12 +1,12 @@
 <view class="home_pages">
 
-  <view  class="top_input_area" bindtap="showMask">
+  <view  class="top_input_area" bindtap="showMask" wx:if="{{!showMask}}">
     <image class="left_icon" src="../icon/find.png"></image>
     <text class="input">搜索资料</text>
     <!--<input type="text" confirm-type="search" placeholder="{{input_value}}" class="input"></input> -->
   </view>
 
-  <view class="swiper" bindtap="previewImage">
+  <view class="swiper" bindtap="previewImage" wx:if="{{!showMask}}">
     <swiper indicator-dots="{{false}}" duration="200" style="height:100%;" bindchange="swiperChange" autoplay="true" circular="true" bindtap='toPage'>
       <block wx:for="{{bannerList}}" wx:key="{{index}}">
         <swiper-item>
@@ -19,7 +19,7 @@
     </view>
   </view>
 
-  <view class="subject-card">
+  <view class="subject-card" wx:if="{{!showMask}}">
     <view class="subjects">
       <view wx:for="{{mainSubject}}" id="{{index}}" bindtap="toSubject" hover-class="tap_performance" class="icon-box" data-type="main">
         <image src="{{item.url}}" style="width:160rpx;height:160rpx" />
@@ -39,11 +39,41 @@
         <!--遮罩层  -->
       <view wx:if="{{showMask}}" class="shade">  
         <!--面板内容  -->
-        <view class="mask_input_area">
-          <image class="left_icon" src="../icon/find.png"></image>
-          <input type="text" confirm-type="search" placeholder="{{input_value}}" class="mask_input" auto-focus />
+        <view class="mask_top">
+          <view class="mask_input_area">
+            <image class="mask_left_icon" src="../icon/find.png"></image>
+            <input type="text" confirm-type="search" placeholder="{{input_value}}" class="mask_input" bindinput='input' bindconfirm="inputConfirm" auto-focus />
+          </view>
+          <view class="cancle" bindtap="cancle">取消</view>
         </view>
-        <view class="cancle" bindtap="cancle">取消</view>
+
+        <wux-accordion-group title="高级搜索" >
+          <wux-accordion title="学科选择">
+             <wux-row>
+                <wux-col span="3" offset="1"  wx:for="{{sub_first}}" wx:key="unique">
+                  <button class="{{currentTap==item.unique ? 'selected':'button'}}" size="mini" bindtap='switchStatus' data-id="{{item.unique}}" >{{item.name}}</button>
+                </wux-col>
+              </wux-row>
+              <wux-row>
+                <wux-col span="3" offset="1"  wx:for="{{sub_second}}" wx:key="unique">
+                  <button class="{{currentTap==item.unique ? 'selected':'button'}}" size="mini" bindtap='switchStatus' data-id="{{item.unique}}">{{item.name}}</button>
+                </wux-col>
+              </wux-row>
+              <wux-row>
+                <wux-col span="3" offset="1"  wx:for="{{sub_third}}" wx:key="unique">
+                  <button class="{{currentTap==item.unique ? 'selected':'button'}}" size="mini" bindtap='switchStatus' data-id="{{item.unique}}">{{item.name}}</button>
+                </wux-col>
+              </wux-row>
+          </wux-accordion>
+
+          <wux-accordion title="搜索模式">
+            <wux-row>
+              <wux-col span="5" offset="1" wx:for="{{model}}">
+                <button class="{{currentModel==item.unique ? 'selected':'button'}}" size="mini" bindtap='switchModel' data-id="{{item.unique}}">{{item.name}}</button>
+              </wux-col>
+            </wux-row>
+          </wux-accordion>
+        </wux-accordion-group>
       </view>
 
 

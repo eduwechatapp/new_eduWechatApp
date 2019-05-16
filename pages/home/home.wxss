@@ -122,17 +122,32 @@
 
   background: #eeeeee;
   padding: 20rpx;
-  display: inline-block
+  display: inline-block;
+
 }
 .mask_input_area{
   width:80%;
-  height:90rpx;
+  height:92rpx;
   margin-left: 20rpx; 
-  display: flex;
-  align-items: center;
+  display: inline-block;
+  /*align-items: center;*/
   background-color: #eeeeee;
   border-radius: 20rpx;
 
+}
+.mask_top{
+  display: flex;
+  align-items: center;
+  height: 90rpx;
+}
+.cancle{
+  display: inline-block;
+  /*margin-top: 20rpx;
+  margin-left: 20rpx;*/
+  height:90rpx;
+  width: 15%;
+  margin-left: 20rpx;
+  margin-top: 38rpx;
 }
 .search_box{
   width: 100%;
@@ -158,11 +173,14 @@
   display: inline-block;
   margin-left: 20rpx;
 }
-.cancle{
+.mask_left_icon{
+  width: 50rpx;
+  height: 48rpx;
   display: inline-block;
-  margin-top: 20rpx;
-  margin-left: 20rpx
+  margin-left: 19rpx;
+  margin-bottom: 20rpx;
 }
+
 .input{
   width: 80%;
   display: inline-block;
@@ -177,15 +195,32 @@
   background:rgb(255, 255, 255);   
   overflow: hidden;   
   /*要显示在wrap的上面 */   
-  z-index: 100;   
+  z-index: 500;   
   position: absolute;  
-  display: flex;
-  flex-flow: nowrap;
+
 
   /*animation-timing-function: ease;*/
 } 
 .show{
   display: none
+}
+.button {
+
+  background-color: white;
+  color: #387ef5;
+  width: 100%;
+  border: 1px solid #387ef5;
+  border-radius: 20rpx;
+  margin-top: 20rpx;
+}
+
+.selected{
+  background-color: #387ef5;
+  color: white;
+  width: 100%;
+  border-radius: 20rpx;
+  margin-top: 20rpx;
+
 }
 /*
 @keyframes fadein {

@@ -1,18 +1,21 @@
 // pages/home/home.js
 Page({
   data: {
-    subject: [
-      { name: "英语", url: "/pages/icon/英语.png", unique: "english" },
-      { name: "数学", url: "/pages/icon/数学.png", unique: "mathematics" },
-      { name: "语文", url: "/pages/icon/语文.png", unique: "chinese" },
-      { name: "化学", url: "/pages/icon/化学.png", unique: "chemistry" },
-      { name: "物理", url: "/pages/icon/物理.png", unique: "physics" },
-      { name: "生物", url: "/pages/icon/生物.png", unique: "biology" },
-      { name: "地理", url: "/pages/icon/地理.png", unique: "geography" },
-      { name: "政治", url: "/pages/icon/政治.png", unique: "zhengzhi" },
-      { name: "历史", url: "/pages/icon/历史.png", unique: "time" },
+    sub_first: [
+      { name: "语文", unique: "chinese" },
+      { name: "数学",  unique: "math" },
+      { name: "英语", unique: "english" },
     ],
-
+    sub_second: [
+      { name: "物理",  unique: "physics" },
+      { name: "化学",  unique: "chemistry" },
+      { name: "生物", unique: "biology" },
+    ],
+    sub_third: [
+      { name: "政治", unique: "political" },
+      { name: "历史", unique: "history" },
+      { name: "地理",  unique: "geography" },
+    ],
     mainSubject: [
       { name: "英语", url: "/pages/icon/english.png", unique: "english" },
       { name: "数学", url: "/pages/icon/math.png", unique: "math" },
@@ -38,7 +41,14 @@ Page({
       enter:true,
       exit: true,
       in:false
-    }
+    },
+    input:'',
+    currentTap:'',
+    currentModel:'',
+    model:[
+      {name:"按标题搜索",unique:"title"},
+      {name:"按内容搜索",unique:"content"}
+      ]
   },
 
   //滑动swiper
@@ -130,5 +140,44 @@ Page({
       ["animation_group.in"]: false,
       showMask: false
     })
-  }
+  },
+  input:function(e){
+    console.log(e.detail.value)
+    this.setData({
+      input: e.detail.value
+    })
+  },
+  inputConfirm:function(e){
+    this.search();
+  },
+  search:function(){
+    var that = this;
+
+  },
+  switchStatus:function(e){
+    if (e.currentTarget.dataset.id==this.data.currentTap){
+      this.setData({
+        currentTap:'cancle'
+      })
+    }
+    else{
+      this.setData({
+        currentTap: e.currentTarget.dataset.id
+      })
+    }
+    
+  },
+  switchModel: function (e) {
+    if (e.currentTarget.dataset.id == this.data.currentModel){
+      this.setData({
+        currentModel: 'cancle'
+      })
+    }
+    else{
+      this.setData({
+        currentModel: e.currentTarget.dataset.id
+      })
+    }
+    
+  },
 })
