@@ -1,0 +1,15 @@
+.introduction-wrapper {
+  font-size: 16px;
+  padding: 15px;
+  background: #FBFBFB;
+  height: 100vh;
+}
+
+.introduction-wrapper .li {
+  margin-bottom: 15px;
+}
+
+.introduction-wrapper .topic {
+  font-weight: bold;
+  color: rosybrown;
+}
