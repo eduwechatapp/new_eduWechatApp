@@ -1,3 +1,4 @@
-<view>学霸の口袋高中正式版本发布了！</view>
-<br></br>
-<view>此版本1.0版本，包含功能有高中九科的知识点，易错题和答题模板等资料,欢迎您使用</view>
+<view class='notice-wrapper'>
+  <view class='li'>学霸の口袋高中正式版本发布了！</view>
+  <view class='li'>此版本1.0版本，包含功能有高中九科的知识点，易错题和答题模板等资料,欢迎您使用</view>
+</view>

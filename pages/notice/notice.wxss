@@ -1,0 +1,10 @@
+.notice-wrapper {
+  padding: 15px;
+  font-size: 16px;
+  height: 100vh;
+  background: rgb(240, 240, 240);
+}
+
+.notice-wrapper .li {
+  margin-bottom: 15px;
+}

@@ -1,5 +1,5 @@
 <view class='introduction-wrapper'>
-  <view class='li'>学霸の口袋高中共有九科资料，在首页点击按钮可以进入各科资料页。</view>
+  <view class='li'><view style='display: inline-block; width: 32px;'></view>学霸の口袋高中共有九科资料，在首页点击按钮可以进入各科资料页。</view>
   <view class='li'><view class='topic'>#知识点#</view>包含了各科课本上的基础知识，是各科知识点的汇总和集中。</view>
   <view class='li'><view class='topic'>#专题#</view>各科的模块知识点总结，有助于考生快速系统的掌握知识点。</view>
   <view class='li'><view class='topic'>#归纳总结#</view>各类常考知识点，易错知识点的汇总和提炼。</view>
