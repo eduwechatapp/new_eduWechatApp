@@ -10,7 +10,12 @@ Page({
     argument:[],
     currentSelect:'notCare',
     storage_argument:[],
-    titleName:''
+    titleName:'',
+    module:'',
+    contentList:'',
+    index:'',
+    id:'',
+    content:''
   },
   contentRequest: function (array) {
     
@@ -21,12 +26,12 @@ Page({
   onLoad: function (options) {
     var that = this;
     var arti='';
-    //var offset = options.id;
+    //普通阅读页面的变量处理
     var str=options.array;
     var array_str = str.split(',');
     var array = [array_str[0], array_str[1]-'0', array_str[2]-'0',array_str[3]]
     var str_storage = options.array;
-    //console.log(str);
+    //缓存页面跳转至此的数据处理
     var str_storage_split = str.split(',');
     var array_storage = [str_storage_split[0], str_storage_split[1] - '0', str_storage_split[2]]
     console.log(options);
@@ -36,11 +41,47 @@ Page({
       argument:array
     })
     console.log("onLoad: "+array);
-    //console.log(array[0]);
-    // var subject = options.subject;
-    // var title = options.title;
-    // var title = options.title;
-    // var which = options.which;
+    //搜索页面跳转至此的数据处理
+    var array_search_str = options.array
+    var array_search = array_search_str.split(',')
+    if(array_search[2]=='搜索'){
+      var text_str = options.text
+      var text_array = text_str.split(',')
+      var text = [text_array[0]-'0',text_array[1]-'0',text_array[2]]
+      that.setData({
+        module:"搜索"
+      })
+      console.log(text)
+      wx.request({
+        url: 'https://www.vaskka.com/mp/search/simple/' + 'test/' + text[2] + '/100/0',
+        method: 'POST',
+        header: {
+          "Accept": "application/json"
+        },
+        success: function (res) {
+          console.log(res.data.data)
+          that.setData({
+            contentList: res.data.data,
+            index: text[0],
+            id: text[1]
+          })
+          that.setData({
+            titleName: that.data.contentList[that.data.index].dataList[that.data.id].title,
+            content: that.data.contentList[that.data.index].dataList[that.data.id].content,
+            
+          })  
+          wx.setNavigationBarTitle({
+            title: that.data.titleName
+          })
+          WxParse.wxParse('arti', 'html', that.data.content, that, 5);
+          //console.log(res.data.data.content);
+          //console.log("content:"+that.data.menuList[0].content);
+        }
+      })
+
+      
+    }
+
     if (array[3] == '知识点') {
       wx.request({
         url: 'https://www.vaskka.com/mp/' + array[0] + '/knowledge/get/test/' + array[1] + '/100/0',

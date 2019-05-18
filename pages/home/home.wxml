@@ -1,8 +1,8 @@
 <view class="home_pages">
 
-  <view  class="top_input_area" bindtap="showMask" wx:if="{{!showMask}}">
+  <view  class="top_input_area" style="background-color:white" bindtap="showMask" wx:if="{{!showMask}}">
     <image class="left_icon" src="../icon/find.png"></image>
-    <text class="input">搜索资料</text>
+    <text class="input" style="background-color:white">搜索资料</text>
     <!--<input type="text" confirm-type="search" placeholder="{{input_value}}" class="input"></input> -->
   </view>
 
@@ -47,7 +47,7 @@
           <view class="cancle" bindtap="cancle">取消</view>
         </view>
 
-        <wux-accordion-group title="高级搜索" >
+        <wux-accordion-group title="高级搜索">
           <wux-accordion title="学科选择">
              <wux-row>
                 <wux-col span="3" offset="1"  wx:for="{{sub_first}}" wx:key="unique">
