@@ -2,19 +2,19 @@
 Page({
   data: {
     sub_first: [
-      { name: "语文", unique: "chinese" },
-      { name: "数学",  unique: "math" },
-      { name: "英语", unique: "english" },
+      { name: "语文", unique: "yw" },
+      { name: "数学",  unique: "sx" },
+      { name: "英语", unique: "yy" },
     ],
     sub_second: [
-      { name: "物理",  unique: "physics" },
-      { name: "化学",  unique: "chemistry" },
-      { name: "生物", unique: "biology" },
+      { name: "物理",  unique: "wl" },
+      { name: "化学",  unique: "hx" },
+      { name: "生物", unique: "sw" },
     ],
     sub_third: [
-      { name: "政治", unique: "political" },
-      { name: "历史", unique: "history" },
-      { name: "地理",  unique: "geography" },
+      { name: "政治", unique:"zz" },
+      { name: "历史", unique: "ls" },
+      { name: "地理",  unique: "dl" },
     ],
     mainSubject: [
       { name: "英语", url: "/pages/icon/english.png", unique: "english" },
@@ -30,7 +30,7 @@ Page({
       { name: "历史", url: "/pages/icon/history.png", unique: "history" },
     ],
     swiperIndex: 0,
-    bannerList: ['http://pq1t2zu2n.bkt.clouddn.com/const/introduce.png', 'http://pq1t2zu2n.bkt.clouddn.com/const/notice.png'],
+    bannerList: ['https://vaskka.com/static/introduction.jpg', 'https://vaskka.com/static/notice.png'],
     swiperList:['../introduction/introduction','../notice/notice'],
     titleName:"学霸の口袋高中",
     input_value:'搜索资料',
@@ -43,8 +43,8 @@ Page({
       in:false
     },
     input:'',
-    currentTap:'',
-    currentModel:'',
+    currentTap:'cancle',
+    currentModel:'cancle',
     model:[
       {name:"按标题搜索",unique:"title"},
       {name:"按内容搜索",unique:"content"}
@@ -57,48 +57,7 @@ Page({
       swiperIndex: e.detail.current
     })
   },
-  // toSubject: function (event) {
-  //   console.log(event.currentTarget.dataset.id);
-  //   if (event.currentTarget.dataset.id == 'english') {
-  //     wx.navigateTo({
-  //       url: '../Secondary_menu/Secondary_menu?subject=english',
-  //     })
-  //   }
-  //   else if (event.currentTarget.dataset.id == 'mathematics') {
-  //     wx.navigateTo({
-  //       url: '../Secondary_menu/Secondary_menu?subject=math',
-  //     })
-  //   }
-  //   else if (event.currentTarget.dataset.id == 'chinese') {
-  //     wx.navigateTo({
-  //       url: '../Secondary_menu/Secondary_menu?subject=chinese',
-  //     })
-  //   } else if (event.currentTarget.dataset.id == 'chemistry') {
-  //     wx.navigateTo({
-  //       url: '../Secondary_menu/Secondary_menu?subject=chemistry',
-  //     })
-  //   } else if (event.currentTarget.dataset.id == 'physics') {
-  //     wx.navigateTo({
-  //       url: '../Secondary_menu/Secondary_menu?subject=physics',
-  //     })
-  //   } else if (event.currentTarget.dataset.id == 'biology') {
-  //     wx.navigateTo({
-  //       url: '../Secondary_menu/Secondary_menu?subject=biology',
-  //     })
-  //   } else if (event.currentTarget.dataset.id == 'geography') {
-  //     wx.navigateTo({
-  //       url: '../Secondary_menu/Secondary_menu?subject=geography',
-  //     })
-  //   } else if (event.currentTarget.dataset.id == 'zhengzhi') {
-  //     wx.navigateTo({
-  //       url: '../Secondary_menu/Secondary_menu?subject=political',
-  //     })
-  //   } else if (event.currentTarget.dataset.id == 'time') {
-  //     wx.navigateTo({
-  //       url: '../Secondary_menu/Secondary_menu?subject=history',
-  //     })
-  //   }
-  // },
+
   onLoad:function(){
     var that = this;
     wx.setNavigationBarTitle({
@@ -152,17 +111,21 @@ Page({
   },
   search:function(){
     var that = this;
+    wx.navigateTo({
+      url: '../search_result/search_result?array=' + [that.data.input, that.data.currentTap, that.data.currentModel],
+    })
 
+    
   },
   switchStatus:function(e){
     if (e.currentTarget.dataset.id==this.data.currentTap){
       this.setData({
-        currentTap:'cancle'
+        currentTap:'cancle',
       })
     }
     else{
       this.setData({
-        currentTap: e.currentTarget.dataset.id
+        currentTap: e.currentTarget.dataset.id,
       })
     }
     
@@ -170,12 +133,14 @@ Page({
   switchModel: function (e) {
     if (e.currentTarget.dataset.id == this.data.currentModel){
       this.setData({
-        currentModel: 'cancle'
+        currentModel: 'cancle',
+        modelStatus: true
       })
     }
     else{
       this.setData({
-        currentModel: e.currentTarget.dataset.id
+        currentModel: e.currentTarget.dataset.id,
+        modelStatus: false
       })
     }
     

@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/new_home/new_home",
     "pages/Outer_list/Outer_list",
     "pages/inner_list/inner_list",
     "pages/content/content",
@@ -14,11 +13,12 @@
     "pages/notice/notice",
     "pages/info_change/info_change",
     "pages/feedback/feedback",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/search_result/search_result"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#e5c493",
     "navigationBarTitleText": "口袋高中",
     "navigationBarTextStyle": "black"
   },

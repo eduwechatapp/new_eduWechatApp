@@ -1,7 +1,0 @@
-<view class='home_page'>
-  <swiper indicator-dots='true' autoplay='true' class='home_swiper' interval='2000'>
-      <swiper-item wx:for='{{swiperList}}'>
-        <image src='{{item.image}}' class='swiper_image' id='{{index}}' bindtap='toPage'></image>
-      </swiper-item>
-  </swiper>
-</view>

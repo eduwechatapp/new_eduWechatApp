@@ -1,5 +1,5 @@
 <view class="page">
-    <block wx:if="{{storage_argument[2]=='需要留意'||storage_argument[2]=='重点关注'}}">
+    <block wx:if="{{storage_argument[2]=='需要留意'||storage_argument[2]=='重点关注'||module=='搜索'}}">
     </block>
     <block wx:else>
       <view class="top_area">
