@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "r-list":"/components/list/list"
+    "r-list":"/components/list/list",
+    "wux-button": "/dist/button/index",
+    "wux-actionsheet": "/dist/actionsheet/index"
   }
 }
