@@ -1,15 +1,21 @@
-<view class="my">
-    <open-data class="avatar" type="userAvatarUrl" />
-    <open-data type="userNickName" style="font-size:32rpx;font-weight:bold"/>
-    <view class="lists" style="margin-top:150rpx;">
-        <block wx:for="{{infoList}}">
-            <r-list imageUrl="{{item.imageUrl}}" title="{{item.title}}" bind:listFunction="{{item.function}}" params="{{item.params}}"/>
-        </block>
-    </view>
+<view class="my-wrapper">
+  <open-data class="avatar" type="userAvatarUrl" />
+  <open-data type="userNickName" style="font-size:32rpx;" />
+  <view class='profile'>
+    <view class='li' data-type='major' bindtap='choose'>{{info.major}}</view>
+    <view class='div'></view>
+    <view class='li' data-type='grade' bindtap='choose'>{{info.grade}}</view>
+    <wux-actionsheet id="wux-actionsheet" />
+  </view>
+  <view class="lists" style="margin-top:15rpx;">
+    <block wx:for="{{infoList}}" wx:key='{{index}}'>
+      <r-list imageUrl="{{item.imageUrl}}" title="{{item.title}}" bind:listFunction="{{item.function}}" params="{{item.params}}" />
+    </block>
+  </view>
 
-    <view class="lists">
-        <block wx:for="{{funcList}}">
-            <r-list imageUrl="{{item.imageUrl}}" title="{{item.title}}" params="{{item.params}}" bind:listFunction="{{item.function}}" />
-        </block>
-    </view>
+  <view class="lists">
+    <block wx:for="{{funcList}}" wx:key='{{index}}'>
+      <r-list imageUrl="{{item.imageUrl}}" title="{{item.title}}" params="{{item.params}}" bind:listFunction="{{item.function}}" />
+    </block>
+  </view>
 </view>

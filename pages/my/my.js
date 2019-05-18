@@ -1,21 +1,19 @@
-// pages/my/my.js
-Page({
+import { $wuxActionSheet } from '../../dist/index';
 
-  /**
-   * 页面的初始数据
-   */
+const MajorEnum = [
+  '文科',
+  '理科',
+];
+
+const GradeEnum = [
+  '高一',
+  '高二',
+  '高三',
+];
+
+Page({
   data: {
     infoList: [{
-      imageUrl: '../../pages/icon/subject.png',
-      title: '文科/理科',
-      function: 'toInfoChange',
-      params: 'subject'
-    }, {
-      imageUrl: '../../pages/icon/grade.png',
-      title: '年级',
-      function: 'toInfoChange',
-      params: 'grade'
-    }, {
       imageUrl: '../../pages/icon/score.png',
       title: '模考分数区间',
       function: 'toInfoChange',
@@ -29,7 +27,33 @@ Page({
       imageUrl: '../../pages/icon/debug.png',
       title: 'BUG反馈',
       function: 'toFeedback'
-    }]
+    }],
+    info: {
+      major: '请选择科目',
+      grade: '请选择年级',
+    },
+  },
+
+  choose(e) {
+    const type = e.currentTarget.dataset.type;
+    const buttons = [];
+    const _enum = type === 'major' ? MajorEnum : GradeEnum;
+    _enum.forEach(e => {
+      buttons.unshift({ text: e });
+    });
+    const that = this;
+    $wuxActionSheet().showSheet({
+      theme: 'wx',
+      titleText: '请选择',
+      buttons,
+      buttonClicked(index, item) {
+        const _target = type === 'major' ?
+          { 'info.major': item.text } :
+          { 'info.grade': item.text };
+        that.setData(_target);
+        return true;
+      },
+    });
   },
 
   /**
