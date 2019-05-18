@@ -43,8 +43,8 @@ Page({
       in:false
     },
     input:'',
-    currentTap:'cancle',
-    currentModel:'cancle',
+    currentTap:'cancel',
+    currentModel:'cancel',
     model:[
       {name:"按标题搜索",unique:"title"},
       {name:"按内容搜索",unique:"content"}
@@ -94,7 +94,7 @@ Page({
       showMask: true,
     })
   },
-  cancle:function(){
+  cancel:function(){
     this.setData({
       ["animation_group.in"]: false,
       showMask: false
@@ -120,7 +120,7 @@ Page({
   switchStatus:function(e){
     if (e.currentTarget.dataset.id==this.data.currentTap){
       this.setData({
-        currentTap:'cancle',
+        currentTap:'cancel',
       })
     }
     else{
@@ -133,7 +133,7 @@ Page({
   switchModel: function (e) {
     if (e.currentTarget.dataset.id == this.data.currentModel){
       this.setData({
-        currentModel: 'cancle',
+        currentModel: 'cancel',
         modelStatus: true
       })
     }

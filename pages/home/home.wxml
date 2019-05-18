@@ -44,7 +44,7 @@
             <image class="mask_left_icon" src="../icon/find.png"></image>
             <input type="text" confirm-type="search" placeholder="{{input_value}}" class="mask_input" bindinput='input' bindconfirm="inputConfirm" auto-focus />
           </view>
-          <view class="cancle" bindtap="cancle">取消</view>
+          <view class="cancel" bindtap="cancel">取消</view>
         </view>
 
         <wux-accordion-group title="高级搜索">

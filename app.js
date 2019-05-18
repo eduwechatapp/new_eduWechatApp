@@ -36,6 +36,10 @@ App({
   globalData: {
     userInfo: null,
     contentList:'',
-    simpleList:''
+    simpleList:'',
+    knowledge:'',
+    conclusion:'',
+    template:'',
+    summary:''
   }
 })

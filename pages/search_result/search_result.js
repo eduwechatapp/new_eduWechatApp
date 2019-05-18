@@ -28,7 +28,11 @@ Page({
     var str = options.array;
     var array = str.split(',');
     console.log(array)
-    if(array[1]=="cancle" && array[2]=="cancle"){//简单搜索
+    if(array[1]=="cancel" && array[2]=="cancel"){//简单搜索
+      wx.showToast({
+        title: '加载ing',
+        icon: 'loading'
+      })
       wx.request({
         url: 'https://www.vaskka.com/mp/search/simple/'+'test/'+array[0]+'/5/0',
         method:'POST',
@@ -36,11 +40,27 @@ Page({
           "Accept": "application/json"
         },
         success: function (res) {
+          wx.hideToast();
           console.log(res.data.data)
+          
           that.setData({
             contentList: res.data.data,
             input: array[0]
           })
+          if (that.data.contentList.length == 0) {
+            wx.showModal({
+              title: '提示',
+              content: '查询无结果，建议更换关键字再次搜索哦',
+              showCancel: false,
+              success(res) {
+                if (res.confirm) {
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                }
+              }
+            })
+          }
           globalData.simpleList = res.data.data
          
           //console.log(res.data.data.content);
@@ -55,7 +75,16 @@ Page({
           "title" : array[0]
           }
       }
+      if (array[2] == "content") {
+        detail = {
+          "content": array[0]
+        }
+      }
       console.log(detail)
+      wx.showToast({
+        title: '加载ing',
+        icon: 'loading'
+      })
       wx.request({
         url: 'https://www.vaskka.com/mp/search/detail/' + 'test/' + array[1] + '/100/0',
         method: 'POST',
@@ -64,6 +93,7 @@ Page({
           "Accept": "application/json"
         },
         success: function (res) {
+          
           console.log(res.data.data)
           that.setData({
             contentList: res.data.data,
@@ -72,6 +102,7 @@ Page({
           })
           globalData.contentList = that.data.contentList
           var contentListString = JSON.stringify(that.data.contentList.dataList)
+          wx.hideToast()
         wx.navigateTo({
           url: '../inner_list/inner_list?array=' + ['', that.data.contentList.subject, that.data.module]
         })

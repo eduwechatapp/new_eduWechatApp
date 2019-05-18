@@ -90,98 +90,61 @@ Page({
     }
 
     if (array[3] == '知识点') {
-      wx.request({
-        url: 'https://www.vaskka.com/mp/' + array[0] + '/knowledge/get/test/' + array[1] + '/100/0',
-        header: {
-          "Accept": "*/*"
-        },
-        success: function (res) {
-          //console.log(res.data.data)
-          that.setData({
-            menuList: res.data.data,
-          })
-          that.setData({
-            titleName: that.data.menuList[array[2]].title
-          })
-          wx.setNavigationBarTitle({
-            title: that.data.titleName
-          })
-          //console.log(res.data.data.content);
-          //console.log("content:"+that.data.menuList[0].content);
-          WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
-        }
+      that.setData({
+        menuList: globalData.knowledge
       })
+      that.setData({
+        titleName: that.data.menuList[array[2]].title
+      })
+      wx.setNavigationBarTitle({
+        title: that.data.titleName
+      })
+      WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
     }
     if (array[3] == '归纳总结') {
-      
-      wx.request({
-        url: 'https://www.vaskka.com/mp/' + array[0] + '/summary/get/test/' + array[1] + '/100/0',
-        header: {
-          "Accept": "*/*"
-        },
-        success: function (res) {
-          //console.log(res.data.data)
-          that.setData({
-            menuList: res.data.data,
-          })
-          that.setData({
-            titleName: that.data.menuList[array[2]].title
-          })
-          wx.setNavigationBarTitle({
-            title: that.data.titleName
-          })
-          //console.log(res.data.data.content);
-          //console.log("content:"+that.data.menuList[0].content);
-          WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
-        }
+
+      that.setData({
+        menuList: globalData.conclusion
       })
+      that.setData({
+        titleName: that.data.menuList[array[2]].title
+      })
+      wx.setNavigationBarTitle({
+        title: that.data.titleName
+      })
+
+      WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
+
     }
     if (array[3] == '专题') {
-      wx.request({
-        url: 'https://www.vaskka.com/mp/' + array[0] + '/topic/get/test/' + array[1] + '/100/0',
-        header: {
-          "Accept": "*/*"
-        },
-        success: function (res) {
-          //console.log(res.data.data)
-          that.setData({
-            menuList: res.data.data,
-          })
-          that.setData({
-            titleName: that.data.menuList[array[2]].title
-          })
-          wx.setNavigationBarTitle({
-            title: that.data.titleName
-          })
-          //console.log(res.data.data.content);
-          //console.log("content:"+that.data.menuList[0].content);
-          WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
-        }
+
+      that.setData({
+        menuList: globalData.summary
       })
+      that.setData({
+        titleName: that.data.menuList[array[2]].title
+      })
+      wx.setNavigationBarTitle({
+        title: that.data.titleName
+      })
+
+      WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
+
     }
     if (array[3] == '答题模版') {
-      
-      wx.request({
-        url: 'https://www.vaskka.com/mp/' + array[0] + '/template/get/test/' + array[1] + '/100/0',
-        header: {
-          "Accept": "*/*"
-        },
-        success: function (res) {
-          //console.log(res.data.data)
-          that.setData({
-            menuList: res.data.data,
-          })
-          that.setData({
-            titleName: that.data.menuList[array[2]].title
-          })
-          wx.setNavigationBarTitle({
-            title: that.data.titleName
-          })
-          //console.log(res.data.data.content);
-          //console.log("content:"+that.data.menuList[0].content);
-          WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
-        }
+  
+      that.setData({
+        menuList: globalData.template
       })
+      that.setData({
+        titleName: that.data.menuList[array[2]].title
+      })
+      wx.setNavigationBarTitle({
+        title: that.data.titleName
+      })
+
+      WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
+
     }
     if (array_storage[2] == '需要留意') {
       var key = new Array();
