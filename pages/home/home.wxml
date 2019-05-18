@@ -15,19 +15,19 @@
       </block>
     </swiper>
     <view class="indicator-dots">
-      <view class="dot {{swiperIndex==index?'dot-active':''}}" wx:for="{{bannerList}}"></view>
+      <view class="dot {{swiperIndex==index?'dot-active':''}}" wx:key='{{index}}' wx:for="{{bannerList}}"></view>
     </view>
   </view>
 
   <view class="subject-card" wx:if="{{!showMask}}">
     <view class="subjects">
-      <view wx:for="{{mainSubject}}" id="{{index}}" bindtap="toSubject" hover-class="tap_performance" class="icon-box" data-type="main">
+      <view wx:for="{{mainSubject}}" wx:key='{{index}}' id="{{index}}" bindtap="toSubject" hover-class="tap_performance" class="icon-box" data-type="main">
         <image src="{{item.url}}" style="width:160rpx;height:160rpx" />
         <text style="font-size:26rpx;font-weight:bold">{{item.name}}</text>
       </view>
     </view>
     <view class="subjects" style="margin-top:60rpx">
-      <view wx:for="{{secSubject}}" id="{{index}}" bindtap="toSubject" hover-class="tap_performance" class="icon-box" data-type="sec">
+      <view wx:for="{{secSubject}}" wx:key='{{index}}' id="{{index}}" bindtap="toSubject" hover-class="tap_performance" class="icon-box" data-type="sec">
         <image src="{{item.url}}" style="width:110rpx;height:110rpx" />
         <text style="font-size:26rpx;font-weight:bold">{{item.name}}</text>
       </view>
