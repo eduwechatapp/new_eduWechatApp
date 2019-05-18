@@ -1,8 +1,23 @@
-.home_pages {
-  height: 100%;
-}
-page{
+page {
   background-color: #f5f1e8
+}
+
+.top-input-area {
+  width: 95%;
+  height: 90rpx;
+  margin: auto; 
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  background-color: #eeeeee;
+  border-radius: 20rpx
+}
+
+.left-icon{
+  width: 50rpx;
+  height: 50rpx;
+  display: inline-block;
+  margin-left: 20rpx;
 }
 
 .icon {
@@ -161,22 +176,8 @@ page{
   width:100%;
   height: 90%;
 }
-.top_input_area{
-  width:95%;
-  height: 90rpx;
-  margin: auto; 
-  display: flex;
-  align-items: center;
-  background-color: #eeeeee;
-  border-radius: 20rpx
-}
 
-.left_icon{
-  width: 50rpx;
-  height: 50rpx;
-  display: inline-block;
-  margin-left: 20rpx;
-}
+
 .mask_left_icon{
   width: 50rpx;
   height: 48rpx;
@@ -201,9 +202,6 @@ page{
   /*要显示在wrap的上面 */   
   z-index: 500;   
   position: absolute;  
-
-
-  /*animation-timing-function: ease;*/
 } 
 .show{
   display: none
@@ -226,11 +224,3 @@ page{
   margin-top: 20rpx;
 
 }
-
-/*
-@keyframes fadein {
-  from{opacity:0}
-  50%{opacity:0.5}
-  to{opacity:1}
-}
-*/

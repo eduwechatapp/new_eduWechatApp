@@ -1,4 +1,9 @@
-// pages/home/home.js
+// Const Data
+const Data = {
+  swiperURLList: ['../introduction/introduction', '../notice/notice'],
+  swiperIndex: 0,
+};
+
 Page({
   data: {
     sub_first: [
@@ -37,112 +42,111 @@ Page({
     showMask: false,
 
     animation_group:{
-      className:'wux-animate--fadeIn',
-      enter:true,
+      className: 'wux-animate--fadeIn',
+      enter: true,
       exit: true,
-      in:false
+      in: false
     },
-    input:'',
-    currentTap:'cancle',
-    currentModel:'cancle',
+    input: '',
+    currentTap: 'cancle',
+    currentModel: 'cancle',
     model:[
-      {name:"按标题搜索",unique:"title"},
-      {name:"按内容搜索",unique:"content"}
-      ]
+      { name: "按标题搜索", unique: "title" },
+      { name: "按内容搜索", unique: "content" },
+    ],
   },
 
   //滑动swiper
-  swiperChange: function (e) {
-    this.setData({
-      swiperIndex: e.detail.current
-    })
+  swiperChange(e) {
+    Data.swiperIndex = e.detail.current;
   },
 
-  onLoad:function(){
-    var that = this;
+  onLoad() {
+    const that = this;
     wx.setNavigationBarTitle({
-      title: that.data.titleName
-    })
+      title: that.data.titleName,
+    });
   },
-  toPage:function(e){
-    var list = this.data.swiperList
-    wx.navigateTo({
-      url: list[this.data.swiperIndex],
-    })
-  },
-  toSubject: function (e) {
-    var that = this,
-      id = e.currentTarget.id,
-      mainSubject = that.data.mainSubject,
-      secSubject = that.data.secSubject,
-      type = e.currentTarget.dataset.type,
-      subject = ''
 
-    if (type == 'main') {
-      subject = mainSubject[id].unique   
-    }
-    else if(type == 'sec'){
-      subject = secSubject[id].unique
+  toPage(e) {
+    wx.navigateTo({
+      url: Data.swiperURLList[Data.swiperIndex],
+    });
+  },
+
+  toSubject(e) {
+    const that = this;
+    const id = e.currentTarget.id;
+    const mainSubject = that.data.mainSubject;
+    const secSubject = that.data.secSubject;
+    const type = e.currentTarget.dataset.type;
+    let subject = '';
+
+    if (type === 'main') {
+      subject = mainSubject[id].unique;
+    } else if (type === 'sec') {
+      subject = secSubject[id].unique;
     }
     wx.navigateTo({
-      url: '../Secondary_menu/Secondary_menu?subject='+subject,
-    })
+      url: `../Secondary_menu/Secondary_menu?subject=${subject}`,
+    });
   },
-  showMask:function(){
+
+  enterSearchMode() {
     this.setData({
-      ["animation_group.in"]:true,
+      'animation_group.in': true,
       showMask: true,
-    })
+    });
   },
-  cancle:function(){
+
+  cancle() {
     this.setData({
-      ["animation_group.in"]: false,
-      showMask: false
-    })
+      'animation_group.in': false,
+      showMask: false,
+    });
   },
-  input:function(e){
-    console.log(e.detail.value)
+
+  input(e) {
+    console.log('home.js, 108', e.detail.value);
     this.setData({
-      input: e.detail.value
-    })
+      input: e.detail.value,
+    });
   },
-  inputConfirm:function(e){
+
+  inputConfirm() {
     this.search();
   },
-  search:function(){
-    var that = this;
+
+  search() {
+    const that = this;
     wx.navigateTo({
       url: '../search_result/search_result?array=' + [that.data.input, that.data.currentTap, that.data.currentModel],
-    })
-
-    
+    });
   },
-  switchStatus:function(e){
-    if (e.currentTarget.dataset.id==this.data.currentTap){
+
+  switchStatus(e) {
+    if (e.currentTarget.dataset.id === this.data.currentTap) {
       this.setData({
-        currentTap:'cancle',
-      })
-    }
-    else{
+        currentTap: 'cancle',
+      });
+    } else {
       this.setData({
         currentTap: e.currentTarget.dataset.id,
-      })
+      });
     }
-    
   },
-  switchModel: function (e) {
-    if (e.currentTarget.dataset.id == this.data.currentModel){
+
+  switchModel(e) {
+    if (e.currentTarget.dataset.id === this.data.currentModel) {
       this.setData({
         currentModel: 'cancle',
-        modelStatus: true
-      })
-    }
-    else{
+        modelStatus: true,
+      });
+    } else {
       this.setData({
         currentModel: e.currentTarget.dataset.id,
-        modelStatus: false
-      })
+        modelStatus: false,
+      });
     }
-    
   },
-})
+});
