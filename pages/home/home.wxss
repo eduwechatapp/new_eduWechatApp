@@ -3,21 +3,43 @@ page {
 }
 
 .top-input-area {
-  width: 95%;
-  height: 90rpx;
-  margin: auto; 
+  width: 100vw;
   margin-top: 15px;
+  height: 90rpx;
+  position: relative;
   display: flex;
   align-items: center;
-  background-color: #eeeeee;
-  border-radius: 20rpx
 }
 
-.left-icon{
+.cancelInput {
+  position: absolute;
+  right: 50rpx;
+  opacity: 0;
+}
+
+.input-outer {
+  display: inline-flex;
+  margin-left: 25rpx;
+  width: 700rpx;
+  height: 90rpx;
+  background: white;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.left-icon {
   width: 50rpx;
   height: 50rpx;
+  margin-top: 2px;
   display: inline-block;
   margin-left: 20rpx;
+  margin-right: 5px;
+}
+
+.input {
+  width: 650rpx;
+  display: inline-block;
+  background-color: #eeeeee;
 }
 
 .icon {
@@ -135,30 +157,30 @@ page {
   background: #fafafa;
   padding: 20rpx
 }
+
 .mask_input{
   width: 70%;
-
   background:white;
   padding: 20rpx;
   display: inline-block;
-
 }
-.mask_input_area{
-  width:80%;
-  height:92rpx;
-  margin-left: 20rpx; 
+
+.mask-input-area{
+  width: 600rpx;
+  height: 90rpx;
+  margin-top: 15px;
+  margin-left: 25rpx; 
   display: inline-block;
-  /*align-items: center;*/
   background:white;  
   border-radius: 20rpx;
-
 }
-.mask_top{
+
+.mask-top {
   display: flex;
   align-items: center;
   height: 90rpx;
- 
 }
+
 .cancle{
   display: inline-block;
   /*margin-top: 20rpx;
@@ -184,13 +206,6 @@ page {
   display: inline-block;
   margin-left: 19rpx;
   margin-bottom: 20rpx;
-}
-
-.input{
-  width: 80%;
-  display: inline-block;
-  background-color: #eeeeee;
-
 }
 
 .shade{   

@@ -40,13 +40,6 @@ Page({
     titleName:"学霸の口袋高中",
     input_value:'搜索资料',
     showMask: false,
-
-    animation_group:{
-      className: 'wux-animate--fadeIn',
-      enter: true,
-      exit: true,
-      in: false
-    },
     input: '',
     currentTap: 'cancle',
     currentModel: 'cancle',
@@ -54,6 +47,8 @@ Page({
       { name: "按标题搜索", unique: "title" },
       { name: "按内容搜索", unique: "content" },
     ],
+    inputAnimation: {},
+    cancelAnimation: {},
   },
 
   //滑动swiper
@@ -93,16 +88,42 @@ Page({
   },
 
   enterSearchMode() {
-    this.setData({
-      'animation_group.in': true,
-      showMask: true,
+    const animation = wx.createAnimation({
+      duration: 400,
+      timingFunction: 'ease',
     });
+    animation.width('570rpx').step();
+    this.setData({
+      inputAnimation: animation.export(),
+    });
+    setTimeout(() => {
+      const an2 = wx.createAnimation({
+        duration: 400,
+        timingFunction: 'ease',
+      });
+      an2.opacity(1).step();
+      this.setData({
+        showMask: true,
+        cancelAnimation: an2.export(),
+      });
+    }, 100);
   },
 
-  cancle() {
+  cancelInput() {
+    const an2 = wx.createAnimation({
+      duration: 400,
+      timingFunction: 'ease',
+    });
+    an2.opacity(0).step();
+    const animation = wx.createAnimation({
+      duration: 400,
+      timingFunction: 'ease',
+    });
+    animation.width('700rpx').step();
     this.setData({
-      'animation_group.in': false,
+      cancelAnimation: an2.export(),
       showMask: false,
+      inputAnimation: animation.export(),
     });
   },
 
