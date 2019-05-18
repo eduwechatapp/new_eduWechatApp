@@ -27,6 +27,7 @@ Page({
     var that = this;
     var str = options.array;
     var array = str.split(',');
+    var noResult = true;
     console.log(array)
     if(array[1]=="cancel" && array[2]=="cancel"){//简单搜索
       wx.showToast({
@@ -47,7 +48,12 @@ Page({
             contentList: res.data.data,
             input: array[0]
           })
-          if (that.data.contentList.length == 0) {
+          for(var i =0;i<9;i++){
+            if(that.data.contentList[i].dataList!=0){
+              noResult = false
+            }
+          }
+          if (noResult) {
             wx.showModal({
               title: '提示',
               content: '查询无结果，建议更换关键字再次搜索哦',

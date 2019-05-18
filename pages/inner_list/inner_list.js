@@ -31,6 +31,8 @@ Page({
         module: array[2]
       })
       if(that.data.menuList.length == 0){
+        var num = getCurrentPages()
+        console.log(num)
         wx.showModal({
           title: '提示',
           content: '查询无结果，建议更换关键字再次搜索哦',
@@ -38,7 +40,7 @@ Page({
           success(res) {
             if (res.confirm) {
               wx.navigateBack({
-                delta: 2
+                delta: 1
               })
             } 
           }
@@ -173,7 +175,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    if(this.data.module=="搜索"){
+    if(this.data.module=="搜索"||this.data.menuList.length!=0){
       wx.navigateBack({
         delta: 2
       })

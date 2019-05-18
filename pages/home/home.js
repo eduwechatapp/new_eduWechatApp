@@ -92,6 +92,8 @@ Page({
     this.setData({
       ["animation_group.in"]:true,
       showMask: true,
+      currentTap: 'cancel',
+      currentModel: 'cancel'
     })
   },
   cancel:function(){
