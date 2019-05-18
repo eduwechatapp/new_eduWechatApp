@@ -70,7 +70,7 @@ Page({
     }
     else{//复杂搜索
       var detail
-      if(array[2]=="title"){
+      if(array[2]=="title"||array[2]=="cancel"){
         detail={
           "title" : array[0]
           }
