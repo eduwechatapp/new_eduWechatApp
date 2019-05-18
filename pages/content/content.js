@@ -64,35 +64,27 @@ Page({
       var text_array = text_str.split(',')
       var text = [text_array[0]-'0',text_array[1]-'0',text_array[2]]
       that.setData({
-        module:"搜索"
+        module:"简单搜索"
       })
-      console.log(text)
-      wx.request({
-        url: 'https://www.vaskka.com/mp/search/simple/' + 'test/' + text[2] + '/100/0',
-        method: 'POST',
-        header: {
-          "Accept": "application/json"
-        },
-        success: function (res) {
-          console.log(res.data.data)
-          that.setData({
-            contentList: res.data.data,
-            index: text[0],
-            id: text[1]
-          })
-          that.setData({
-            titleName: that.data.contentList[that.data.index].dataList[that.data.id].title,
-            content: that.data.contentList[that.data.index].dataList[that.data.id].content,
-            
-          })  
-          wx.setNavigationBarTitle({
-            title: that.data.titleName
-          })
-          WxParse.wxParse('arti', 'html', that.data.content, that, 5);
-          //console.log(res.data.data.content);
-          //console.log("content:"+that.data.menuList[0].content);
-        }
+
+      that.setData({
+        contentList: globalData.simpleList,
+        index: text[0],
+        id: text[1]
       })
+      that.setData({
+        titleName: that.data.contentList[that.data.index].dataList[that.data.id].title,
+        content: that.data.contentList[that.data.index].dataList[that.data.id].content,
+        
+      })  
+      wx.setNavigationBarTitle({
+        title: that.data.titleName
+      })
+      WxParse.wxParse('arti', 'html', that.data.content, that, 5);
+      //console.log(res.data.data.content);
+      //console.log("content:"+that.data.menuList[0].content);
+
+
 
       
     }
@@ -253,7 +245,7 @@ Page({
       var temp_listName = new Array();
       var temp_storage = new Array();
       var storage_value;
-      wx.getStorageInfo({
+      wx.getStorageInfo({//得到缓存key信息并且找出该模块下对应缓存过的页面，并且加载进来
         success: function (res) {
           key = res.keys;
           console.log(key);
@@ -310,12 +302,12 @@ Page({
 
 
   },
-  switchStatus:function(e){
+  switchStatus:function(e){//阅读页面按钮留意程度切换
     this.setData({
       currentSelect:e.currentTarget.dataset.id
     })
     console.log(this.data.argument)
-    if (this.data.currentSelect == "notCare"){
+    if (this.data.currentSelect == "notCare"){//如果选择了不放心上，则删除需要留意和重点关注的缓存内容
       wx.removeStorage({
         key: "attention" + "_" + this.data.argument[0] + "_" + this.data.argument[1] + "_" + this.data.argument[2] + "_" + this.data.argument[3],
         success: function(res) {
@@ -329,7 +321,7 @@ Page({
         },
       })
     }
-    else if (this.data.currentSelect == "attention"){
+    else if (this.data.currentSelect == "attention"){//如果选择了需要留意，则删除重点关注的缓存内容
       wx.removeStorage({
         key: "focus" + "_" + this.data.argument[0] + "_" + this.data.argument[1] + "_" + this.data.argument[2] + "_" + this.data.argument[3],
         success: function (res) {
@@ -341,7 +333,7 @@ Page({
         data: this.data.menuList[this.data.argument[2]],
       })
     }
-    else{
+    else{//同上，选择了重点关注，删除需要留意模块的缓存内容
       wx.removeStorage({
         key: "attention" + "_" + this.data.argument[0] + "_" + this.data.argument[1] + "_" + this.data.argument[2] + "_" + this.data.argument[3],
         success: function (res) {
@@ -367,7 +359,7 @@ Page({
     var length = that.data.menuList.length - 1;
     var storage_which = that.data.storage_argument;
     console.log("which: " + which);
-    if (that.data.storage_argument[2] == '需要留意' || that.data.storage_argument[2] =='重点关注'){
+    if (that.data.storage_argument[2] == '需要留意' || that.data.storage_argument[2] =='重点关注'){//缓存页面逻辑处理
       if (storage_which[1] == 0) {
         wx.showToast({
           title: '这是第一页噢',
@@ -390,7 +382,7 @@ Page({
         WxParse.wxParse('arti', 'html', that.data.menuList[that.data.storage_argument[1]].content, that, 5);
       }
     }
-    else if(that.data.argument[3]=="搜索"){
+    else if(that.data.argument[3]=="搜索"){//高级搜索逻辑处理
       if (that.data.search_argument==0){
         wx.showToast({
           title: '这是第一页噢',
@@ -398,6 +390,7 @@ Page({
           duration: 2000
         })
       }
+      
       else{
         
         that.setData({
@@ -412,7 +405,30 @@ Page({
         })
       }
     }
-    else{
+    else if (that.data.module == "简单搜索") {//简单搜索页面逻辑处理
+      if (that.data.id == 0){
+        wx.showToast({
+          title: '这是第一页噢',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+      else{
+        that.setData({
+          id: that.data.id-1
+        })
+        that.setData({
+          titleName: that.data.contentList[that.data.index].dataList[that.data.id].title,
+          content: that.data.contentList[that.data.index].dataList[that.data.id].content,
+
+        })
+        wx.setNavigationBarTitle({
+          title: that.data.titleName
+        })
+        WxParse.wxParse('arti', 'html', that.data.content, that, 5);
+      }
+    }
+    else{//正常知识点、易错点等阅读页面页面逻辑处理
       if (which[2] == 0) {
         wx.showToast({
           title: '这是第一页噢',
@@ -537,6 +553,29 @@ Page({
         wx.setNavigationBarTitle({
           title: that.data.titleName
         })
+      }
+    }
+    else if (that.data.module == "简单搜索") {//简单搜索页面逻辑处理
+      if (that.data.id == that.data.contentList[that.data.index].dataList.length-1) {
+        wx.showToast({
+          title: '已经是最后一页！',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+      else {
+        that.setData({
+          id: that.data.id + 1
+        })
+        that.setData({
+          titleName: that.data.contentList[that.data.index].dataList[that.data.id].title,
+          content: that.data.contentList[that.data.index].dataList[that.data.id].content,
+
+        })
+        wx.setNavigationBarTitle({
+          title: that.data.titleName
+        })
+        WxParse.wxParse('arti', 'html', that.data.content, that, 5);
       }
     }
     else{

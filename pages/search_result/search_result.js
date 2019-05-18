@@ -30,7 +30,7 @@ Page({
     console.log(array)
     if(array[1]=="cancle" && array[2]=="cancle"){//简单搜索
       wx.request({
-        url: 'https://www.vaskka.com/mp/search/simple/'+'test/'+array[0]+'/100/0',
+        url: 'https://www.vaskka.com/mp/search/simple/'+'test/'+array[0]+'/5/0',
         method:'POST',
         header: {
           "Accept": "application/json"
@@ -41,14 +41,14 @@ Page({
             contentList: res.data.data,
             input: array[0]
           })
-          
+          globalData.simpleList = res.data.data
          
           //console.log(res.data.data.content);
           //console.log("content:"+that.data.menuList[0].content);
         }
       })
     }
-    else{
+    else{//复杂搜索
       var detail
       if(array[2]=="title"){
         detail={

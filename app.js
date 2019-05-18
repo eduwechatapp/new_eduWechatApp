@@ -35,6 +35,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    contentList:''
+    contentList:'',
+    simpleList:''
   }
 })
