@@ -1,4 +1,4 @@
-<wux-sticky scrollTop="{{ scrollTop }}">
+<wux-sticky scrollTop="{{ scrollTop }}" wx:if="{{show}}">
   <wux-sticky-item scrollTop="{{ scrollTop }}" wx:for="{{contentList}}" wx:for-item="item" wx:if="{{item.dataList.length==0? false: true}}">
     <view slot="title">{{item.subject}}</view>
     <view slot="content" >

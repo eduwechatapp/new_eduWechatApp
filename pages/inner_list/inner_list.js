@@ -1,5 +1,5 @@
 const request = require('../../utils/request');
-
+var globalData = getApp()
 Page({
 
   /**
@@ -22,6 +22,17 @@ Page({
     //console.log(str);
     var array = str.split(',');
     //console.log(array);
+    console.log(options)
+    if(array[2]=="搜索"){
+      var contentList = globalData.contentList
+      console.log(contentList)
+      that.setData({
+        menuList: contentList.dataList,
+        module: array[2]
+      })
+      
+
+    }
     if(array[2]=='知识点'){
       wx.request({
         url:'https://www.vaskka.com/mp/'+array[0]+'/knowledge/get/test/'+array[1]+'/20/0',
@@ -125,7 +136,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    wx.navigateBack({
+      delta: 2
+    })
   },
 
   /**
@@ -174,5 +187,6 @@ Page({
     //console.log("title :" + title+"content"+content);
     //console.log("subject :" + that.data.subject + " which :" + that.data.which+" id: "+id+" module :"+that.data.module);
     wx.navigateTo({ url: '../content/content?array=' + [that.data.subject, that.data.which, id,that.data.module]});
+   
   }
 })

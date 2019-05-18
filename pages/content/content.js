@@ -1,4 +1,5 @@
 var WxParse = require('../../wxParse/wxParse.js');
+var globalData = getApp()
 Page({
 
   /**
@@ -10,6 +11,7 @@ Page({
     argument:[],
     currentSelect:'notCare',
     storage_argument:[],
+    search_argument:[],
     titleName:'',
     module:'',
     contentList:'',
@@ -41,10 +43,23 @@ Page({
       argument:array
     })
     console.log("onLoad: "+array);
-    //搜索页面跳转至此的数据处理
+    //简单搜索搜索页面跳转至此的数据处理
     var array_search_str = options.array
     var array_search = array_search_str.split(',')
-    if(array_search[2]=='搜索'){
+    //高级搜索页面跳转至此的数据处理
+    if(array[3]=='搜索'){//高级搜索
+      WxParse.wxParse('arti', 'html', globalData.contentList.dataList[array[2]].content, that, 5);
+      that.setData({
+        titleName: globalData.contentList.dataList[array[2]].title,
+        search_argument: array[2],
+        menuList: globalData.contentList.dataList,
+        module: "搜索"
+      })
+      wx.setNavigationBarTitle({
+        title: that.data.titleName
+      })
+    }
+    if(array_search[2]=='搜索'){//简单搜索
       var text_str = options.text
       var text_array = text_str.split(',')
       var text = [text_array[0]-'0',text_array[1]-'0',text_array[2]]
@@ -106,6 +121,7 @@ Page({
       })
     }
     if (array[3] == '归纳总结') {
+      
       wx.request({
         url: 'https://www.vaskka.com/mp/' + array[0] + '/summary/get/test/' + array[1] + '/100/0',
         header: {
@@ -359,6 +375,7 @@ Page({
           duration: 2000
         })
       }
+
       else {
         storage_which[1] = storage_which[1] - 1;
         that.setData({
@@ -373,6 +390,28 @@ Page({
         WxParse.wxParse('arti', 'html', that.data.menuList[that.data.storage_argument[1]].content, that, 5);
       }
     }
+    else if(that.data.argument[3]=="搜索"){
+      if (that.data.search_argument==0){
+        wx.showToast({
+          title: '这是第一页噢',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+      else{
+        
+        that.setData({
+          search_argument:that.data.search_argument-1
+        })
+        WxParse.wxParse('arti', 'html', globalData.contentList.dataList[that.data.search_argument].content, that, 5);
+        that.setData({
+          titleName: globalData.contentList.dataList[that.data.search_argument].title,
+        })
+        wx.setNavigationBarTitle({
+          title: that.data.titleName
+        })
+      }
+    }
     else{
       if (which[2] == 0) {
         wx.showToast({
@@ -380,6 +419,7 @@ Page({
           icon: 'none',
           duration: 2000
         })
+
       }
       else {
         which[2] = which[2] - 1;
@@ -475,6 +515,28 @@ Page({
         })
 
         WxParse.wxParse('arti', 'html', that.data.menuList[that.data.storage_argument[1]].content, that, 5);
+      }
+    }
+    else if (that.data.argument[3] == "搜索") {
+      if (that.data.search_argument == that.data.menuList.length-1) {
+        wx.showToast({
+          title: '已经是最后一页！',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+      else {
+
+        that.setData({
+          search_argument: that.data.search_argument + 1
+        })
+        WxParse.wxParse('arti', 'html', globalData.contentList.dataList[that.data.search_argument].content, that, 5);
+        that.setData({
+          titleName: globalData.contentList.dataList[that.data.search_argument].title,
+        })
+        wx.setNavigationBarTitle({
+          title: that.data.titleName
+        })
       }
     }
     else{

@@ -1,3 +1,4 @@
+var globalData = getApp()
 Page({
   data:{
     subject:'',
@@ -8,6 +9,7 @@ Page({
     dataset_id:'',
     id:'',
     module:'搜索',
+    show:true,
     subjectLUT:[
       { sub: "数学", index: 0 },
       { sub: "语文", index: 1 },
@@ -65,10 +67,14 @@ Page({
           console.log(res.data.data)
           that.setData({
             contentList: res.data.data,
-            input: array[0]
+            input: array[0],
+            show:false
           })
-
-
+          globalData.contentList = that.data.contentList
+          var contentListString = JSON.stringify(that.data.contentList.dataList)
+        wx.navigateTo({
+          url: '../inner_list/inner_list?array=' + ['', that.data.contentList.subject, that.data.module]
+        })
           //console.log(res.data.data.content);
           //console.log("content:"+that.data.menuList[0].content);
         }
