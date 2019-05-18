@@ -3,27 +3,27 @@ var app = getApp()
 var host = 'http://localhost:8080'
 
 function POST(url, params) {
-    let promise = new Promise(function (resolve, reject) {
-        wx.request({
-            url: host + url,
-            data: params,
-            method: 'POST',
-            success: function (res) {
-                resolve(res.data);
-            },
-            fail: function (res) {
-                reject(res.data)
-                wx.showToast({
-                  title: '网络错误!', //提示的内容,
-                  icon: 'none', //图标,
-                  duration: 2000, //延迟时间,
-                  mask: true, //显示透明蒙层，防止触摸穿透,
-                  success: res => {}
-                });
-            }
-        })
-    });
-    return promise
+  let promise = new Promise(function(resolve, reject) {
+    wx.request({
+      url: host + url,
+      data: params,
+      method: 'POST',
+      success: function(res) {
+        resolve(res.data);
+      },
+      fail: function(res) {
+        reject(res.data)
+        wx.showToast({
+          title: '网络错误!', //提示的内容,
+          icon: 'none', //图标,
+          duration: 2000, //延迟时间,
+          mask: true, //显示透明蒙层，防止触摸穿透,
+          success: res => {}
+        });
+      }
+    })
+  });
+  return promise
 }
 
 
@@ -35,46 +35,46 @@ function POST(url, params) {
  * doFail：失败的回调函数
  */
 function request(url, postData, doSuccess, doFail) {
-    wx.request({
-        //项目的真正接口，通过字符串拼接方式实现
-        url: host + url,
-        header: {
-            "content-type": "application/json;charset=UTF-8"
-        },
-        data: postData,
-        method: 'POST',
-        success: function (res) {
-            //参数值为res.data,直接将返回的数据传入
-            doSuccess(res.data);
-        },
-        fail: function () {
-            doFail();
-        },
-    })
+  wx.request({
+    //项目的真正接口，通过字符串拼接方式实现
+    url: host + url,
+    header: {
+      "content-type": "application/json;charset=UTF-8"
+    },
+    data: postData,
+    method: 'POST',
+    success: function(res) {
+      //参数值为res.data,直接将返回的数据传入
+      doSuccess(res.data);
+    },
+    fail: function() {
+      doFail();
+    },
+  })
 }
 
 //GET请求，不需传参，直接URL调用，
 function getData(url, doSuccess, doFail) {
-    wx.request({
-        url: host + url,
-        header: {
-            "content-type": "application/json;charset=UTF-8"
-        },
-        method: 'GET',
-        success: function (res) {
-            doSuccess(res.data);
-        },
-        fail: function () {
-            doFail();
-        },
-    })
+  wx.request({
+    url: host + url,
+    header: {
+      "content-type": "application/json;charset=UTF-8"
+    },
+    method: 'GET',
+    success: function(res) {
+      doSuccess(res.data);
+    },
+    fail: function() {
+      doFail();
+    },
+  })
 }
 
 //webSocket
 function webSocket(url) {
-    wx.connectSocket({
-        url: ws+url
-    })
+  wx.connectSocket({
+    url: ws + url
+  })
 }
 
 /**
