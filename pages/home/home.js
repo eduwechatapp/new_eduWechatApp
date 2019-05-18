@@ -6,46 +6,26 @@ const Data = {
 
 Page({
   data: {
-    sub_first: [
-      { name: "语文", unique: "yw" },
-      { name: "数学",  unique: "sx" },
-      { name: "英语", unique: "yy" },
-    ],
-    sub_second: [
-      { name: "物理",  unique: "wl" },
-      { name: "化学",  unique: "hx" },
-      { name: "生物", unique: "sw" },
-    ],
-    sub_third: [
-      { name: "政治", unique:"zz" },
-      { name: "历史", unique: "ls" },
-      { name: "地理",  unique: "dl" },
-    ],
-    mainSubject: [
-      { name: "英语", url: "/pages/icon/english.png", unique: "english" },
-      { name: "数学", url: "/pages/icon/math.png", unique: "math" },
-      { name: "语文", url: "/pages/icon/chinese.png", unique: "chinese" },
-    ],
-    secSubject: [
-      { name: "化学", url: "/pages/icon/chemistry.png", unique: "chemistry" },
-      { name: "物理", url: "/pages/icon/physics.png", unique: "physics" },
-      { name: "生物", url: "/pages/icon/biology.png", unique: "biology" },
-      { name: "地理", url: "/pages/icon/geography.png", unique: "geography" },
-      { name: "政治", url: "/pages/icon/political.png", unique: "political" },
-      { name: "历史", url: "/pages/icon/history.png", unique: "history" },
+    subjects: [
+      { name: "英语", img: "/pages/icon/english.png" },
+      { name: "数学", img: "/pages/icon/math.png" },
+      { name: "语文", img: "/pages/icon/chinese.png" },
+      { name: "化学", img: "/pages/icon/chemistry.png" },
+      { name: "物理", img: "/pages/icon/physics.png" },
+      { name: "生物", img: "/pages/icon/biology.png" },
+      { name: "地理", img: "/pages/icon/geography.png" },
+      { name: "政治", img: "/pages/icon/political.png" },
+      { name: "历史", img: "/pages/icon/history.png" },
     ],
     swiperIndex: 0,
     bannerList: ['https://vaskka.com/static/introduction.jpg', 'https://vaskka.com/static/notice.png'],
-    swiperList:['../introduction/introduction','../notice/notice'],
-    titleName:"学霸の口袋高中",
-    input_value:'搜索资料',
-    showMask: false,
+    searchMode: false,
     input: '',
-    currentTap: 'cancle',
-    currentModel: 'cancle',
-    model:[
-      { name: "按标题搜索", unique: "title" },
-      { name: "按内容搜索", unique: "content" },
+    currentTap: -1,
+    currentModel: -1,
+    model: [
+      { name: '按标题搜索' },
+      { name: '按内容搜索' },
     ],
     inputAnimation: {},
     cancelAnimation: {},
@@ -56,37 +36,9 @@ Page({
     Data.swiperIndex = e.detail.current;
   },
 
-  onLoad() {
-    const that = this;
-    wx.setNavigationBarTitle({
-      title: that.data.titleName,
-    });
-  },
-
-  toPage(e) {
-    wx.navigateTo({
-      url: Data.swiperURLList[Data.swiperIndex],
-    });
-  },
-
-  toSubject(e) {
-    const that = this;
-    const id = e.currentTarget.id;
-    const mainSubject = that.data.mainSubject;
-    const secSubject = that.data.secSubject;
-    const type = e.currentTarget.dataset.type;
-    let subject = '';
-
-    if (type === 'main') {
-      subject = mainSubject[id].unique;
-    } else if (type === 'sec') {
-      subject = secSubject[id].unique;
-    }
-    wx.navigateTo({
-      url: `../Secondary_menu/Secondary_menu?subject=${subject}`,
-    });
-  },
-
+  /**
+   * 进入搜索模式，展示切换动画
+   */
   enterSearchMode() {
     const animation = wx.createAnimation({
       duration: 400,
@@ -94,6 +46,7 @@ Page({
     });
     animation.width('570rpx').step();
     this.setData({
+      searchMode: true,
       inputAnimation: animation.export(),
     });
     setTimeout(() => {
@@ -103,12 +56,14 @@ Page({
       });
       an2.opacity(1).step();
       this.setData({
-        showMask: true,
         cancelAnimation: an2.export(),
       });
-    }, 100);
+    }, 200);
   },
 
+  /**
+   * 退出搜索模式，展示切换动画
+   */
   cancelInput() {
     const an2 = wx.createAnimation({
       duration: 400,
@@ -122,7 +77,7 @@ Page({
     animation.width('700rpx').step();
     this.setData({
       cancelAnimation: an2.export(),
-      showMask: false,
+      searchMode: false,
       inputAnimation: animation.export(),
     });
   },
@@ -145,10 +100,13 @@ Page({
     });
   },
 
+  /**
+   * 切换选择科目按钮选中状态
+   */
   switchStatus(e) {
     if (e.currentTarget.dataset.id === this.data.currentTap) {
       this.setData({
-        currentTap: 'cancle',
+        currentTap: -1,
       });
     } else {
       this.setData({
@@ -157,10 +115,13 @@ Page({
     }
   },
 
+  /**
+   * 切换选择搜索模式的按钮的选中状态
+   */
   switchModel(e) {
     if (e.currentTarget.dataset.id === this.data.currentModel) {
       this.setData({
-        currentModel: 'cancle',
+        currentModel: -1,
         modelStatus: true,
       });
     } else {
