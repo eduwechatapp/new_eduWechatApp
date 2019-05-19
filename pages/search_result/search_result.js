@@ -1,3 +1,4 @@
+var globalData = getApp()
 Page({
   data:{
     subject:'',
@@ -8,6 +9,7 @@ Page({
     dataset_id:'',
     id:'',
     module:'搜索',
+    show:true,
     subjectLUT:[
       { sub: "数学", index: 0 },
       { sub: "语文", index: 1 },
@@ -25,35 +27,70 @@ Page({
     var that = this;
     var str = options.array;
     var array = str.split(',');
+    var noResult = true;
     console.log(array)
-    if(array[1]=="cancle" && array[2]=="cancle"){//简单搜索
+    if(array[1]=="cancel" && array[2]=="cancel"){//简单搜索
+      wx.showToast({
+        title: '加载ing',
+        icon: 'loading'
+      })
       wx.request({
-        url: 'https://www.vaskka.com/mp/search/simple/'+'test/'+array[0]+'/100/0',
+        url: 'https://www.vaskka.com/mp/search/simple/'+'test/'+array[0]+'/5/0',
         method:'POST',
         header: {
           "Accept": "application/json"
         },
         success: function (res) {
+          wx.hideToast();
           console.log(res.data.data)
+          
           that.setData({
             contentList: res.data.data,
             input: array[0]
           })
-          
+          for(var i =0;i<9;i++){
+            if(that.data.contentList[i].dataList!=0){
+              noResult = false
+            }
+          }
+          if (noResult) {
+            wx.showModal({
+              title: '提示',
+              content: '查询无结果，建议更换关键字再次搜索哦',
+              showCancel: false,
+              success(res) {
+                if (res.confirm) {
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                }
+              }
+            })
+          }
+          globalData.simpleList = res.data.data
          
           //console.log(res.data.data.content);
           //console.log("content:"+that.data.menuList[0].content);
         }
       })
     }
-    else{
+    else{//复杂搜索
       var detail
-      if(array[2]=="title"){
+      if(array[2]=="title"||array[2]=="cancel"){
         detail={
           "title" : array[0]
           }
       }
+      if (array[2] == "content") {
+        detail = {
+          "content": array[0]
+        }
+      }
       console.log(detail)
+      wx.showToast({
+        title: '加载ing',
+        icon: 'loading'
+      })
       wx.request({
         url: 'https://www.vaskka.com/mp/search/detail/' + 'test/' + array[1] + '/100/0',
         method: 'POST',
@@ -62,13 +99,19 @@ Page({
           "Accept": "application/json"
         },
         success: function (res) {
+          
           console.log(res.data.data)
           that.setData({
             contentList: res.data.data,
-            input: array[0]
+            input: array[0],
+            show:false
           })
-
-
+          globalData.contentList = that.data.contentList
+          var contentListString = JSON.stringify(that.data.contentList.dataList)
+          wx.hideToast()
+        wx.navigateTo({
+          url: '../inner_list/inner_list?array=' + ['', that.data.contentList.subject, that.data.module]
+        })
           //console.log(res.data.data.content);
           //console.log("content:"+that.data.menuList[0].content);
         }

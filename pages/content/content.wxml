@@ -1,5 +1,5 @@
 <view class="page">
-    <block wx:if="{{storage_argument[2]=='需要留意'||storage_argument[2]=='重点关注'||module=='搜索'}}">
+    <block wx:if="{{storage_argument[2]=='需要留意'||storage_argument[2]=='重点关注'||module=='搜索'||module=='简单搜索'}}">  <!-- 若是缓存页面或者搜索页面跳转至此，则禁用顶部按钮 -->
     </block>
     <block wx:else>
       <view class="top_area">
@@ -12,7 +12,7 @@
       </view>
     </block>
 
-    <view class="{{storage_argument[2]=='需要留意'||storage_argument[2]=='重点关注'? 'storage_text_area' : 'text_area'}}">
+    <view class="{{storage_argument[2]=='需要留意'||storage_argument[2]=='重点关注'||module=='搜索'||module=='简单搜索' ? 'storage_text_area' : 'text_area'}}"> <!-- 若是缓存页面或者搜索页面跳转至此，则禁用顶部按钮并且上移文字 -->
         <import src="../../wxParse/wxParse.wxml" />
         <template is="wxParse" data="{{wxParseData:arti.nodes}}" />
     </view>

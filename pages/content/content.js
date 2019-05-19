@@ -1,4 +1,5 @@
 var WxParse = require('../../wxParse/wxParse.js');
+var globalData = getApp()
 Page({
 
   /**
@@ -10,6 +11,7 @@ Page({
     argument:[],
     currentSelect:'notCare',
     storage_argument:[],
+    search_argument:[],
     titleName:'',
     module:'',
     contentList:'',
@@ -41,139 +43,108 @@ Page({
       argument:array
     })
     console.log("onLoad: "+array);
-    //搜索页面跳转至此的数据处理
+    //简单搜索搜索页面跳转至此的数据处理
     var array_search_str = options.array
     var array_search = array_search_str.split(',')
-    if(array_search[2]=='搜索'){
+    //高级搜索页面跳转至此的数据处理
+    if(array[3]=='搜索'){//高级搜索
+      WxParse.wxParse('arti', 'html', globalData.contentList.dataList[array[2]].content, that, 5);
+      that.setData({
+        titleName: globalData.contentList.dataList[array[2]].title,
+        search_argument: array[2],
+        menuList: globalData.contentList.dataList,
+        module: "搜索"
+      })
+      wx.setNavigationBarTitle({
+        title: that.data.titleName
+      })
+    }
+    if(array_search[2]=='搜索'){//简单搜索
       var text_str = options.text
       var text_array = text_str.split(',')
       var text = [text_array[0]-'0',text_array[1]-'0',text_array[2]]
       that.setData({
-        module:"搜索"
+        module:"简单搜索"
       })
-      console.log(text)
-      wx.request({
-        url: 'https://www.vaskka.com/mp/search/simple/' + 'test/' + text[2] + '/100/0',
-        method: 'POST',
-        header: {
-          "Accept": "application/json"
-        },
-        success: function (res) {
-          console.log(res.data.data)
-          that.setData({
-            contentList: res.data.data,
-            index: text[0],
-            id: text[1]
-          })
-          that.setData({
-            titleName: that.data.contentList[that.data.index].dataList[that.data.id].title,
-            content: that.data.contentList[that.data.index].dataList[that.data.id].content,
-            
-          })  
-          wx.setNavigationBarTitle({
-            title: that.data.titleName
-          })
-          WxParse.wxParse('arti', 'html', that.data.content, that, 5);
-          //console.log(res.data.data.content);
-          //console.log("content:"+that.data.menuList[0].content);
-        }
+
+      that.setData({
+        contentList: globalData.simpleList,
+        index: text[0],
+        id: text[1]
       })
+      that.setData({
+        titleName: that.data.contentList[that.data.index].dataList[that.data.id].title,
+        content: that.data.contentList[that.data.index].dataList[that.data.id].content,
+        
+      })  
+      wx.setNavigationBarTitle({
+        title: that.data.titleName
+      })
+      WxParse.wxParse('arti', 'html', that.data.content, that, 5);
+      //console.log(res.data.data.content);
+      //console.log("content:"+that.data.menuList[0].content);
+
+
 
       
     }
 
     if (array[3] == '知识点') {
-      wx.request({
-        url: 'https://www.vaskka.com/mp/' + array[0] + '/knowledge/get/test/' + array[1] + '/100/0',
-        header: {
-          "Accept": "*/*"
-        },
-        success: function (res) {
-          //console.log(res.data.data)
-          that.setData({
-            menuList: res.data.data,
-          })
-          that.setData({
-            titleName: that.data.menuList[array[2]].title
-          })
-          wx.setNavigationBarTitle({
-            title: that.data.titleName
-          })
-          //console.log(res.data.data.content);
-          //console.log("content:"+that.data.menuList[0].content);
-          WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
-        }
+      that.setData({
+        menuList: globalData.knowledge
       })
+      that.setData({
+        titleName: that.data.menuList[array[2]].title
+      })
+      wx.setNavigationBarTitle({
+        title: that.data.titleName
+      })
+      WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
     }
     if (array[3] == '归纳总结') {
-      wx.request({
-        url: 'https://www.vaskka.com/mp/' + array[0] + '/summary/get/test/' + array[1] + '/100/0',
-        header: {
-          "Accept": "*/*"
-        },
-        success: function (res) {
-          //console.log(res.data.data)
-          that.setData({
-            menuList: res.data.data,
-          })
-          that.setData({
-            titleName: that.data.menuList[array[2]].title
-          })
-          wx.setNavigationBarTitle({
-            title: that.data.titleName
-          })
-          //console.log(res.data.data.content);
-          //console.log("content:"+that.data.menuList[0].content);
-          WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
-        }
+
+      that.setData({
+        menuList: globalData.conclusion
       })
+      that.setData({
+        titleName: that.data.menuList[array[2]].title
+      })
+      wx.setNavigationBarTitle({
+        title: that.data.titleName
+      })
+
+      WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
+
     }
     if (array[3] == '专题') {
-      wx.request({
-        url: 'https://www.vaskka.com/mp/' + array[0] + '/topic/get/test/' + array[1] + '/100/0',
-        header: {
-          "Accept": "*/*"
-        },
-        success: function (res) {
-          //console.log(res.data.data)
-          that.setData({
-            menuList: res.data.data,
-          })
-          that.setData({
-            titleName: that.data.menuList[array[2]].title
-          })
-          wx.setNavigationBarTitle({
-            title: that.data.titleName
-          })
-          //console.log(res.data.data.content);
-          //console.log("content:"+that.data.menuList[0].content);
-          WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
-        }
+
+      that.setData({
+        menuList: globalData.summary
       })
+      that.setData({
+        titleName: that.data.menuList[array[2]].title
+      })
+      wx.setNavigationBarTitle({
+        title: that.data.titleName
+      })
+
+      WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
+
     }
     if (array[3] == '答题模版') {
-      
-      wx.request({
-        url: 'https://www.vaskka.com/mp/' + array[0] + '/template/get/test/' + array[1] + '/100/0',
-        header: {
-          "Accept": "*/*"
-        },
-        success: function (res) {
-          //console.log(res.data.data)
-          that.setData({
-            menuList: res.data.data,
-          })
-          that.setData({
-            titleName: that.data.menuList[array[2]].title
-          })
-          wx.setNavigationBarTitle({
-            title: that.data.titleName
-          })
-          //console.log(res.data.data.content);
-          //console.log("content:"+that.data.menuList[0].content);
-          WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
-        }
+  
+      that.setData({
+        menuList: globalData.template
       })
+      that.setData({
+        titleName: that.data.menuList[array[2]].title
+      })
+      wx.setNavigationBarTitle({
+        title: that.data.titleName
+      })
+
+      WxParse.wxParse('arti', 'html', that.data.menuList[array[2]].content, that, 5);
+
     }
     if (array_storage[2] == '需要留意') {
       var key = new Array();
@@ -237,7 +208,7 @@ Page({
       var temp_listName = new Array();
       var temp_storage = new Array();
       var storage_value;
-      wx.getStorageInfo({
+      wx.getStorageInfo({//得到缓存key信息并且找出该模块下对应缓存过的页面，并且加载进来
         success: function (res) {
           key = res.keys;
           console.log(key);
@@ -294,12 +265,12 @@ Page({
 
 
   },
-  switchStatus:function(e){
+  switchStatus:function(e){//阅读页面按钮留意程度切换
     this.setData({
       currentSelect:e.currentTarget.dataset.id
     })
     console.log(this.data.argument)
-    if (this.data.currentSelect == "notCare"){
+    if (this.data.currentSelect == "notCare"){//如果选择了不放心上，则删除需要留意和重点关注的缓存内容
       wx.removeStorage({
         key: "attention" + "_" + this.data.argument[0] + "_" + this.data.argument[1] + "_" + this.data.argument[2] + "_" + this.data.argument[3],
         success: function(res) {
@@ -313,7 +284,7 @@ Page({
         },
       })
     }
-    else if (this.data.currentSelect == "attention"){
+    else if (this.data.currentSelect == "attention"){//如果选择了需要留意，则删除重点关注的缓存内容
       wx.removeStorage({
         key: "focus" + "_" + this.data.argument[0] + "_" + this.data.argument[1] + "_" + this.data.argument[2] + "_" + this.data.argument[3],
         success: function (res) {
@@ -325,7 +296,7 @@ Page({
         data: this.data.menuList[this.data.argument[2]],
       })
     }
-    else{
+    else{//同上，选择了重点关注，删除需要留意模块的缓存内容
       wx.removeStorage({
         key: "attention" + "_" + this.data.argument[0] + "_" + this.data.argument[1] + "_" + this.data.argument[2] + "_" + this.data.argument[3],
         success: function (res) {
@@ -351,7 +322,7 @@ Page({
     var length = that.data.menuList.length - 1;
     var storage_which = that.data.storage_argument;
     console.log("which: " + which);
-    if (that.data.storage_argument[2] == '需要留意' || that.data.storage_argument[2] =='重点关注'){
+    if (that.data.storage_argument[2] == '需要留意' || that.data.storage_argument[2] =='重点关注'){//缓存页面逻辑处理
       if (storage_which[1] == 0) {
         wx.showToast({
           title: '这是第一页噢',
@@ -359,6 +330,7 @@ Page({
           duration: 2000
         })
       }
+
       else {
         storage_which[1] = storage_which[1] - 1;
         that.setData({
@@ -373,13 +345,60 @@ Page({
         WxParse.wxParse('arti', 'html', that.data.menuList[that.data.storage_argument[1]].content, that, 5);
       }
     }
-    else{
+    else if(that.data.argument[3]=="搜索"){//高级搜索逻辑处理
+      if (that.data.search_argument==0){
+        wx.showToast({
+          title: '这是第一页噢',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+      
+      else{
+        
+        that.setData({
+          search_argument:that.data.search_argument-1
+        })
+        WxParse.wxParse('arti', 'html', globalData.contentList.dataList[that.data.search_argument].content, that, 5);
+        that.setData({
+          titleName: globalData.contentList.dataList[that.data.search_argument].title,
+        })
+        wx.setNavigationBarTitle({
+          title: that.data.titleName
+        })
+      }
+    }
+    else if (that.data.module == "简单搜索") {//简单搜索页面逻辑处理
+      if (that.data.id == 0){
+        wx.showToast({
+          title: '这是第一页噢',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+      else{
+        that.setData({
+          id: that.data.id-1
+        })
+        that.setData({
+          titleName: that.data.contentList[that.data.index].dataList[that.data.id].title,
+          content: that.data.contentList[that.data.index].dataList[that.data.id].content,
+
+        })
+        wx.setNavigationBarTitle({
+          title: that.data.titleName
+        })
+        WxParse.wxParse('arti', 'html', that.data.content, that, 5);
+      }
+    }
+    else{//正常知识点、易错点等阅读页面页面逻辑处理
       if (which[2] == 0) {
         wx.showToast({
           title: '这是第一页噢',
           icon: 'none',
           duration: 2000
         })
+
       }
       else {
         which[2] = which[2] - 1;
@@ -475,6 +494,51 @@ Page({
         })
 
         WxParse.wxParse('arti', 'html', that.data.menuList[that.data.storage_argument[1]].content, that, 5);
+      }
+    }
+    else if (that.data.argument[3] == "搜索") {
+      if (that.data.search_argument == that.data.menuList.length-1) {
+        wx.showToast({
+          title: '已经是最后一页！',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+      else {
+
+        that.setData({
+          search_argument: that.data.search_argument + 1
+        })
+        WxParse.wxParse('arti', 'html', globalData.contentList.dataList[that.data.search_argument].content, that, 5);
+        that.setData({
+          titleName: globalData.contentList.dataList[that.data.search_argument].title,
+        })
+        wx.setNavigationBarTitle({
+          title: that.data.titleName
+        })
+      }
+    }
+    else if (that.data.module == "简单搜索") {//简单搜索页面逻辑处理
+      if (that.data.id == that.data.contentList[that.data.index].dataList.length-1) {
+        wx.showToast({
+          title: '已经是最后一页！',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+      else {
+        that.setData({
+          id: that.data.id + 1
+        })
+        that.setData({
+          titleName: that.data.contentList[that.data.index].dataList[that.data.id].title,
+          content: that.data.contentList[that.data.index].dataList[that.data.id].content,
+
+        })
+        wx.setNavigationBarTitle({
+          title: that.data.titleName
+        })
+        WxParse.wxParse('arti', 'html', that.data.content, that, 5);
       }
     }
     else{
