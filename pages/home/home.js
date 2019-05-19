@@ -2,7 +2,6 @@
 const Data = {
   swiperURLList: ['../introduction/introduction', '../notice/notice'],
   swiperIndex: 0,
-  searchValue: '',
 };
 
 Page({
@@ -20,6 +19,7 @@ Page({
     ],
     bannerList: ['https://vaskka.com/static/introduction.jpg', 'https://vaskka.com/static/notice.png'],
     searchMode: false,
+    searchValue: '',
     currentTap: -1,
     currentModel: -1,
     model: [
@@ -88,6 +88,7 @@ Page({
     this.setData({
       cancelAnimation: an2.export(),
       searchMode: false,
+      searchValue: '',
       inputAnimation: animation.export(),
     });
   },
@@ -96,14 +97,16 @@ Page({
    * 键盘输入时触发，更新 value
    */
   input(e) {
-    Data.searchValue = e.detail.value;
+    this.setData({
+      searchValue: e.detail.value,
+    });
   },
 
   /**
    * 执行搜索，跳转至搜索结果页面
    */
   search() {
-    if (this.data.currentTap === -1) {
+    if (this.data.currentModel !== -1 && this.data.currentTap === -1) {
       wx.showModal({
         title: '提示',
         content: '请选择要查询的科目哦',
@@ -126,7 +129,7 @@ Page({
       wx.navigateTo({ url });
     }
     to('../search_result/search_result', {
-      searchValue: Data.searchValue,
+      searchValue: this.data.searchValue,
       subject: this.data.currentTap,
       searchMode: this.data.currentModel,
     });
