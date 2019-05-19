@@ -2,7 +2,7 @@
   <!-- 搜索输入框 -->
   <view class="top-input-area">
     <view class='input-outer' animation='{{inputAnimation}}' bindtap="enterSearchMode">
-      <wux-input id='input' placeholder='搜索资料' bindconfirm='search'>
+      <wux-input id='input' placeholder='搜索资料' bindconfirm='search' bindchange='input'>
         <image class="left-icon" src="../icon/find.png" />
       </wux-input>
     </view>

@@ -2,6 +2,7 @@
 const Data = {
   swiperURLList: ['../introduction/introduction', '../notice/notice'],
   swiperIndex: 0,
+  searchValue: '',
 };
 
 Page({
@@ -17,10 +18,8 @@ Page({
       { name: "政治", img: "/pages/icon/political.png" },
       { name: "历史", img: "/pages/icon/history.png" },
     ],
-    swiperIndex: 0,
     bannerList: ['https://vaskka.com/static/introduction.jpg', 'https://vaskka.com/static/notice.png'],
     searchMode: false,
-    input: '',
     currentTap: -1,
     currentModel: -1,
     model: [
@@ -93,20 +92,35 @@ Page({
     });
   },
 
+  /**
+   * 键盘输入时触发，更新 value
+   */
   input(e) {
-    console.log('home.js, 108', e.detail.value);
-    this.setData({
-      input: e.detail.value,
-    });
+    Data.searchValue = e.detail.value;
   },
 
   /**
    * 执行搜索，跳转至搜索结果页面
    */
   search() {
-    const that = this;
-    wx.navigateTo({
-      url: '../search_result/search_result?array=' + [that.data.input, that.data.currentTap, that.data.currentModel],
+    function to(_url, param) {
+      let urlParam = '';
+      if (Object.keys(param).length > 0) {
+        urlParam = '?';
+        Object.keys(param).forEach((k, i) => {
+          if (i > 0) {
+            urlParam += '&';
+          }
+          urlParam += `${k}=${param[k]}`;
+        });
+      }
+      const url = `${_url}${urlParam}`;
+      wx.navigateTo({ url });
+    }
+    to('../search_result/search_result', {
+      searchValue: Data.searchValue,
+      subject: this.data.currentTap,
+      searchMode: this.data.currentModel,
     });
   },
 
