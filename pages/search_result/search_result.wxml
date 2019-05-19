@@ -1,18 +1,18 @@
-<wux-sticky scrollTop="{{ scrollTop }}" wx:if="{{show}}">
-  <wux-sticky-item scrollTop="{{ scrollTop }}" wx:for="{{contentList}}" wx:for-item="item" wx:if="{{item.dataList.length==0? false: true}}">
-    <view slot="title">{{item.subject}}</view>
-    <view slot="content" >
-      <view class="demo-item" wx:for="{{item.dataList}}" wx:for-item="list">
-
+<wux-sticky scrollTop="{{scrollTop}}">
+  <wux-sticky-item wx:key='{{index}}' wx:for="{{contentList}}" wx:if="{{item.dataList.length !== 0}}">
+    <view slot="title" class='title'> 
+      <view class='name'>{{item.subject}}</view>
+      <view class='more' bindtap='toDetail' data-name='{{item.subject}}'>全部 ></view>
+    </view>
+    <view slot="content">
+      <view class="demo-item" wx:for="{{item.dataList}}" wx:for-item="list" wx:key='{{index}}'>
         <view class="list" bindtap="toText"  hover-class='tap_performance' hover-stay-time='100' id="{{index}}"  data-id="{{item.subject}}">
           <view class="left_text">{{index+1}}.{{list.title}}</view>
           <view class = "icon_display">
             <image src ="../icon/right.png" class="right_icon"></image>
           </view>
         </view>
-
       </view>
-
     </view>
   </wux-sticky-item>
 </wux-sticky> 
