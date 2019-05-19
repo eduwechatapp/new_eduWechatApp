@@ -31,9 +31,20 @@ Page({
     cancelAnimation: {},
   },
 
-  //滑动swiper
+  /**
+   * 滑动swiper
+   */
   swiperChange(e) {
     Data.swiperIndex = e.detail.current;
+  },
+
+  /**
+   * 进入 swiper 页面
+   */
+  toSwiperPage() {
+    wx.navigateTo({
+      url: Data.swiperURLList[Data.swiperIndex],
+    });
   },
 
   /**
@@ -89,10 +100,9 @@ Page({
     });
   },
 
-  inputConfirm() {
-    this.search();
-  },
-
+  /**
+   * 执行搜索，跳转至搜索结果页面
+   */
   search() {
     const that = this;
     wx.navigateTo({

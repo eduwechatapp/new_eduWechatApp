@@ -2,7 +2,7 @@
   <!-- 搜索输入框 -->
   <view class="top-input-area">
     <view class='input-outer' animation='{{inputAnimation}}' bindtap="enterSearchMode">
-      <wux-input id='input' placeholder='搜索资料'>
+      <wux-input id='input' placeholder='搜索资料' bindconfirm='search'>
         <image class="left-icon" src="../icon/find.png" />
       </wux-input>
     </view>
@@ -11,7 +11,7 @@
 
   <!-- 滑动栏 -->
   <view class="swiper" wx:if="{{!searchMode}}">
-    <swiper duration="200" style="height: 100%;" bindchange="swiperChange" autoplay="true" circular="true" bindtap='toPage'>
+    <swiper duration="200" style="height: 100%;" bindchange="swiperChange" autoplay="true" circular="true" bindtap='toSwiperPage'>
       <swiper-item wx:for="{{bannerList}}" wx:key="{{index}}">
         <image class="swiper-image" src="{{item}}" />
       </swiper-item>
