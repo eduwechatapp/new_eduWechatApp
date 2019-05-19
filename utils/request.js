@@ -1,17 +1,24 @@
-var app = getApp()
+const host = 'https://www.vaskka.com/mp';
 
-var host = 'http://localhost:8080'
-
-function POST(url, params) {
-  let promise = new Promise(function(resolve, reject) {
+export function post(_url, urlParam = {}, data = {}) {
+  let url = `${host}${_url}`;
+  if (Object.keys(urlParam) > 0) {
+    url += '?';
+    Object.keys(urlParam).forEach((k, i) => {
+      if (i > 0) {
+        url += `${k}=${urlParam[k]}`;
+      }
+    });
+  }
+  return new Promise((resolve, reject) => {
     wx.request({
-      url: host + url,
-      data: params,
+      url,
+      data,
       method: 'POST',
-      success: function(res) {
+      success(res) {
         resolve(res.data);
       },
-      fail: function(res) {
+      fail(res) {
         reject(res.data)
         wx.showToast({
           title: '网络错误!', //提示的内容,
@@ -21,9 +28,8 @@ function POST(url, params) {
           success: res => {}
         });
       }
-    })
+    });
   });
-  return promise
 }
 
 
@@ -67,7 +73,7 @@ function getData(url, doSuccess, doFail) {
     fail: function() {
       doFail();
     },
-  })
+  });
 }
 
 //webSocket
@@ -77,13 +83,6 @@ function webSocket(url) {
   })
 }
 
-/**
- * module.exports用来导出代码
- * js文件中通过var call = require("../util/request.js")  加载
- * 在引入引入文件的时候"  "里面的内容通过../../../这种类型，小程序的编译器会自动提示，因为你可能
- * 项目目录不止一级，不同的js文件对应的工具类的位置不一样
- */
 module.exports.request = request;
 module.exports.getData = getData;
-module.exports.post = POST;
 module.exports.webSocket = webSocket;
