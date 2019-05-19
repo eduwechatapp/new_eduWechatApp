@@ -103,6 +103,14 @@ Page({
    * 执行搜索，跳转至搜索结果页面
    */
   search() {
+    if (this.data.currentTap === -1) {
+      wx.showModal({
+        title: '提示',
+        content: '请选择要查询的科目哦',
+        showCancel: false,
+      });
+      return;
+    }
     function to(_url, param) {
       let urlParam = '';
       if (Object.keys(param).length > 0) {
