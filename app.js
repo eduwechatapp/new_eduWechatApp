@@ -1,4 +1,5 @@
-//app.js
+const host = 'https://www.vaskka.com/mp';
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -33,6 +34,7 @@ App({
       }
     })
   },
+
   globalData: {
     userInfo: null,
     contentList: '',
@@ -41,6 +43,7 @@ App({
     conclusion: '',
     template: '',
     summary: '',
+    content: '',
     subjectEnum: [
       { name: '英语', unique: 'yy', index: 0 },
       { name: '数学', unique: 'sx', index: 1 },
@@ -52,5 +55,52 @@ App({
       { name: '政治', unique: 'zz', index: 7 },
       { name: '历史', unique: 'ls', index: 8 },
     ],
+  },
+
+  post(_url, urlParam = {}, data = {}) {
+    let url = `${host}${_url}`;
+    if (Object.keys(urlParam) > 0) {
+      url += '?';
+      Object.keys(urlParam).forEach((k, i) => {
+        if (i > 0) {
+          url += `${k}=${urlParam[k]}`;
+        }
+      });
+    }
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url,
+        data,
+        method: 'POST',
+        success(res) {
+          resolve(res.data);
+        },
+        fail(res) {
+          reject(res.data)
+          wx.showToast({
+            title: '网络错误!', //提示的内容,
+            icon: 'none', //图标,
+            duration: 2000, //延迟时间,
+            mask: true, //显示透明蒙层，防止触摸穿透,
+            success: res => { }
+          });
+        }
+      });
+    });
+  },
+
+  route(_url, param) {
+    let urlParam = '';
+    if (Object.keys(param).length > 0) {
+      urlParam = '?';
+      Object.keys(param).forEach((k, i) => {
+        if (i > 0) {
+          urlParam += '&';
+        }
+        urlParam += `${k}=${param[k]}`;
+      });
+    }
+    const url = `${_url}${urlParam}`;
+    wx.navigateTo({ url });
   },
 });

@@ -1,38 +1,5 @@
 const host = 'https://www.vaskka.com/mp';
 
-export function post(_url, urlParam = {}, data = {}) {
-  let url = `${host}${_url}`;
-  if (Object.keys(urlParam) > 0) {
-    url += '?';
-    Object.keys(urlParam).forEach((k, i) => {
-      if (i > 0) {
-        url += `${k}=${urlParam[k]}`;
-      }
-    });
-  }
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url,
-      data,
-      method: 'POST',
-      success(res) {
-        resolve(res.data);
-      },
-      fail(res) {
-        reject(res.data)
-        wx.showToast({
-          title: '网络错误!', //提示的内容,
-          icon: 'none', //图标,
-          duration: 2000, //延迟时间,
-          mask: true, //显示透明蒙层，防止触摸穿透,
-          success: res => {}
-        });
-      }
-    });
-  });
-}
-
-
 /**
  * POST请求，
  * URL：接口
