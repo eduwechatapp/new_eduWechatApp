@@ -35,11 +35,22 @@ App({
   },
   globalData: {
     userInfo: null,
-    contentList:'',
-    simpleList:'',
-    knowledge:'',
-    conclusion:'',
-    template:'',
-    summary:''
-  }
-})
+    contentList: '',
+    simpleList: '',
+    knowledge: '',
+    conclusion: '',
+    template: '',
+    summary: '',
+    subjectEnum: [
+      { name: '英语', unique: 'yy', index: 0 },
+      { name: '数学', unique: 'sx', index: 1 },
+      { name: '语文', unique: 'yw', index: 2 },
+      { name: '化学', unique: 'hx', index: 3 },
+      { name: '物理', unique: 'wl', index: 4 },
+      { name: '生物', unique: 'sw', index: 5 },
+      { name: '地理', unique: 'dl', index: 6 },
+      { name: '政治', unique: 'zz', index: 7 },
+      { name: '历史', unique: 'ls', index: 8 },
+    ],
+  },
+});
