@@ -1,7 +1,7 @@
 const app = getApp();
 
 const Data = {
-  subjectEnum: ['yy', 'sx', 'yw', 'hx', 'wl', 'sw', 'dl', 'zz', 'ls'],
+  searchValue: '',
 };
 
 Page({
@@ -31,6 +31,7 @@ Page({
   onLoad(options) {
     const { searchValue } = options;
     this.fetchData(searchValue);
+    Data.searchValue = searchValue;
   },
 
   async fetchData(key) {
@@ -74,7 +75,19 @@ Page({
   },
 
   toDetail(e) {
-    app.route('../inner_list/inner_list');
+    const list = app.globalData.subjectEnum;
+    let subject = '';
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].name === e.currentTarget.dataset.name) {
+        subject = list[i].index;
+      }
+    }
+
+    app.route('../inner_list/inner_list', {
+      searchValue: Data.searchValue,
+      searchMode: 0,
+      subject,
+    });
   },
 
   toContent(e) {
