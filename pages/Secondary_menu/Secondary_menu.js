@@ -1,12 +1,10 @@
 Page({
   data: {
-    menu: [
-
-    ],
-    subject: "",
+    menu: [],
+    subject: '',
   },
   onLoad: function(options) {
-    var that = this;
+    const that = this;
     console.log(options.subject)
     that.setData({
       subject: options.subject

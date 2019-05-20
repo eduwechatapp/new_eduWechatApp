@@ -32,33 +32,11 @@ Page({
 
   onLoad(options) {
     const that = this;
-    const { searchValue, subject, searchMode } = options;
-    if (subject === '-1' && searchMode === '-1') { // 简单搜索
-      this.simpleSearch(searchValue);
-    } else {
-      this.advanceSearch(searchValue, subject, searchMode);
-    }
+    const { searchValue } = options;
+    this.fetchData(searchValue);
   },
 
-  onNoResult() {
-    wx.showModal({
-      title: '提示',
-      content: '查询无结果，建议更换关键字再次搜索哦',
-      showCancel: false,
-      success(res) {
-        if (res.confirm) {
-          wx.navigateBack({
-            delta: 1
-          });
-        }
-      },
-    });
-  },
-
-  /**
-   * 简单搜索
-   */
-  async simpleSearch(key) {
+  async fetchData(key) {
     wx.showToast({
       title: '加载中',
       icon: 'loading',
@@ -77,38 +55,18 @@ Page({
     });
   },
 
-  /**
-   * 高级搜索
-   */
-  async advanceSearch(key, subject, mode) {
-    wx.showToast({
-      title: '加载中',
-      icon: 'loading',
-    });
-
-    let data;
-    if (mode === '1') { // 按内容搜索
-      data = { content: key };
-    } else {
-      data = { title: key };
-    }
-
-    const response = await post(`/search/detail/test/${Data.subjectEnum[subject]}/5/0`, {}, data);
-    wx.hideToast();
-
-    if (response.data.dataList.length === 0) {
-      this.onNoResult();
-      return;
-    }
-
-    this.setData({
-      contentList: response.data,
-    });
-
-    globalData.contentList = response.data.contentList;
-    wx.hideToast();
-    wx.navigateTo({
-      url: '../inner_list/inner_list?array=' + ['', response.data.contentList.subject, this.data.module]
+  onNoResult() {
+    wx.showModal({
+      title: '提示',
+      content: '查询无结果，建议更换关键字再次搜索哦',
+      showCancel: false,
+      success(res) {
+        if (res.confirm) {
+          wx.navigateBack({
+            delta: 1
+          });
+        }
+      },
     });
   },
 
@@ -119,26 +77,27 @@ Page({
   },
 
   toDetail(e) {
-    console.log(e.currentTarget.dataset.name);
+    wx.navigateTo({
+      url: '../inner_list/inner_list',
+    });
   },
 
   toText(e) {
-    var that = this;
-    console.log(e)
-    that.setData({
+    const that = this;
+    console.log(e);
+    this.setData({
       dataset_id: e.currentTarget.dataset.id,
-      id: e.currentTarget.id
-    })
-    var i
-    for (i = 0; i < 9; i++) {
+      id: e.currentTarget.id,
+    });
+    for (let i = 0; i < 9; i++) {
       if (that.data.subjectLUT[i].sub == that.data.dataset_id) {
         that.setData({
-          index: i
-        })
+          index: i,
+        });
       }
     }
     wx.navigateTo({
       url: '../content/content?array=' + [that.data.dataset_id, that.data.id, that.data.module] + '&text=' + [that.data.index, that.data.id, that.data.input]
-    })
-  }
+    });
+  },
 });

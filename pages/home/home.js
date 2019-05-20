@@ -1,4 +1,5 @@
-// Const Data
+import { route } from '../../utils/router';
+
 const Data = {
   swiperURLList: ['../introduction/introduction', '../notice/notice'],
   swiperIndex: 0,
@@ -72,7 +73,7 @@ Page({
   },
 
   /**
-   * 退出搜索模式，展示切换动画
+   * 退出搜索模式，展示切换动画，清空搜索关键词和搜索模式
    */
   cancelInput() {
     const an2 = wx.createAnimation({
@@ -90,6 +91,8 @@ Page({
       searchMode: false,
       searchValue: '',
       inputAnimation: animation.export(),
+      currentModel: -1,
+      currentTap: -1,
     });
   },
 
@@ -106,7 +109,15 @@ Page({
    * 执行搜索，跳转至搜索结果页面
    */
   search() {
-    if (this.data.currentModel !== -1 && this.data.currentTap === -1) {
+    if (this.data.currentModel === -1 && this.data.currentTap === -1) { // 简单搜索
+      route('../search_result/search_result', {
+        searchValue: this.data.searchValue,
+      });
+      return;
+    }
+
+    // 高级搜索
+    if (this.data.currentTap === -1) { // 高级搜索时未选中科目
       wx.showModal({
         title: '提示',
         content: '请选择要查询的科目哦',
@@ -114,21 +125,7 @@ Page({
       });
       return;
     }
-    function to(_url, param) {
-      let urlParam = '';
-      if (Object.keys(param).length > 0) {
-        urlParam = '?';
-        Object.keys(param).forEach((k, i) => {
-          if (i > 0) {
-            urlParam += '&';
-          }
-          urlParam += `${k}=${param[k]}`;
-        });
-      }
-      const url = `${_url}${urlParam}`;
-      wx.navigateTo({ url });
-    }
-    to('../search_result/search_result', {
+    route('../inner_list/inner_list', {
       searchValue: this.data.searchValue,
       subject: this.data.currentTap,
       searchMode: this.data.currentModel,
