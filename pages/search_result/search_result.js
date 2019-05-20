@@ -1,6 +1,4 @@
-import { post } from '../../utils/request';
-
-const globalData = getApp();
+const app = getApp();
 
 const Data = {
   subjectEnum: ['yy', 'sx', 'yw', 'hx', 'wl', 'sw', 'dl', 'zz', 'ls'],
@@ -31,7 +29,6 @@ Page({
   },
 
   onLoad(options) {
-    const that = this;
     const { searchValue } = options;
     this.fetchData(searchValue);
   },
@@ -42,7 +39,7 @@ Page({
       icon: 'loading',
     });
 
-    const response = await post(`/search/simple/test/${key}/5/0`);
+    const response = await app.post(`/search/simple/test/${key}/5/0`);
     wx.hideToast();
 
     if (response.data.every(e => e.dataList.length === 0)) {
@@ -77,27 +74,18 @@ Page({
   },
 
   toDetail(e) {
-    wx.navigateTo({
-      url: '../inner_list/inner_list',
-    });
+    app.route('../inner_list/inner_list');
   },
 
-  toText(e) {
-    const that = this;
-    console.log(e);
-    this.setData({
-      dataset_id: e.currentTarget.dataset.id,
-      id: e.currentTarget.id,
-    });
-    for (let i = 0; i < 9; i++) {
-      if (that.data.subjectLUT[i].sub == that.data.dataset_id) {
-        that.setData({
-          index: i,
-        });
+  toContent(e) {
+    const { index, subject } = e.currentTarget.dataset;
+    const list = this.data.contentList;
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].subject === subject) {
+        app.globalData.content = list[i].dataList[index].content;
+        app.route('../content/content');
+        return;
       }
     }
-    wx.navigateTo({
-      url: '../content/content?array=' + [that.data.dataset_id, that.data.id, that.data.module] + '&text=' + [that.data.index, that.data.id, that.data.input]
-    });
   },
 });

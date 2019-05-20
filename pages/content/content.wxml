@@ -1,25 +1,4 @@
-<view class="page">
-    <block wx:if="{{storage_argument[2]=='需要留意'||storage_argument[2]=='重点关注'||module=='搜索'||module=='简单搜索'}}">  <!-- 若是缓存页面或者搜索页面跳转至此，则禁用顶部按钮 -->
-    </block>
-    <block wx:else>
-      <view class="top_area">
-        <view class="button_area">
-            <button class="{{currentSelect=='notCare'? 'selected':'button'}}" size="mini" bindtap='switchStatus' data-id="notCare">不放心上</button>
-            <button class="{{currentSelect=='attention'? 'selected':'button'}}" size="mini" bindtap='switchStatus' data-id="attention">需要留意</button>
-            <button class="{{currentSelect=='focus'? 'selected':'button'}}" size="mini" bindtap='switchStatus' data-id="focus">重点关注</button>
-        </view>
-        <view class="title">{{title}}</view>
-      </view>
-    </block>
-
-    <view class="{{storage_argument[2]=='需要留意'||storage_argument[2]=='重点关注'||module=='搜索'||module=='简单搜索' ? 'storage_text_area' : 'text_area'}}"> <!-- 若是缓存页面或者搜索页面跳转至此，则禁用顶部按钮并且上移文字 -->
-        <import src="../../wxParse/wxParse.wxml" />
-        <template is="wxParse" data="{{wxParseData:arti.nodes}}" />
-    </view>
-    <view class="bottom_area">
-        <view class="button_area_bottom">
-            <button bindtap="pageUp" class="button" size="mini">上一页</button>
-            <button bindtap="pageDown" class="button" size="mini">下一页</button>
-        </view>
-    </view> 
+<view class='content-wrapper'>
+  <import src='../../wxParse/wxParse.wxml' />
+  <template is='wxParse' data='{{wxParseData:article.nodes}}' />
 </view>

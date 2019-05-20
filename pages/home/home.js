@@ -1,9 +1,9 @@
-import { route } from '../../utils/router';
-
 const Data = {
   swiperURLList: ['../introduction/introduction', '../notice/notice'],
   swiperIndex: 0,
 };
+
+const app = getApp();
 
 Page({
   data: {
@@ -42,9 +42,7 @@ Page({
    * 进入 swiper 页面
    */
   toSwiperPage() {
-    wx.navigateTo({
-      url: Data.swiperURLList[Data.swiperIndex],
-    });
+    app.route(Data.swiperURLList[Data.swiperIndex]);
   },
 
   /**
@@ -110,7 +108,7 @@ Page({
    */
   search() {
     if (this.data.currentModel === -1 && this.data.currentTap === -1) { // 简单搜索
-      route('../search_result/search_result', {
+      app.route('../search_result/search_result', {
         searchValue: this.data.searchValue,
       });
       return;
@@ -125,7 +123,7 @@ Page({
       });
       return;
     }
-    route('../inner_list/inner_list', {
+    app.route('../inner_list/inner_list', {
       searchValue: this.data.searchValue,
       subject: this.data.currentTap,
       searchMode: this.data.currentModel,

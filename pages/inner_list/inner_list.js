@@ -1,6 +1,4 @@
-import { post } from '../../utils/request';
-
-const global = getApp().globalData;
+const app = getApp();
 
 Page({
   data: {
@@ -14,8 +12,7 @@ Page({
 
   async fetchData(subject, searchValue, searchMode) {
     const data = searchMode === '1' ? { content: searchValue } : { title: searchValue };
-    const response = await post(`/search/detail/test/${global.subjectEnum[subject].unique}/10/0`, {}, data);
-    console.log(response);
+    const response = await app.post(`/search/detail/test/${app.globalData.subjectEnum[subject].unique}/10/0`, {}, data);
     
     if (response.data.dataList.length === 0) {
       this.onNoResult();

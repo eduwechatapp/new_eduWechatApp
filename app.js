@@ -89,7 +89,7 @@ App({
     });
   },
 
-  route(_url, param) {
+  route(_url, param = {}) {
     let urlParam = '';
     if (Object.keys(param).length > 0) {
       urlParam = '?';
