@@ -103,4 +103,23 @@ App({
     const url = `${_url}${urlParam}`;
     wx.navigateTo({ url });
   },
+
+  toast(title, icon = 'none', duration = 2000) {
+    return new Promise(res => {
+      wx.showToast({
+        title,
+        icon,
+        duration,
+        success: res,
+      });
+    });
+  },
+
+  hideToast() {
+    return new Promise(res => {
+      wx.hideToast({
+        success: res,
+      });
+    });
+  },
 });
