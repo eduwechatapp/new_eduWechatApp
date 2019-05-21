@@ -1,0 +1,17 @@
+<view wx:for="{{list}}"  data-id="{{index}}" bindtap="changeShow">
+
+  <view class="item-title"   >
+    <image class="left-icon" src="{{item.show? srcPath[1] : srcPath[0]}}"></image>
+    <view class="title-text">{{item.title}}</view>
+    <image class="right-icon"></image>
+  </view>
+
+  <view class="item-content" wx:if="{{item.show}}" wx:for="{{item.value}}" wx:for-item="title" catchtap="toQuestion">
+    <image class="content-icon-l" src="../icon/spot.png"></image>
+    <view class="title-text">{{title}}</view>
+    <image class="right-icon" src="../icon/eye.png"></image>
+  </view>
+
+</view>
+
+
