@@ -1,8 +1,10 @@
 <view class="list_area">
-  <view class="list" bindtap="toText" wx:for="{{menuList}}" wx:key='{{index}}' hover-class='tap_performance' hover-stay-time='100' id="{{index}}">
-    <view class="left_text">{{index + 1}}.{{item.title}}</view>
-    <view class = "icon_display">
-      <image src ="../icon/right.png" class="right_icon"></image>
+  <scroll-view class='scroll-area' bindscrolltolower='refresh' scroll-y="{{true}}">
+    <view class="list" bindtap="toText" wx:for="{{menuList}}" wx:key='{{index}}' hover-class='tap_performance' hover-stay-time='100' id="{{index}}">
+      <view class="left_text">{{index + 1}}.{{item.title}}</view>
+      <view class = "icon_display">
+        <image src ="../icon/right.png" class="right_icon"></image>
+      </view>
     </view>
-  </view>
+  </scroll-view>
 </view>

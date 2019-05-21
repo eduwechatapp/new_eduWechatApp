@@ -29,3 +29,7 @@
   align-items: center;
   justify-content: flex-end;
 }
+
+.scroll-area {
+  height: 100vh;
+}
