@@ -1,23 +1,36 @@
 <wux-sticky scrollTop="{{scrollTop}}">
-  <wux-sticky-item wx:key='{{index}}' wx:for="{{contentList}}" wx:if="{{item.dataList.length !== 0}}">
+  <wux-sticky-item wx:key='{{index}}' wx:for="{{contentList}}">
     <view slot="title" class='title'>
       <view class='name'>{{item.subject}}</view>
-      <view class='more' bindtap='toDetail' data-name='{{item.subject}}'>全部 ></view>
     </view>
     <view slot="content">
-      <view class="demo-item" wx:for="{{item.dataList}}" wx:for-item="list" wx:key='{{index}}'>
+      <view wx:if='{{item.dataList.length !== 0}}'>
+        <view wx:for="{{item.dataList}}" wx:for-item="list" wx:key='{{index}}'>
+          <view class="list"
+            bindtap="toContent"
+            hover-class='tap_performance'
+            hover-stay-time='100'
+            data-index='{{index}}'
+            data-subject="{{item.subject}}">
+            <view class="left_text">{{index + 1}}.{{list.title}}</view>
+            <view class = "icon_display">
+              <image src ="../icon/right.png" class="right_icon"></image>
+            </view>
+          </view>
+        </view>
         <view class="list"
-          bindtap="toContent"
+          bindtap="toDetail"
+          data-name='{{item.subject}}'
           hover-class='tap_performance'
-          hover-stay-time='100'
-          data-index='{{index}}'
-          data-subject="{{item.subject}}">
-          <view class="left_text">{{index + 1}}.{{list.title}}</view>
+          hover-stay-time='100'>
+          <view class="left_text">查看全部</view>
           <view class = "icon_display">
             <image src ="../icon/right.png" class="right_icon"></image>
           </view>
         </view>
       </view>
+
+      <view wx:else class='no-result'>没有结果</view>
     </view>
   </wux-sticky-item>
 </wux-sticky> 
