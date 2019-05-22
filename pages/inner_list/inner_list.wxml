@@ -1,10 +1,14 @@
-<view class="list_area">
-  <scroll-view class='scroll-area' bindscrolltolower='refresh' scroll-y="{{true}}">
+<view class="list-wrapper">
+  <wux-pagination class='pagination' current="{{ currentPage + 1 }}" total='{{ total }}' mode="button" simple controlled bindchange="onPageChange">
+    <view slot="prev">上一页</view>
+    <view slot="next">下一页</view>
+  </wux-pagination>
+  <view class='scroll-area'>
     <view class="list" bindtap="toText" wx:for="{{menuList}}" wx:key='{{index}}' hover-class='tap_performance' hover-stay-time='100' id="{{index}}">
       <view class="left_text">{{index + 1}}.{{item.title}}</view>
-      <view class = "icon_display">
-        <image src ="../icon/right.png" class="right_icon"></image>
+      <view class="icon_display">
+        <image src="../icon/right.png" class="right_icon"></image>
       </view>
     </view>
-  </scroll-view>
+  </view>
 </view>
