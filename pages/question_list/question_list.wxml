@@ -1,0 +1,10 @@
+<view class="question_box"> 
+  <view class="box_top">第一章第一题</view>
+  <view class="box_content">下列句子中标点符号使用正确的一个是</view>
+  <view class="box_bottom">
+    <view class="left_text"></view>
+    <view class="button_box">
+      <button class="button" hover-class='tapPerformance'>查看答案</button>
+    </view>
+  </view>
+</view>

@@ -54,7 +54,7 @@ Page({
     var that = this;
     console.log(e)
     wx.navigateTo({
-      url: `../question_detail/question_detail?currentTap=${that.data.list[that.data.currentTap].title}&id=${that.data.list[that.data.currentTap].children[e.currentTarget.dataset.id]}`,
+      url: `../question_list/question_list?yiji=${that.data.list[that.data.currentTap].title}&erji=${that.data.list[that.data.currentTap].children[e.currentTarget.dataset.id]}&subject=${that.data.title}`,
     })
   },
   onClick:function(e){
@@ -70,7 +70,7 @@ Page({
             title: options[index],
           })
           wx.showLoading({
-            title: '加载ing',
+            title: '加载ing'
           })
           that.request(that.data.title)
           
