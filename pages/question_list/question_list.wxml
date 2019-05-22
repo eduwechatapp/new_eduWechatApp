@@ -3,7 +3,7 @@
     <view class="box_top">作文</view>
     <view class="box_content">
       <import src='../../wxParse/wxParse.wxml' />
-      <template is="wxParse" data="{{wxParseData:array[index]}}"/>
+      <template is="wxParse" data="{{wxParseData:array[index].nodes}}"/>
     </view>
     <view class="box_bottom">
       <view class="left_text"></view>
@@ -13,4 +13,11 @@
     </view>
   </view>
  
-</block>
+</block> 
+<!--<view>
+<import src='../../wxParse/wxParse.wxml' />
+<template is="wxParse" data="{{wxParseData:test.nodes}}"/>
+</view> -->
+
+
+
