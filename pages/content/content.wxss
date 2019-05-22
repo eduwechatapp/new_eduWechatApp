@@ -2,7 +2,14 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content-wrapper .article {
+  padding: 15px;
+  overflow: scroll;
+  flex-grow: 1;
 }
 
 .content-wrapper .bottom {
@@ -57,9 +64,4 @@
   border: thin solid #67c23a;
   background-color: #67c23a;
   color: white;
-}
-
-.content-wrapper .article {
-  padding: 15px;
-  overflow: scroll;
 }
