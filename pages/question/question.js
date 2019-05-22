@@ -1,3 +1,5 @@
+import { $wuxSelect } from '../../dist/index'
+var app = getApp();
 Page({
   data:{
     showContent:[],
@@ -5,47 +7,21 @@ Page({
       "../icon/plus.png",
       "../icon/minus.png"
     ],
-    list:[
-      {
-        title:"运动的描述",
-        value:[
-          "1111111111111111",
-        ]
-      },
-      {
-        title: "运动的描述",
-        value: [
-          "222222222222",
-          
-        ]
-      },
-      {
-        title: "运动的描述",
-        value: [
-          "33333333333333"
-        ]
-      },
-      {
-        title: "运动的描述",
-        value: [
-          "44444444444444444"
-        ]
-      }
+    list:[],
+    currentTap:'',
+    title:'语文',
+    value:'语文',
+    subject: [
+      '语文','数学','英语',
+      '化学','物理','生物',
+      '地理','历史','生物'
     ],
-    currentTap:''
   },
   onLoad(e){
-    var that = this;
-    const array = new Array(that.data.list.length).fill(false)
-    console.log(that.data.list.length)
-    var list_temp = that.data.list
-    for(let i = 0;i<that.data.list.length;i++){
-      list_temp[i]["show"]  = false
-      list_temp[i]["id"] = i
-    }
-    this.setData({
-      showContent: array
+    wx.showLoading({
+      title: '加载ing',
     })
+    this.request("语文")
   },
   changeShow(e){
     console.log(e)
@@ -55,12 +31,14 @@ Page({
         var index = "list[" + e.currentTarget.dataset.id + "].show"
         if(that.data.list[i].show){
           that.setData({
-            [index]:false
+            [index]:false,
+            currentTap:null
           })
         }
         else{
           that.setData({
-            [index]:true
+            [index]:true,
+            currentTap: e.currentTarget.dataset.id
           })
         }
       }
@@ -73,8 +51,55 @@ Page({
     }
   },
   toQuestion:function(e){
+    var that = this;
+    console.log(e)
     wx.navigateTo({
-      url: '../question_detail/question_detail',
+      url: `../question_detail/question_detail?currentTap=${that.data.list[that.data.currentTap].title}&id=${that.data.list[that.data.currentTap].children[e.currentTarget.dataset.id]}`,
+    })
+  },
+  onClick:function(e){
+    var　that = this;
+    $wuxSelect('#wux-select').open({
+      value: that.data.value,
+      options: that.data.subject,
+      onConfirm: (value, index, options) => {
+        console.log('onConfirm', value, index, options)
+        if (index !== -1) {
+          that.setData({
+            value: value,
+            title: options[index],
+          })
+          wx.showLoading({
+            title: '加载ing',
+          })
+          that.request(that.data.title)
+          
+        }
+      },
+    })
+  },
+  request:function(title){
+
+    var that = this;
+    wx.request({//选择完学科以后请求学科题目列表
+      url: 'http://129.204.216.249:4000/exercise/title/test/' + title,
+      success(res) {
+        console.log(res.data.data)
+        that.setData({
+          list: res.data.data
+        })
+        const array = new Array(that.data.list.length).fill(false)
+        console.log(that.data.list.length)
+        var list_temp = that.data.list
+        for (let i = 0; i < that.data.list.length; i++) {
+          list_temp[i]["show"] = false
+          list_temp[i]["id"] = i
+        }
+        that.setData({
+          showContent: array
+        })
+        wx.hideLoading()
+      }
     })
   }
 })
