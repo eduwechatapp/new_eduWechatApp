@@ -16,7 +16,8 @@ Page({
       { name: '高三', value: 2 }
     ],
 
-    score:'400 - 650'
+    score:'400 - 650',
+    
   },
 
   /**
@@ -82,7 +83,15 @@ Page({
   afterChange:function(e){
     var that = this,
     value = e.detail.value,
-    score = value[0] + ' - ' + value[1] 
+      score = Math.floor(value[0] * 7.5) + ' - ' + Math.floor(value[1]*7.5)
+    that.setData({
+      score
+    })
+  },
+  change:function(e){
+    var that = this,
+      value = e.detail.value,
+      score = Math.floor(value[0] * 7.5) + ' - ' + Math.floor(value[1] * 7.5)
     that.setData({
       score
     })

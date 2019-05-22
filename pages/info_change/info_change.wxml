@@ -22,7 +22,7 @@
     <view style="width:100%" wx:if="{{type=='score'}}">
         <text class="title">选择您的模考分数区间</text>
         <view style="font-size:30rpx;margin:20rpx 0;">区间：{{score}}</view>
-        <wux-slider step="50" defaultValue="{{ [400, 650] }}" min="200" max="750" showValue bind:afterChange="afterChange"/>
+        <wux-slider step="1" defaultValue="{{ [40, 65] }}" min="0" max="100"  bind:afterChange="afterChange" bind:change="change"/>
     </view>
 
     <view class="btn" hover-class="hover-class" bindtap="submit">

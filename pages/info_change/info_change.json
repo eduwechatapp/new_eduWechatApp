@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "wux-slider": "../../dist/slider/index"
+    "wux-cell-group": "../../dist/cell-group/index",
+    "wux-cell": "../../dist/cell/index",
+    "wux-cascader": "../../dist/cascader/index"
   }
 }
