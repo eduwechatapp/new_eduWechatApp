@@ -104,7 +104,7 @@ App({
     wx.navigateTo({ url });
   },
 
-  toast(title, icon = 'none', duration = 2000) {
+  toast(title, icon = 'none', duration = 1500) {
     return new Promise(res => {
       wx.showToast({
         title,
@@ -119,6 +119,16 @@ App({
     return new Promise(res => {
       wx.hideToast({
         success: res,
+      });
+    });
+  },
+
+  scrollTo(pos, duration = 300) {
+    return new Promise(res => {
+      wx.pageScrollTo({
+        scrollTo: pos,
+        duration,
+        complete: res,
       });
     });
   },
