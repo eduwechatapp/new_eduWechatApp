@@ -1,0 +1,41 @@
+@import "../../wxParse/wxParse.wxss";
+page{
+  background-color: #ececec
+}
+.choose_box{
+  margin-bottom: 20rpx;
+}
+.content_box{
+  margin-top: 20rpx;
+  margin-bottom: 20rpx
+}
+.left_text{
+  color: #e5c493;
+}
+.html_box{
+  margin-left: 80rpx;
+}
+.question_box{
+  border-bottom: 1rpx solid #cdcdcd;
+  background-color: white ;
+  margin-bottom: 50rpx;
+  padding-left: 20rpx
+}
+.analysis_box{
+  border-top: 1rpx solid #cdcdcd;
+  background-color: white;
+  padding-left: 20rpx
+}
+.exam_point{
+  border-bottom: 1rpx dashed #cdcdcd
+}
+.analysis{
+  border-bottom: 1rpx dashed #cdcdcd
+}
+.answer{
+  border-bottom: 1rpx dashed #cdcdcd
+}
+.comment{
+  border-bottom: 1rpx solid #cdcdcd
+}
+
