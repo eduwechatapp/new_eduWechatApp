@@ -1,25 +1,24 @@
 @import "../../wxParse/wxParse.wxss";
 page{
-  background-color: #ececec
+  background-color: #f3f3f3
 }
 .question_box{
   margin-bottom: 50rpx;
   background-color: white;
 }
 .box_top{
-  border-bottom: 1rpx solid #cdcdcd;
-  width: 100%;
+  border-bottom: 1rpx solid #ebebeb;
   color: #e5c493;
   background-color: white;
 }
 .box_content{
-  border-top: 1rpx solid #cdcdcd;
-  border-bottom: 1rpx solid #cdcdcd;
+  border-top: 1rpx solid #ebebeb;
+  border-bottom: 1rpx solid #ebebeb;
   width: 100%;
   background-color: white;
 }
 .box_bottom{
-  border-bottom: 1rpx solid #cdcdcd;
+  border-bottom: 1rpx solid #ebebeb;
   width: 100%;
   height: 80rpx;
   display: flex;

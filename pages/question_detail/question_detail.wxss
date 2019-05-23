@@ -1,6 +1,6 @@
 @import "../../wxParse/wxParse.wxss";
 page{
-  background-color: #ececec
+  background-color: #f3f3f3
 }
 .choose_box{
   margin-bottom: 20rpx;
@@ -16,26 +16,26 @@ page{
   margin-left: 80rpx;
 }
 .question_box{
-  border-bottom: 1rpx solid #cdcdcd;
+  border-bottom: 1rpx solid #ebebeb;
   background-color: white ;
   margin-bottom: 50rpx;
   padding-left: 20rpx
 }
 .analysis_box{
-  border-top: 1rpx solid #cdcdcd;
+  border-top: 1rpx solid #ebebeb;
   background-color: white;
   padding-left: 20rpx
 }
 .exam_point{
-  border-bottom: 1rpx dashed #cdcdcd
+  border-bottom: 1rpx dashed #ebebeb;
 }
 .analysis{
-  border-bottom: 1rpx dashed #cdcdcd
+  border-bottom: 1rpx dashed #ebebeb;
 }
 .answer{
-  border-bottom: 1rpx dashed #cdcdcd
+  border-bottom: 1rpx dashed #ebebeb;
 }
 .comment{
-  border-bottom: 1rpx solid #cdcdcd
+  border-bottom: 1rpx solid #ebebeb;
 }
 
