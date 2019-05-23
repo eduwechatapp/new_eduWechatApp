@@ -51,29 +51,6 @@ function wxParse(bindName, type, data, target, imagePadding) {
   page.wxParseImgTap = wxParseImgTap;
 }
 
-function wxParseArr(bindName, type, data, target, imagePadding) {
-  const page = target;
-  let transData = {}; // 存放转化后的数据
-  if (type === 'html') {
-    transData = HtmlToJson.html2json(data, bindName);
-  } else if (type === 'md' || type === 'markdown') {
-    const converter = new showdown.Converter();
-    const html = converter.makeHtml(data);
-    transData = HtmlToJson.html2json(html, bindName);
-  }
-  transData.view = {};
-  transData.view.imagePadding = 0;
-  if (typeof (imagePadding) !== 'undefined') {
-    transData.view.imagePadding = imagePadding;
-  }
-  const bindData = {};
-  bindData[bindName] = transData;
-  that.setData(bindData)
-  that.wxParseImgLoad = wxParseImgLoad;
-  that.wxParseImgTap = wxParseImgTap;
-}
-
-
 // 图片点击事件
 function wxParseImgTap(e) {
   var that = this;
@@ -100,7 +77,14 @@ function wxParseImgLoad(e) {
 
 // 获取计算图片视觉最佳宽高
 function calMoreImageInfo(e, idx, page, bindName) {
-  const temData = page.data[bindName];
+  let temData = page.data[bindName];
+  if (bindName.match(/^.*\[\d\]$/)) {
+    let n = bindName.replace(/^[^\[]*\[/, '');
+    n = n.replace(/\]$/, '');
+    const name = bindName.replace(/\[.*\]$/, '');
+    console.log(name, n);
+    temData = page.data[name][n];
+  }
   if (!temData || temData.images.length === 0) {
     return;
   }

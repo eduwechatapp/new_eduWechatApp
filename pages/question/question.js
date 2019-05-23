@@ -24,7 +24,6 @@ Page({
     this.request("语文")
   },
   changeShow(e){
-    console.log(e)
     var that = this;
     for(var i = 0;i<that.data.list.length;i++){
       if(e.currentTarget.dataset.id==that.data.list[i].id){
@@ -52,7 +51,6 @@ Page({
   },
   toQuestion:function(e){
     var that = this;
-    console.log(e)
     wx.navigateTo({
       url: `../question_list/question_list?yiji=${that.data.list[that.data.currentTap].title}&erji=${that.data.list[that.data.currentTap].children[e.currentTarget.dataset.id]}&subject=${that.data.title}`,
     })
@@ -63,7 +61,6 @@ Page({
       value: that.data.value,
       options: that.data.subject,
       onConfirm: (value, index, options) => {
-        console.log('onConfirm', value, index, options)
         if (index !== -1) {
           that.setData({
             value: value,
@@ -84,12 +81,10 @@ Page({
     wx.request({//选择完学科以后请求学科题目列表
       url: 'http://129.204.216.249:4000/exercise/title/test/' + title,
       success(res) {
-        console.log(res.data.data)
         that.setData({
           list: res.data.data
         })
         const array = new Array(that.data.list.length).fill(false)
-        console.log(that.data.list.length)
         var list_temp = that.data.list
         for (let i = 0; i < that.data.list.length; i++) {
           list_temp[i]["show"] = false
