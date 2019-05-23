@@ -119,20 +119,20 @@
   height: 250rpx;
   width: 90%;
   margin: 0 auto;
-  background: linear-gradient(to right, #dfa872 ,#fa8f99);
+  background: linear-gradient(to right, #2E9BB3 , #75FF7D);
   border-radius: 25rpx;
   position: relative;
   margin-top: 20rpx;
 }
 .circle2{
-  background: linear-gradient(to bottom, #f6b58f , #fb7196);
+  background: linear-gradient(to bottom, #75FF7D , rgb(41, 135, 156));
   height: 100rpx;
   width: 100rpx;
   border-radius: 50%;
   position: absolute;
   top: 30rpx;
   left: 30rpx;
-  box-shadow: 0 5rpx 7rpx rgb(202, 161, 145);
+  box-shadow: 0 5rpx 7rpx rgb(33, 106, 122);
   display: flex;
   justify-content: center;
   align-items: center
