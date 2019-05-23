@@ -1,14 +1,3 @@
-<!--**
- * author: Di (微信小程序开发工程师)
- * organization: WeAppDev(微信小程序开发论坛)(http://weappdev.com)
- *               垂直微信小程序开发交流社区
- * 
- * github地址: https://github.com/icindy/wxParse
- * 
- * for: 微信小程序富文本解析
- * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
- */-->
-
 <!--基础元素-->
 <template name="wxParseVideo">
   <!--增加video标签支持，并循环添加-->
@@ -18,7 +7,16 @@
 </template>
 
 <template name="wxParseImg">
-  <image class="{{item.classStr}} wxParse-{{item.tag}}" data-from="{{item.from}}" data-src="{{item.attr.src}}" data-idx="{{item.imgIndex}}" src="{{item.attr.src}}" mode="aspectFit" bindload="wxParseImgLoad" bindtap="wxParseImgTap" mode="widthFix" style="width:{{item.width}}px;"
+  <image class="{{item.classStr}} wxParse-{{item.tag}}"
+    data-from="{{item.from}}"
+    data-src="{{item.attr.src}}"
+    data-idx="{{item.imgIndex}}"
+    src="{{item.attr.src}}"
+    bindload="wxParseImgLoad"
+    bindtap="wxParseImgTap"
+    data-width='{{item.width}}'
+    mode="widthFix"
+    style="{{ 'width: ' + item.width + 'px;' }}"
   />
 </template>
 
@@ -36,8 +34,8 @@
 <template name="WxParseBr">
   <text>\n</text>
 </template>
-<!--入口模版-->
 
+<!--入口模版-->
 <template name="wxParse">
   <block wx:for="{{wxParseData}}" wx:key="">
     <template is="wxParse0" data="{{item}}" />
@@ -47,7 +45,6 @@
 
 <!--循环模版-->
 <template name="wxParse0">
-  <!--<template is="wxParse1" data="{{item}}" />-->
   <!--判断是否是标签节点-->
   <block wx:if="{{item.node == 'element'}}">
     <block wx:if="{{item.tag == 'button'}}">
