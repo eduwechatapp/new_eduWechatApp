@@ -14,20 +14,5 @@
   </view>
  
 </block> 
-<!--<view>
-  <import src='../../wxParse/wxParse.wxml' />
-  <template is="wxParse" data="{{wxParseData:htmlAry[0].nodes}}"/>
-</view> -->
-
-<!--<view>
-<import src='../../wxParse/wxParse.wxml' />
-<template is="wxParse" data="{{wxParseData:test.nodes}}"/>
-</view> -->
-
-<!--<template name="wxParse">
-  <block wx:for="{{wxParseData}}" wx:key="">
-    <template is="wxParse0" data="{{item}}" />
-  </block>
-</template> -->
 
 

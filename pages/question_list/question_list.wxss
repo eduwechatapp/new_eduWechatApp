@@ -1,6 +1,6 @@
 @import "../../wxParse/wxParse.wxss";
 page{
-  background-color: #b8b8b8
+  background-color: #e7e7e7
 }
 .question_box{
   margin-bottom: 50rpx;
