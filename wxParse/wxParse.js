@@ -82,7 +82,6 @@ function calMoreImageInfo(e, idx, page, bindName) {
     let n = bindName.replace(/^[^\[]*\[/, '');
     n = n.replace(/\]$/, '');
     const name = bindName.replace(/\[.*\]$/, '');
-    console.log(name, n);
     temData = page.data[name][n];
   }
   if (!temData || temData.images.length === 0) {
@@ -102,7 +101,6 @@ function calMoreImageInfo(e, idx, page, bindName) {
     [keyW]: recal.imageWidth,
     [keyH]: recal.imageheight,
   };
-  console.log(options);
   page.setData(options);
 }
 
