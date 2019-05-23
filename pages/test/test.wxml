@@ -1,4 +1,4 @@
 <view>
   <import src='../../wxParse/wxParse.wxml' />
-  <template is="wxParse0" data="{{wxParseData:htmlAry.nodes}}"/>
+  <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
 </view>
