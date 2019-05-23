@@ -46,9 +46,9 @@ function wxParse(bindName, type, data, target, imagePadding) {
   }
   const bindData = {};
   bindData[bindName] = transData;
-  that.setData(bindData)
-  that.wxParseImgLoad = wxParseImgLoad;
-  that.wxParseImgTap = wxParseImgTap;
+  page.setData(bindData)
+  page.wxParseImgLoad = wxParseImgLoad;
+  page.wxParseImgTap = wxParseImgTap;
 }
 
 function wxParseArr(bindName, type, data, target, imagePadding) {
