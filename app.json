@@ -1,16 +1,16 @@
 {
   "pages": [
-    "pages/question/question",
-    "pages/question_list/question_list",
+      "pages/question/question",
     "pages/test/test",
-    
+
+
+
     "pages/home/home",
 
+    
+    "pages/question_list/question_list",
 
-    
-    
     "pages/question_detail/question_detail",
-    
 
     "pages/Outer_list/Outer_list",
     "pages/inner_list/inner_list",
