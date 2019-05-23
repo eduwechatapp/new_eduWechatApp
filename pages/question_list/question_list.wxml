@@ -1,9 +1,9 @@
-<block wx:for="{{array}}" wx:key="">
+<block wx:for="{{contentList}}" wx:key="">
   <view class="question_box"> 
     <view class="box_top">作文</view>
     <view class="box_content">
       <import src='../../wxParse/wxParse.wxml' />
-      <template is="wxParse" data="{{wxParseData:array[index]}}"/>
+      <template is="wxParse" data="{{wxParseData:array0.nodes}}"/>
     </view>
     <view class="box_bottom">
       <view class="left_text"></view>
@@ -13,4 +13,6 @@
     </view>
   </view>
  
-</block>
+</block> 
+
+
