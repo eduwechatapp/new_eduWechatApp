@@ -1,3 +1,4 @@
+const app = getApp()
 Page({
   data:{
     imageList:[
@@ -25,5 +26,11 @@ Page({
     this.setData({
       [index]: !this.data.tapList[id]
     })
+  },
+  toDetail:function(e){
+    var id = e.currentTarget.dataset.id
+    app.route('../board_detail/board_detail', {
+      id: id
+    });
   }
 })

@@ -1,7 +1,9 @@
 <view>
   <view class="contain">
     <view class="msg_box" wx:for="{{imageList}}">
-      <image src="{{item}}" class="image"></image>
+      <view bindtap="toDetail" data-id="{{index}}">
+        <image src="{{item}}" class="image"></image>
+      </view>
       <view class="bottom_box">
         <view class="date_box">5月25日</view>
         <view bindtap="like" data-id="{{index}}">
