@@ -13,14 +13,13 @@
 }
 
 .content-wrapper .bottom {
-  height: 150rpx;
-  display: flex;
-  justify-content: space-around;
   padding: 15rpx;
   box-shadow: 0 10rpx 10px 3px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-around;
 }
 
-.content-wrapper .bottom .button {
+.button {
   width: 200rpx;
   height: 40px;
   display: flex;
@@ -64,4 +63,63 @@
   border: thin solid #67c23a;
   background-color: #67c23a;
   color: white;
+}
+
+.prev, .next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-grow: 1;
+}
+
+.importance-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.prev .prev-icon, .next .next-icon {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 3px solid black;
+}
+
+.prev .prev-icon {
+  border-top-color: transparent;
+  border-right-color: transparent;
+  transform: rotate(45deg);
+}
+
+.next .next-icon {
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(45deg);
+}
+
+.popup {
+  position:fixed;
+  bottom:120rpx;
+  width:100vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+.popup .button {
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+.mask {
+  background: transparent;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
 }

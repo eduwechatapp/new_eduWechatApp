@@ -3,9 +3,23 @@
     <import src='../../wxParse/wxParse.wxml' />
     <template is='wxParse' data='{{wxParseData:article.nodes}}' />
   </view>
+
   <view class='bottom'>
-    <view class='{{ select === 2 ? "button im-2-focus" : "button im-2"}}' data-id='{{2}}' bindtap='changeState'>重点关注</view>
-    <view class='{{ select === 1 ? "button im-1-focus" : "button im-1"}}' data-id='{{1}}' bindtap='changeState'>需要留意</view>
-    <view class='{{ select === 0 ? "button im-0-focus" : "button im-0"}}' data-id='{{0}}' bindtap='changeState'>不放心上</view>
+    <view class='prev' bindtap='prevPage'>
+      <view class='prev-icon' />
+    </view>
+    <view class='{{"button im-" + importance + " im-" + importance + "-focus"}}' bindtap='togglePopUp'>
+      {{importanceText}}
+    </view>
+    <view class='next' bindtap='nextPage'>
+      <view class='next-icon' />
+    </view>
+  </view>
+
+  <view class='popup' wx:if='{{ifPopUpShow}}'>
+    <view class='mask' bindtap='togglePopUp'/>
+    <view class='button im-2' data-id='{{2}}' bindtap='changeState'>重点关注</view>
+    <view class='button im-1' data-id='{{1}}' bindtap='changeState'>我须留意</view>
+    <view class='button im-0' data-id='{{0}}' bindtap='changeState'>不放心上</view>
   </view>
 </view>
