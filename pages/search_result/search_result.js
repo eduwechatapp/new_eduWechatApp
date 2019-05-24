@@ -73,8 +73,18 @@ Page({
     const list = this.data.contentList;
     for (let i = 0; i < list.length; i++) {
       if (list[i].subject === subject) {
-        app.globalData.content = list[i].dataList[index].content;
-        app.route('../content/content');
+        app.route('../content/content', { index });
+        app.fetchContent = async function(_index) {
+          const url = `/search/simple/test/${Data.searchValue}/1/${_index}`;
+          const response = await app.post(url);
+          let dataList = [];
+          response.data.some(e => {
+            if (e.subject === subject) {
+              dataList = e.dataList;
+            }
+          });
+          return dataList;
+        }
         return;
       }
     }
