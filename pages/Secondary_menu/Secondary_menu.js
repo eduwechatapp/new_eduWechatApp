@@ -169,7 +169,7 @@ Page({
       that.setData({
         menu: [{
             module: "知识点",
-          url: "../ icon / light.png"
+          url: "../icon/light.png"
           },
           //{ module: "视频", url: "../icon/video.png" },
           //{ module: "真题试卷", url: "../icon/exam.png" },
