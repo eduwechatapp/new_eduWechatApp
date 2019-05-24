@@ -8,15 +8,15 @@ const app = getApp();
 Page({
   data: {
     subjects: [
-      { name: "英语", img: "/pages/icon/english.png" },
-      { name: "数学", img: "/pages/icon/math.png" },
-      { name: "语文", img: "/pages/icon/chinese.png" },
-      { name: "化学", img: "/pages/icon/chemistry.png" },
-      { name: "物理", img: "/pages/icon/physics.png" },
-      { name: "生物", img: "/pages/icon/biology.png" },
-      { name: "地理", img: "/pages/icon/geography.png" },
-      { name: "政治", img: "/pages/icon/political.png" },
-      { name: "历史", img: "/pages/icon/history.png" },
+      { name: "英语", engName: "english", img: "/pages/icon/english.png" },
+      { name: "数学", engName: "math", img: "/pages/icon/math.png" },
+      { name: "语文", engName: "chinese", img: "/pages/icon/chinese.png" },
+      { name: "化学", engName: "chemistry", img: "/pages/icon/chemistry.png" },
+      { name: "物理", engName: "physics", img: "/pages/icon/physics.png" },
+      { name: "生物", engName: "biology", img: "/pages/icon/biology.png" },
+      { name: "地理", engName: "geography", img: "/pages/icon/geography.png" },
+      { name: "政治", engName: "political", img: "/pages/icon/political.png" },
+      { name: "历史", engName: "history", img: "/pages/icon/history.png" },
     ],
     bannerList: ['https://vaskka.com/static/introduction.jpg', 'https://vaskka.com/static/notice.png'],
     searchMode: false,
@@ -160,5 +160,14 @@ Page({
         modelStatus: false,
       });
     }
+  },
+  /**
+   * 点击进入二级菜单页面
+   */
+  toSecMenu(e) {
+    var index = e.currentTarget.dataset.id
+    app.route('../Secondary_menu/Secondary_menu', {
+      subject: this.data.subjects[index].engName,
+    });
   },
 });

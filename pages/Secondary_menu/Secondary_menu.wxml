@@ -1,4 +1,35 @@
 <view class="pages">
+  <view wx:for="{{menu}}">
+    <view class="card{{index}}">
+      <view class="circle{{index}}">
+        <image src="{{menu[index].url}}" class="icon"></image>
+      </view>
+      <view class="title">{{menu[index].module}}</view>
+      <view class="bottom_text">温故而知新，可以为师矣</view>
+      <view class="right_box">
+        <image src="../icon/preview.png" class="right_icon"></image>
+      </view>
+    </view>
+    <view class="bottom_area">
+      <view class="left_icon">
+        <image src="../icon/locate.png" class="left_icon"></image>
+      </view>
+      <view class="left_text">上次看到：</view>
+      <view class="right_text">{{lastView}}</view>
+    </view>
+  </view>
+
+</view>
+
+
+
+
+
+
+
+
+
+<!--<view class="pages">
   <view class="image_area">
 
     <view class = "area" bindtap="toList" wx:for="{{menu}}" data-id="{{item.module}}">
@@ -9,4 +40,4 @@
     </view>
 
   </view>
-</view>
+</view> -->

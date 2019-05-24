@@ -24,33 +24,33 @@ wx.getSystemInfo({
     realWindowWidth = res.windowWidth
     realWindowHeight = res.windowHeight
   }
-})
+});
+
 /**
  * 主函数入口区
  **/
-function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:red;">数据不能为空</div>', target,imagePadding) {
-  var that = target;
-  var transData = {};//存放转化后的数据
-  if (type == 'html') {
+function wxParse(bindName, type, data, target, imagePadding) {
+  const page = target;
+  let transData = {}; // 存放转化后的数据
+  if (type === 'html') {
     transData = HtmlToJson.html2json(data, bindName);
-    // console.log(JSON.stringify(transData, ' ', ' '));
-  } else if (type == 'md' || type == 'markdown') {
-    var converter = new showdown.Converter();
-    var html = converter.makeHtml(data);
+  } else if (type === 'md' || type === 'markdown') {
+    const converter = new showdown.Converter();
+    const html = converter.makeHtml(data);
     transData = HtmlToJson.html2json(html, bindName);
-    // console.log(JSON.stringify(transData, ' ', ' '));
   }
   transData.view = {};
   transData.view.imagePadding = 0;
-  if(typeof(imagePadding) != 'undefined'){
-    transData.view.imagePadding = imagePadding
+  if (typeof (imagePadding) !== 'undefined') {
+    transData.view.imagePadding = imagePadding;
   }
-  var bindData = {};
+  const bindData = {};
   bindData[bindName] = transData;
-  that.setData(bindData)
-  that.wxParseImgLoad = wxParseImgLoad;
-  that.wxParseImgTap = wxParseImgTap;
+  page.setData(bindData)
+  page.wxParseImgLoad = wxParseImgLoad;
+  page.wxParseImgTap = wxParseImgTap;
 }
+
 // 图片点击事件
 function wxParseImgTap(e) {
   var that = this;
@@ -65,50 +65,53 @@ function wxParseImgTap(e) {
 }
 
 /**
- * 图片视觉宽高计算函数区 
+ * 图片视觉宽高计算函数
  **/
 function wxParseImgLoad(e) {
-  var that = this;
-  var tagFrom = e.target.dataset.from;
-  var idx = e.target.dataset.idx;
-  if (typeof (tagFrom) != 'undefined' && tagFrom.length > 0) {
-    calMoreImageInfo(e, idx, that, tagFrom)
-  } 
+  const tagFrom = e.target.dataset.from;
+  const idx = e.target.dataset.idx;
+  if (typeof (tagFrom) !== 'undefined' && tagFrom.length > 0) {
+    calMoreImageInfo(e, idx, this, tagFrom)
+  }
 }
-// 假循环获取计算图片视觉最佳宽高
-function calMoreImageInfo(e, idx, that, bindName) {
-  var temData = that.data[bindName];
-  if (!temData || temData.images.length == 0) {
+
+// 获取计算图片视觉最佳宽高
+function calMoreImageInfo(e, idx, page, bindName) {
+  let temData = page.data[bindName];
+  if (bindName.match(/^.*\[\d\]$/)) {
+    let n = bindName.replace(/^[^\[]*\[/, '');
+    n = n.replace(/\]$/, '');
+    const name = bindName.replace(/\[.*\]$/, '');
+    temData = page.data[name][n];
+  }
+  if (!temData || temData.images.length === 0) {
     return;
   }
-  var temImages = temData.images;
-  //因为无法获取view宽度 需要自定义padding进行计算，稍后处理
-  var recal = wxAutoImageCal(e.detail.width, e.detail.height,that,bindName); 
-  // temImages[idx].width = recal.imageWidth;
-  // temImages[idx].height = recal.imageheight; 
-  // temData.images = temImages;
-  // var bindData = {};
-  // bindData[bindName] = temData;
-  // that.setData(bindData);
-  var index = temImages[idx].index
-  var key = `${bindName}`
-  for (var i of index.split('.')) key+=`.nodes[${i}]`
-  var keyW = key + '.width'
-  var keyH = key + '.height'
-  that.setData({
+  const temImages = temData.images;
+  // var recal = wxAutoImageCal(e.detail.width, e.detail.height,that,bindName); 
+  const recal = { imageWidth: e.detail.width, imageheight: e.detail.height };
+  const index = temImages[idx].index;
+  let key = `${bindName}`;
+  for (const i of index.split('.')) {
+    key += `.nodes[${i}]`;
+  }
+  const keyW = key + '.width';
+  const keyH = key + '.height';
+  const options = {
     [keyW]: recal.imageWidth,
     [keyH]: recal.imageheight,
-  })
+  };
+  page.setData(options);
 }
 
 // 计算视觉优先的图片宽高
-function wxAutoImageCal(originalWidth, originalHeight,that,bindName) {
+function wxAutoImageCal(originalWidth, originalHeight, that, bindName) {
   //获取图片的原始长宽
   var windowWidth = 0, windowHeight = 0;
   var autoWidth = 0, autoHeight = 0;
   var results = {};
   var padding = that.data[bindName].view.imagePadding;
-  windowWidth = realWindowWidth-2*padding;
+  windowWidth = realWindowWidth - 2 * padding;
   windowHeight = realWindowHeight;
   //判断按照那种方式进行缩放
   // console.log("windowWidth" + windowWidth);
@@ -126,19 +129,17 @@ function wxAutoImageCal(originalWidth, originalHeight,that,bindName) {
   return results;
 }
 
-function wxParseTemArray(temArrayName,bindNameReg,total,that){
-  var array = [];
-  var temData = that.data;
-  var obj = null;
-  for(var i = 0; i < total; i++){
-    var simArr = temData[bindNameReg+i].nodes;
+function wxParseTemArray(temArrayName, bindNameReg, total, that) {
+  const array = [];
+  const temData = that.data;
+  const obj = null;
+  for (let i = 0; i < total; i++) {
+    const simArr = temData[bindNameReg + i].nodes;
     array.push(simArr);
   }
-
-  temArrayName = temArrayName || 'wxParseTemArray';
-  obj = JSON.parse('{"'+ temArrayName +'":""}');
-  obj[temArrayName] = array;
-  that.setData(obj);
+  that.setData({
+    [temArrayName]: array,
+  });
 }
 
 /**
@@ -146,14 +147,14 @@ function wxParseTemArray(temArrayName,bindNameReg,total,that){
  * 
  */
 
-function emojisInit(reg='',baseSrc="/wxParse/emojis/",emojis){
-   HtmlToJson.emojisInit(reg,baseSrc,emojis);
+function emojisInit(reg = '', baseSrc = "/wxParse/emojis/", emojis) {
+  HtmlToJson.emojisInit(reg, baseSrc, emojis);
 }
 
 module.exports = {
   wxParse: wxParse,
-  wxParseTemArray:wxParseTemArray,
-  emojisInit:emojisInit
+  wxParseTemArray: wxParseTemArray,
+  emojisInit: emojisInit
 }
 
 

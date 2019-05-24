@@ -20,7 +20,7 @@
 
   <!-- 卡片入口 -->
   <view class="subjects-card" wx:if="{{!searchMode}}">
-    <view class='subject' wx:for='{{subjects}}' wx:key='{{index}}'>
+    <view class='subject' wx:for='{{subjects}}' wx:key='{{index}}' data-id="{{index}}" bindtap="toSecMenu" hover-class='bindTap'>
       <image class='subject-img' src='{{item.img}}' />
       <view class='name'>{{item.name}}</view>
     </view>
