@@ -1,4 +1,165 @@
-.pages{
+.card_first{
+  height: 250rpx;
+  width: 80%;
+  margin: 0 auto;
+  background: linear-gradient(to right, #40a5f5 , #5cd0f1);
+  border-radius: 25rpx;
+}
+.icon{
+  height: 75rpx;
+  width: 75rpx;
+  border-radius: 50%;
+}
+.right_box{
+  height: 100%;
+  width: 30%;
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20rpx;
+}
+.right_icon{
+  height: 150rpx;
+  width: 140rpx;
+  right: 10rpx;
+}
+.title{
+  color: white;
+  font-size: 50rpx;
+  position: absolute;
+  top: 50rpx;
+  left: 155rpx;
+}
+.bottom_text{
+  color: white;
+  font-size: 28rpx;
+  position: absolute;
+  bottom: 20rpx;
+  left:35rpx;
+}
+.bottom_area{
+  height: 120rpx;
+  width: 80%;
+  border-radius: 35rpx;
+  box-shadow: 0 8rpx 3rpx #d4e9f4,-2rpx 0 2rpx #d4e9f4, 4rpx 0 2rpx #d4e9f4 ;
+  z-index: -10;
+  margin: -60rpx auto 0 auto;
+  position: relative;
+  margin-bottom: 20rpx;
+}
+.left_icon{
+  height: 50rpx;
+  width: 50rpx;
+  position: absolute;
+  bottom: 3rpx;
+  left: 15rpx
+}
+.left_text{
+  display: inline;
+  font-size: 28rpx;
+  position: absolute;
+  bottom: 12rpx;
+  left: 85rpx;
+}
+.right_text{
+  display: inline;
+  font-size: 28rpx;
+  position: absolute;
+  bottom: 12rpx;
+  right: 35rpx
+}
+/* 二级菜单每个区域块的定制色彩;0,1,2,3分别代表每一组*/
+.card0{
+  height: 250rpx;
+  width: 90%;
+  margin: 0 auto;
+  background: linear-gradient(to right, #dfa872 ,#fa8f99);
+  border-radius: 25rpx;
+  position: relative;
+  margin-top: 20rpx;
+}
+.circle0{
+  background: linear-gradient(to bottom, #f6b58f , #fb7196);
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+  box-shadow: 0 5rpx 7rpx #bb8a6d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card1{
+  height: 250rpx;
+  width: 90%;
+  margin: 0 auto;
+  background: linear-gradient(to right, #6e45e2,#88d3ce);
+  border-radius: 25rpx;
+  position: relative;
+  margin-top: 20rpx;
+}
+.circle1{
+  background: linear-gradient(to bottom, #7387b3 , #6e45e2);
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+  box-shadow: 0 5rpx 7rpx rgb(72, 50, 145);
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.card2{
+  height: 250rpx;
+  width: 90%;
+  margin: 0 auto;
+  background-image: linear-gradient(120deg, #96e6a1 0%,#d4fc79 100% );
+  border-radius: 25rpx;
+  position: relative;
+  margin-top: 20rpx;
+}
+.circle2{
+  background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+  box-shadow: 0 5rpx 7rpx #609267;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.card3{
+  height: 250rpx;
+  width: 90%;
+  margin: 0 auto;
+  background: linear-gradient(to right, #dfa872 ,#fa8f99);
+  border-radius: 25rpx;
+  position: relative;
+  margin-top: 20rpx;
+}
+.circle3{
+  background: linear-gradient(to bottom, #f6b58f , #fb7196);
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+  box-shadow: 0 5rpx 7rpx rgb(202, 161, 145);
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+/*.pages{
   height: 100%;
 }
 .image_area{
@@ -25,4 +186,4 @@
 .tap_performance {
   background-color: rgba(0, 0, 0, 0.1);
   opacity: 0.7;
-}
+}*/

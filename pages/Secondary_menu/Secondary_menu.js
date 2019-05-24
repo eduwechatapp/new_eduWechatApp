@@ -2,6 +2,8 @@ Page({
   data: {
     menu: [],
     subject: '',
+    lastView:"必修一：集合的定义",
+
   },
   onLoad: function(options) {
     const that = this;
@@ -13,12 +15,12 @@ Page({
       that.setData({
         menu: [{
             module: "知识点",
-            url: "../icon/knowledge.png"
+            url: "../icon/light.png"
           },
           //{ module: "视频", url: "../icon/video.png" },
           {
             module: "专题",
-            url: "../icon/zhuanti.png"
+            url: "../icon/topic.png"
           },
           //{ module: "真题试卷", url: "../icon/exam.png" },
           {
@@ -26,14 +28,14 @@ Page({
             url: "../icon/conclusion.png"
           },
           //{ module: "上次记录", url: "../icon/lastnote.png" },
-          {
-            module: "需要留意",
-            url: "../icon/attention.png"
-          },
-          {
-            module: "重点关注",
-            url: "../icon/payAttention.png"
-          },
+          // {
+          //   module: "需要留意",
+          //   url: "../icon/attention.png"
+          // },
+          // {
+          //   module: "重点关注",
+          //   url: "../icon/payAttention.png"
+          // },
           //{ module: "收藏", url: "../icon/star.png" },
         ]
       })
@@ -42,19 +44,19 @@ Page({
       that.setData({
         menu: [{
             module: "知识点",
-            url: "../icon/knowledge.png"
+          url: "../icon/light.png"
           },
           //{ module: "视频", url: "../icon/video.png" }, 
           //{ module: "真题试卷", url: "../icon/exam.png" },
           //{ module: "上次记录", url: "../icon/lastnote.png" },
-          {
-            module: "需要留意",
-            url: "../icon/attention.png"
-          },
-          {
-            module: "重点关注",
-            url: "../icon/payAttention.png"
-          },
+          // {
+          //   module: "需要留意",
+          //   url: "../icon/attention.png"
+          // },
+          // {
+          //   module: "重点关注",
+          //   url: "../icon/payAttention.png"
+          // },
           //{ module: "收藏", url: "../icon/star.png" },
         ]
       })
@@ -63,12 +65,12 @@ Page({
       that.setData({
         menu: [{
             module: "知识点",
-            url: "../icon/knowledge.png"
+          url: "../icon/light.png"
           },
           //{ module: "视频", url: "../icon/video.png" },
           {
             module: "专题",
-            url: "../icon/zhuanti.png"
+            url: "../icon/topic.png"
           },
           //{ module: "真题试卷", url: "../icon/exam.png" },
           {
@@ -80,14 +82,14 @@ Page({
             url: "../icon/template.png"
           },
           //{ module: "上次记录", url: "../icon/lastnote.png" },
-          {
-            module: "需要留意",
-            url: "../icon/attention.png"
-          },
-          {
-            module: "重点关注",
-            url: "../icon/payAttention.png"
-          },
+          // {
+          //   module: "需要留意",
+          //   url: "../icon/attention.png"
+          // },
+          // {
+          //   module: "重点关注",
+          //   url: "../icon/payAttention.png"
+          // },
           //{ module: "收藏", url: "../icon/star.png" },
         ]
       })
@@ -96,7 +98,7 @@ Page({
       that.setData({
         menu: [{
             module: "知识点",
-            url: "../icon/knowledge.png"
+          url: "../icon/light.png"
           },
           //{ module: "视频", url: "../icon/video.png" },
           //{ module: "真题试卷", url: "../icon/exam.png" },
@@ -105,14 +107,14 @@ Page({
             url: "../icon/conclusion.png"
           },
           //{ module: "上次记录", url: "../icon/lastnote.png" },
-          {
-            module: "需要留意",
-            url: "../icon/attention.png"
-          },
-          {
-            module: "重点关注",
-            url: "../icon/payAttention.png"
-          },
+          // {
+          //   module: "需要留意",
+          //   url: "../icon/attention.png"
+          // },
+          // {
+          //   module: "重点关注",
+          //   url: "../icon/payAttention.png"
+          // },
           //{ module: "收藏", url: "../icon/star.png" },
         ]
       })
@@ -121,19 +123,19 @@ Page({
       that.setData({
         menu: [{
             module: "知识点",
-            url: "../icon/knowledge.png"
+          url: "../icon/light.png"
           },
           //{ module: "视频", url: "../icon/video.png" },
           //{ module: "真题试卷", url: "../icon/exam.png" },
           //{ module: "上次记录", url: "../icon/lastnote.png" },
-          {
-            module: "需要留意",
-            url: "../icon/attention.png"
-          },
-          {
-            module: "重点关注",
-            url: "../icon/payAttention.png"
-          },
+          // {
+          //   module: "需要留意",
+          //   url: "../icon/attention.png"
+          // },
+          // {
+          //   module: "重点关注",
+          //   url: "../icon/payAttention.png"
+          // },
           //{ module: "收藏", url: "../icon/star.png" },
         ]
       })
@@ -142,7 +144,7 @@ Page({
       that.setData({
         menu: [{
             module: "知识点",
-            url: "../icon/knowledge.png"
+          url: "../icon/light.png"
           },
           //{ module: "视频", url: "../icon/video.png" },
           //{ module: "真题试卷", url: "../icon/exam.png" },
@@ -151,14 +153,14 @@ Page({
             url: "../icon/template.png"
           },
           //{ module: "上次记录", url: "../icon/lastnote.png" },
-          {
-            module: "需要留意",
-            url: "../icon/attention.png"
-          },
-          {
-            module: "重点关注",
-            url: "../icon/payAttention.png"
-          },
+          // {
+          //   module: "需要留意",
+          //   url: "../icon/attention.png"
+          // },
+          // {
+          //   module: "重点关注",
+          //   url: "../icon/payAttention.png"
+          // },
           //{ module: "收藏", url: "../icon/star.png" },
         ]
       })
@@ -167,19 +169,19 @@ Page({
       that.setData({
         menu: [{
             module: "知识点",
-            url: "../icon/knowledge.png"
+          url: "../icon/light.png"
           },
           //{ module: "视频", url: "../icon/video.png" },
           //{ module: "真题试卷", url: "../icon/exam.png" },
           //{ module: "上次记录", url: "../icon/lastnote.png" },
-          {
-            module: "需要留意",
-            url: "../icon/attention.png"
-          },
-          {
-            module: "重点关注",
-            url: "../icon/payAttention.png"
-          },
+          // {
+          //   module: "需要留意",
+          //   url: "../icon/attention.png"
+          // },
+          // {
+          //   module: "重点关注",
+          //   url: "../icon/payAttention.png"
+          // },
           //{ module: "收藏", url: "../icon/star.png" },
         ]
       })
