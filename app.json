@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/msg_board/msg_board",
+    "pages/display_board/display_board",
     "pages/home/home",
     "pages/question/question",
     "pages/test/test",
@@ -22,6 +24,7 @@
     "pages/feedback/feedback",
     "pages/my/my",
     "pages/search_result/search_result"
+    
 
   ],
   "window": {
