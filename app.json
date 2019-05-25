@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/msg_board/msg_board",
+    "pages/board_detail/board_detail",
+    "pages/display_board/display_board",
     "pages/home/home",
     "pages/question/question",
     "pages/question_list/question_list",
@@ -17,8 +20,8 @@
     "pages/info_change/info_change",
     "pages/feedback/feedback",
     "pages/my/my",
-    "pages/search_result/search_result"
-
+    "pages/search_result/search_result",
+    "pages/search_result/more/more"
   ],
   "window": {
     "backgroundTextStyle": "light",

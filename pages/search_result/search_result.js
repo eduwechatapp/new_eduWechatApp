@@ -52,19 +52,10 @@ Page({
     });
   },
 
-  toDetail(e) {
-    const list = app.globalData.subjectEnum;
-    let subject = '';
-    for (let i = 0; i < list.length; i++) {
-      if (list[i].name === e.currentTarget.dataset.name) {
-        subject = list[i].index;
-      }
-    }
-
-    app.route('../inner_list/inner_list', {
+  toMore(e) {
+    app.route('./more/more', {
       searchValue: Data.searchValue,
-      searchMode: 0,
-      subject,
+      subject: e.currentTarget.dataset.name,
     });
   },
 
