@@ -1,5 +1,5 @@
 <view class="pages">
-  <view wx:for="{{menu}}">
+  <view wx:for="{{menu}}" wx:key='{{index}}'>
     <view class="card{{index}}">
       <view class="circle{{index}}">
         <image src="{{menu[index].url}}" class="icon"></image>
@@ -18,7 +18,6 @@
       <view class="right_text">{{lastView}}</view>
     </view>
   </view>
-
 </view>
 
 

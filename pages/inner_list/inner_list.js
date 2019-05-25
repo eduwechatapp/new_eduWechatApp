@@ -2,7 +2,7 @@ const app = getApp();
 
 const Data = {
   pageSize: 20,
-  subject: '',
+  subjectUnique: '',
   searchValue: '',
   searchMode: '',
 };
@@ -21,7 +21,12 @@ Page({
   },
 
   onLoad(options) {
-    Data.subject = options.subject;
+    const subjectName = options.subjectName;
+    app.globalData.subjectEnum.some(e => {
+      if (e.name === subjectName) {
+        Data.subjectUnique = e.unique;
+      }
+    });
     Data.searchValue = options.searchValue;
     Data.searchMode = options.searchMode;
     this.fetchData(0).then(data => {
@@ -39,9 +44,9 @@ Page({
   },
 
   async fetchData(page) {
-    const subject = app.globalData.subjectEnum[Data.subject].unique;
+    const subjectUnique = Data.subjectUnique;
     const pageSize = Data.pageSize;
-    const url = `/search/detail/test/${subject}/${pageSize}/${page}`;
+    const url = `/search/detail/test/${subjectUnique}/${pageSize}/${page}`;
     const data = Data.searchMode === '1' ? { content: Data.searchValue } : { title: Data.searchValue };
 
     const response = await app.post(url, {}, data);
@@ -84,13 +89,19 @@ Page({
   toContent(e) {
     const index = e.currentTarget.dataset.id + Data.pageSize * this.data.currentPage;
     app.fetchContent = async function(_index) {
-      const subject = app.globalData.subjectEnum[Data.subject].unique;
-      const url = `/search/detail/test/${subject}/1/${_index}`;
+      const subjectUnique = Data.subjectUnique;
+      const url = `/search/detail/test/${subjectUnique}/1/${_index}`;
       const data = Data.searchMode === '1' ? { content: Data.searchValue } : { title: Data.searchValue };
   
       const response = await app.post(url, {}, data);
       return response.data.dataList;
     }
-    app.route('../content/content', { index });
+    let subjectName = '';
+    app.globalData.subjectEnum.some(e => {
+      if (e.unique === Data.subjectUnique) {
+        subjectName = e.name;
+      }
+    });
+    app.route('../content/content', { index, subjectName });
   },
 });

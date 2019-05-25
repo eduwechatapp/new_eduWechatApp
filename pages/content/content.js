@@ -6,7 +6,7 @@ const Data = {
   importanceList: ['不放心上', '我须留意', '重点关注'],
   index: 0,
   url: '',
-  subject: '',
+  subjectName: '',
   title: '',
   erji: '',
 };
@@ -25,9 +25,9 @@ Page({
   },
 
   async onLoad(options) {
-    const { index, subject } = options;
+    const { index, subjectName } = options;
     Data.index = parseInt(index);
-    Data.subject = subject;
+    Data.subjectName = subjectName;
     await app.toast('加载中');
     const list = await app.fetchContent(Data.index);
     await app.hideToast();
@@ -44,12 +44,11 @@ Page({
 
   checkImportance(title, erji) {
     let importance = 0;
-    app.globalData.noteList[Data.subject].some(e => {
+    app.globalData.noteList[Data.subjectName].some(e => {
       if (e.title === title && e.erji === erji) {
         importance = e.importance;
       }
     });
-    console.log('importance', importance);
     this.Set({
       importance: importance,
       importanceText: Data.importanceList[importance],
@@ -66,7 +65,7 @@ Page({
       importanceText: Data.importanceList[importance],
       ifPopUpShow: !this.data.ifPopUpShow,
     });
-    const list = app.globalData.noteList[Data.subject];
+    const list = app.globalData.noteList[Data.subjectName];
     let hasFind = false;
     for (let i = 0; i < list.length; i++) {
       if (list[i].erji === Data.erji && list[i].title === Data.title) {
@@ -86,7 +85,6 @@ Page({
         importance,
       });
     }
-    console.log(list);
     app.setStore('noteList', app.globalData.noteList);
   },
 
