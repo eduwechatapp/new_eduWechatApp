@@ -55,27 +55,27 @@ Page({
   toMore(e) {
     app.route('./more/more', {
       searchValue: Data.searchValue,
-      subject: e.currentTarget.dataset.name,
+      subjectName: e.currentTarget.dataset.subject,
     });
   },
 
   toContent(e) {
-    const { index, subject } = e.currentTarget.dataset;
+    const { index, subject: subjectName } = e.currentTarget.dataset;
     const list = this.data.contentList;
     for (let i = 0; i < list.length; i++) {
-      if (list[i].subject === subject) {
+      if (list[i].subject === subjectName) {
         app.fetchContent = async function(_index) {
           const url = `/search/simple/test/${Data.searchValue}/1/${_index}`;
           const response = await app.post(url);
           let dataList = [];
           response.data.some(e => {
-            if (e.subject === subject) {
+            if (e.subject === subjectName) {
               dataList = e.dataList;
             }
           });
           return dataList;
         };
-        app.route('../content/content', { index, subject });
+        app.route('../content/content', { index, subjectName });
         return;
       }
     }

@@ -2,7 +2,7 @@ const app = getApp();
 
 const Data = {
   pageSize: 20,
-  subject: '',
+  subjectName: '',
   searchValue: '',
 };
 
@@ -20,7 +20,7 @@ Page({
   },
 
   onLoad(options) {
-    Data.subject = options.subject;
+    Data.subjectName = options.subjectName;
     Data.searchValue = options.searchValue;
     this.fetchData(0).then(list => {
       app.toast('加载成功!');
@@ -39,7 +39,7 @@ Page({
     await app.hideToast();
 
     for (let i = 0; i < response.data.length; i++) {
-      if (response.data[i].subject === Data.subject) {
+      if (response.data[i].subject === Data.subjectName) {
         return response.data[i].dataList;
       }
     }
@@ -84,12 +84,12 @@ Page({
       const response = await app.post(url);
       let dataList = [];
       response.data.some(d => {
-        if (d.subject === Data.subject) {
+        if (d.subject === Data.subjectName) {
           dataList = d.dataList;
         }
       });
       return dataList;
     }
-    app.route('../../content/content', { index });
+    app.route('../../content/content', { index, subjectName: Data.subjectName });
   },
 });

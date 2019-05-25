@@ -8,7 +8,7 @@
     <view class="box_bottom">
       <view class="left_text"></view>
       <view class="button_box">
-        <button class="button" hover-class='tapPerformance'>查看答案</button>
+        <button class="button" hover-class='tapPerformance' bindtap="toDetail" data-id="{{index}}">查看答案</button>
       </view>
     </view>
   </view>

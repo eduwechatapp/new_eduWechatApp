@@ -1,10 +1,8 @@
 {
   "pages": [
+    "pages/home/home",
     "pages/msg_board/msg_board",
     "pages/msg_edit/msg_edit",
-
- 
-    "pages/home/home",
 
     "pages/board_detail/board_detail",
     "pages/display_board/display_board",

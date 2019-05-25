@@ -123,9 +123,10 @@ Page({
       });
       return;
     }
+    const subjectName = this.data.subjects[this.data.currentTap].name;
     app.route('../inner_list/inner_list', {
       searchValue: this.data.searchValue,
-      subject: this.data.currentTap,
+      subjectName,
       searchMode: this.data.currentModel,
     });
   },

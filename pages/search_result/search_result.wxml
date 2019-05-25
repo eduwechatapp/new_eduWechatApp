@@ -20,7 +20,7 @@
         </view>
         <view class="list"
           bindtap="toMore"
-          data-name='{{item.subject}}'
+          data-subject='{{item.subject}}'
           hover-class='tap_performance'
           hover-stay-time='100'>
           <view class="left_text">查看全部</view>

@@ -1,0 +1,58 @@
+<import src='../../wxParse/wxParse.wxml' />
+<view>
+
+  <view class="question_box">
+    <view class="content_box">
+      <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+    </view>
+
+    <view class="choose_box">
+      <view wx:for="{{detailInfo.choose}}" class="option">
+        <view>
+          <view class="select_icon"></view>
+          <template is="wxParse" data="{{wxParseData:choose[index]}}"/>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="analysis_box">
+    <view class="exam_point">
+      <view class="content_box">
+        <view class="left_text">考点: </view>
+        <view class="html_box"> 
+          <template is="wxParse" data="{{wxParseData:exampoint.nodes}}"/>
+        </view>
+      </view>  
+    </view>
+    
+    <view class="analysis">
+      <view class="content_box">
+        <view class="left_text">分析: </view>
+        <view class="html_box"> 
+          <template is="wxParse" data="{{wxParseData:analysis.nodes}}"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="answer">
+      <view class="content_box">
+        <view class="left_text">解答: </view>
+        <view class="html_box"> 
+          <template is="wxParse" data="{{wxParseData:answer.nodes}}"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="comment">
+      <view class="content_box">
+        <view class="left_text">点评: </view>
+        <view class="html_box"> 
+          <template is="wxParse" data="{{wxParseData:comment.nodes}}"/>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+</view>
