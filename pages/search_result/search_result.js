@@ -64,7 +64,6 @@ Page({
     const list = this.data.contentList;
     for (let i = 0; i < list.length; i++) {
       if (list[i].subject === subject) {
-        app.route('../content/content', { index });
         app.fetchContent = async function(_index) {
           const url = `/search/simple/test/${Data.searchValue}/1/${_index}`;
           const response = await app.post(url);
@@ -75,7 +74,8 @@ Page({
             }
           });
           return dataList;
-        }
+        };
+        app.route('../content/content', { index, subject });
         return;
       }
     }

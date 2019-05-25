@@ -1,18 +1,13 @@
 const host = 'https://www.vaskka.com/mp';
 
 App({
-  onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
+  onLaunch() {
     // 登录
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
-    })
+    });
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -32,7 +27,9 @@ App({
           })
         }
       }
-    })
+    });
+    // 加载缓存到 globalData
+    this.checkCache();
   },
 
   globalData: {
@@ -131,5 +128,29 @@ App({
         complete: res,
       });
     });
+  },
+
+  setStore(key, data) {
+    return new Promise(res => {
+      wx.setStorage({ key, data, complete: (e) => res(e.data) });
+    });
+  },
+
+  getStore(key) {
+    return new Promise(res => {
+      wx.getStorage({ key, complete: (e) => res(e.data) });
+    });
+  },
+
+  async checkCache() {
+    let list = await this.getStore('noteList');
+    if (list === undefined) {
+      list = {};
+      this.globalData.subjectEnum.forEach(e => {
+        list[e.name] = [];
+      });
+      await this.setStore('noteList', list);
+    }
+    this.globalData.noteList = list;
   },
 });

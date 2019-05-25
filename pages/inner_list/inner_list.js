@@ -80,4 +80,17 @@ Page({
       },
     });
   },
+
+  toContent(e) {
+    const index = e.currentTarget.dataset.id + Data.pageSize * this.data.currentPage;
+    app.fetchContent = async function(_index) {
+      const subject = app.globalData.subjectEnum[Data.subject].unique;
+      const url = `/search/detail/test/${subject}/1/${_index}`;
+      const data = Data.searchMode === '1' ? { content: Data.searchValue } : { title: Data.searchValue };
+  
+      const response = await app.post(url, {}, data);
+      return response.data.dataList;
+    }
+    app.route('../content/content', { index });
+  },
 });
