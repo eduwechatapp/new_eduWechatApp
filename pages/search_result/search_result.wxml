@@ -19,7 +19,7 @@
           </view>
         </view>
         <view class="list"
-          bindtap="toDetail"
+          bindtap="toMore"
           data-name='{{item.subject}}'
           hover-class='tap_performance'
           hover-stay-time='100'>

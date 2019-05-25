@@ -17,8 +17,8 @@
     "pages/info_change/info_change",
     "pages/feedback/feedback",
     "pages/my/my",
-    "pages/search_result/search_result"
-
+    "pages/search_result/search_result",
+    "pages/search_result/more/more"
   ],
   "window": {
     "backgroundTextStyle": "light",
