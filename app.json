@@ -44,6 +44,12 @@
         "selectedIconPath": "pages/icon/home_2.png"
       },
       {
+        "pagePath": "pages/msg_board/msg_board",
+        "text": "留言板",
+        "iconPath": "pages/icon/board_1.png",
+        "selectedIconPath": "pages/icon/board_2.png"
+      },
+      {
         "pagePath": "pages/my/my",
         "text": "我的",
         "iconPath": "pages/icon/mine_1.png",
