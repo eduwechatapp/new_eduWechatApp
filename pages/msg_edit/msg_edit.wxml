@@ -1,0 +1,36 @@
+<view class="page">
+  <view class="select_box">
+    <view class="image_box" bindtap="showImageSelect">
+      <image class="image"src="{{imageList[currentSelect]}}" ></image>
+    </view>
+    <!-- 气泡框 -->
+    <view class='dialog u-tri' wx:if="{{show}}">
+      <view class="contain">
+        <view class="imageSelectBox" wx:for="{{imageList}}" wx:if="{{item == imageList[currentSelect]? false: true}}" wx:key="*this" bindtap="changeImage" hover-class="imagehover" data-id="{{index}}" hover-stay-time='100'>
+          <image class="selectImage" src="{{item}}"></image>
+        </view>
+      </view>
+      
+    </view>
+  </view>
+  <!-- 虚线 -->
+  <view class="split"></view>
+
+  <view class="content">
+    <view class="top_box">
+      <picker mode="date" class="date" value="{{date}}" start="2019-05-25" end="2020-05-25" bindchange="bindDateChange">
+        <view>{{date}}</view>
+      </picker>
+      <view class="right_box">
+        <view class="right_text">By </view>
+        <input class="name" placeholder='输入昵称' bindinput="inputName"/>
+      </view>
+    </view>
+    <input class="title" placeholder='输入标题' bindinput="inputTitle"/>
+    <textarea class="text" placeholder='输入您的内容' bindinput="inputContent"></textarea>
+  </view>
+  <view class="button">
+    <wux-button block type="energized" bind:click="finish">留言完成</wux-button>
+  </view>
+
+</view>

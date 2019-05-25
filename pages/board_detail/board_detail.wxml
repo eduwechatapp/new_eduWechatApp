@@ -1,0 +1,17 @@
+<image src="{{imageList[index]}}" class="image"></image>
+<movable-area class="movable_area">
+  <movable-view class="content" direction="vertical" y="100" damping="70" out-of-bounds="true">
+    <view class="top_box">
+      <view class="date">{{infoList[index].date}}</view>
+      <view class="right_box">
+        <view class="right_text">By </view>
+        <view class="name">{{infoList[index].name}}</view>
+      </view>
+    </view>
+    <view class="title">{{infoList[index].title}}</view>
+    <view class="text">{{infoList[index].content}}</view>
+  </movable-view>
+</movable-area>
+
+
+

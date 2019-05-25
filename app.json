@@ -1,9 +1,14 @@
 {
   "pages": [
     "pages/msg_board/msg_board",
+    "pages/msg_edit/msg_edit",
+
+ 
+    "pages/home/home",
+
     "pages/board_detail/board_detail",
     "pages/display_board/display_board",
-    "pages/home/home",
+
     "pages/question/question",
     "pages/question_list/question_list",
     "pages/question_detail/question_detail",

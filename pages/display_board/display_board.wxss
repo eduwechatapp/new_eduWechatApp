@@ -38,3 +38,24 @@ page{
   font-size: 30rpx;
   color: #8a8a8a
 }
+.button_img{
+  border-radius: 50%;
+  height: 100rpx;
+  width: 100rpx;
+  position: fixed;
+  right:10rpx;
+  bottom: 140rpx;
+}
+.button_box{
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  position: fixed;
+  right:10rpx;
+  bottom: 140rpx;
+  box-shadow: 0 5rpx 10rpx #afafa6
+}
+.bindP{
+  background-color: rgb(0, 0, 0);
+  opacity: 0.8
+}

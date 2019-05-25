@@ -32,5 +32,9 @@ Page({
     app.route('../board_detail/board_detail', {
       id: id
     });
+  },
+  toEdit:function(e){
+    app.route('../msg_edit/msg_edit', {
+    });
   }
 })
