@@ -1,0 +1,16 @@
+<view>
+  <view class="contain">
+    <view class="msg_box" wx:for="{{imageList}}">
+      <view bindtap="toDetail" data-id="{{index}}">
+        <image src="{{item}}" class="image"></image>
+      </view>
+      <view class="bottom_box">
+        <view class="date_box">5月25日</view>
+        <view bindtap="like" data-id="{{index}}">
+          <image class="like_button" src="{{tapList[index]?heart[0]: heart[1]}}" ></image>
+        </view>
+      </view>
+      <view class="preview">来自成都的煎蛋</view>
+    </view>
+  </view>
+</view>

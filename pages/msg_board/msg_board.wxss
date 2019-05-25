@@ -1,0 +1,66 @@
+page{
+  background-color: #f2eacf
+}
+.image{
+  height: 250rpx;
+  border-radius: 20rpx;
+  width: 630rpx;
+
+}
+.space_box{
+  width: 630rpx;
+  margin: 20rpx auto 20rpx auto
+}
+.text{
+  position: absolute;
+  z-index: 500;
+  color: white;
+  margin-top: 20rpx;
+  margin-left: 20rpx
+}
+/*以下为五种不同颜色的图片滤镜*/
+.mask0{
+  background-color: rgb(37, 155, 36);
+  opacity: 0.23;
+  z-index: 100;
+  height: 250rpx;
+  border-radius: 20rpx;
+  width: 630rpx;
+  position: absolute;
+}
+.mask1{
+  background-color: rgb(177, 184, 225);
+  opacity: 0.23;
+  z-index: 100;
+  height: 250rpx;
+  border-radius: 20rpx;
+  width: 630rpx;
+  position: absolute;
+}
+.mask2{
+  background-color: rgb(214,217,225);
+  opacity: 0.23;
+  z-index: 100;
+  height: 250rpx;
+  border-radius: 20rpx;
+  width: 630rpx;
+  position: absolute;
+}
+.mask3{
+  background-color: rgb(232,171,163);
+  opacity: 0.4;
+  z-index: 100;
+  height: 250rpx;
+  border-radius: 20rpx;
+  width: 630rpx;
+  position: absolute;
+}
+.mask4{
+  background-color: rgb(237,239,253);
+  opacity: 0.4;
+  z-index: 100;
+  height: 250rpx;
+  border-radius: 20rpx;
+  width: 630rpx;
+  position: absolute;
+}
