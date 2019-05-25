@@ -39,6 +39,7 @@ Page({
     this.setData({
       importance: e.currentTarget.dataset.id,
       importanceText: Data.importanceList[e.currentTarget.dataset.id],
+      ifPopUpShow: !this.data.ifPopUpShow,
     });
   },
 
