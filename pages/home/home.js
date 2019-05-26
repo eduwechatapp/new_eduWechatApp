@@ -108,7 +108,7 @@ Page({
    */
   search() {
     if (this.data.currentModel === -1 && this.data.currentTap === -1) { // 简单搜索
-      app.route('../search_result/search_result', {
+      app.route('../search_result/simple/index', {
         searchValue: this.data.searchValue,
       });
       return;
@@ -124,7 +124,7 @@ Page({
       return;
     }
     const subjectName = this.data.subjects[this.data.currentTap].name;
-    app.route('../inner_list/inner_list', {
+    app.route('/pages/search_result/advance/index', {
       searchValue: this.data.searchValue,
       subjectName,
       searchMode: this.data.currentModel,

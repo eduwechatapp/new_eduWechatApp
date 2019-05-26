@@ -3,17 +3,15 @@
     "pages/home/home",
     "pages/msg_board/msg_board",
     "pages/msg_edit/msg_edit",
-
+    "pages/index/index",
     "pages/board_detail/board_detail",
     "pages/display_board/display_board",
-
     "pages/question/question",
     "pages/question_list/question_list",
     "pages/question_detail/question_detail",
     "pages/Outer_list/Outer_list",
     "pages/inner_list/inner_list",
     "pages/content/content",
-    "pages/index/index",
     "pages/logs/logs",
     "pages/Secondary_menu/Secondary_menu",
     "pages/more/more",
@@ -23,8 +21,8 @@
     "pages/info_change/info_change",
     "pages/feedback/feedback",
     "pages/my/my",
-    "pages/search_result/search_result",
-    "pages/search_result/more/more"
+    "pages/search_result/simple/index",
+    "pages/search_result/simple/more/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

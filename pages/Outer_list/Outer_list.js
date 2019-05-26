@@ -28,116 +28,40 @@ Page({
   },
 
   async onLoad(options) {
-    const subjectEngName = Data.subjectEnum[options.subjectName];
+    const { subjectName } = options;
+    const subjectEngName = Data.subjectEnum[subjectName];
     const type = options.type;
-    if (type === '知识点') {
-      const response = await this.Get(`/${subjectEngName}/knowledge/mapping/get`);
-      this.setData({
-        listName: response.data,
-      });
-    }
-    if (type === '归纳总结') {
-      const response = await this.Get(`/${subjectEngName}/summary/mapping/get`);
-      this.setData({
-        listName: response.data,
-      });
-    }
-    if (type === '专题') {
-      const response = await this.Get(`/${subjectEngName}/topic/mapping/get`);
-      this.setData({
-        listName: response.data,
-      });
-    }
-    if (type === '答题模版') {
-      const response = await this.Get(`/${subjectEngName}/template/mapping/get`);
-      this.setData({
-        listName: response.data,
-      });
-    }
-    if (type === '需要留意') {
-      var key = new Array();
-      var key_index = new Array();
-      var string;
-      var that = this;
-      var length = 0;
-      var count = 0;
-      var temp_listName = new Array();
-      var temp_storage = new Array();
-      var storage_value;
-      wx.getStorageInfo({
-        success: function (res) {
-          key = res.keys;
-          //console.log(key);
-          for (var i = 0; i < key.length; i++) {
-            string = key[i].split('_');
-            //console.log(string)
-            if (string[0] == "attention" && string[1] == options.sub) {
-              key_index[count] = i;
-              count++;
-            }
-          }
-          count = 0;
-          console.log(key_index)
-          console.log(key[key_index[2]])
-          for (var i = 0; i < key_index.length; i++) {
 
-            storage_value = wx.getStorageSync(key[key_index[i]])
-            console.log(storage_value)
-            temp_listName.push(storage_value["title"])
-            temp_storage.push(storage_value)
-          }
-          that.setData({
-            listName: temp_listName,
-            storage: temp_storage,
-            module: options.arg,
-            subject: options.sub,
-            wxml_type: "storage"
-          })
-        },
-      })
-
+    let dict = {
+      '知识点': 'knowledge',
+      '归纳总结': 'summary',
+      '专题': 'topic',
+      '答题模版': 'template',
+    };
+    if (dict[type] !== undefined) {
+      const response = await this.Get(`/${subjectEngName}/${dict[type]}/mapping/get`);
+      this.setData({
+        listName: response.data,
+      });
+      return;
     }
-    if (type === '重点关注') {
-      var key = new Array();
-      var key_index = new Array();
-      var string;
-      var that = this;
-      var length = 0;
-      var count = 0;
-      var temp_listName = new Array();
-      var temp_storage = new Array();
-      var storage_value;
-      wx.getStorageInfo({
-        success: function (res) {
-          key = res.keys;
-          //console.log(key);
-          for (var i = 0; i < key.length; i++) {
-            string = key[i].split('_');
-            //console.log(string)
-            if (string[0] == "focus" && string[1] == options.sub) {
-              key_index[count] = i;
-              count++;
-            }
-          }
-          count = 0;
-          console.log(key_index)
-          console.log(key[key_index[2]])
-          for (var i = 0; i < key_index.length; i++) {
 
-            storage_value = wx.getStorageSync(key[key_index[i]])
-            console.log(storage_value)
-            temp_listName.push(storage_value["title"])
-            temp_storage.push(storage_value)
-          }
-          that.setData({
-            listName: temp_listName,
-            storage: temp_storage,
-            module: options.arg,
-            subject: options.sub,
-            wxml_type: "storage"
-          })
-        },
-      })
+    dict = {
+      '需要留意': 1,
+      '重点关注': 2,
+    };
+    if (dict[type] !== undefined) {
+      const list = [];
+      app.globalData.noteList[subjectName].forEach(e => {
+        if (e.importance === dict[type]) {
+          list.push({
+            titleName: e.title,
+          });
+        }
+      });
+      this.setData({
+        listName: list,
+      });
     }
   },
 

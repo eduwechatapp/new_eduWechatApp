@@ -54,6 +54,7 @@ const Data = {
     '历史': ['知识点'],
     '地理': ['知识点', '专题', '归纳总结', '答题模版'],
   },
+  subjectName: '',
 };
 
 Page({
@@ -64,13 +65,21 @@ Page({
   },
 
   onLoad(options) {
-    this.setData({
-      subjectName: options.subjectName,
-    });
+    const { subjectName } = options;
+    Data.subjectName = subjectName;
     const menu = [];
     Data.subjectInfoEnum[options.subjectName].forEach(e => {
       menu.push(Data.menuListEnum[e]);
     });
+    const noteList = app.globalData.noteList[subjectName];
+    if (noteList.length > 0) {
+      if (noteList.some(e => e.importance === 1)) {
+        menu.push(Data.menuListEnum['需要留意']);
+      }
+      if (noteList.some(e => e.importance === 2)) {
+        menu.push(Data.menuListEnum['重点关注']);
+      }
+    }
     this.setData({
       menu,
     });
@@ -79,7 +88,7 @@ Page({
   toDetail(event) {
     app.route('../Outer_list/Outer_list', {
       type: event.currentTarget.dataset.type,
-      subjectName: this.data.subjectName,
+      subjectName: Data.subjectName,
     });
   },
 });

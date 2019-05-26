@@ -1,48 +1,60 @@
-@import '../../pages/icon/icon.wxss';
-
-.hover-class{
-    opacity: 0.3;
+.list-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.list{
-    position: relative;
-    display: flex;
-    padding:15rpx 0 15rpx 0;
-    width: 710rpx;
-    align-items: center;
-    background: #ffffff;
+.pagination {
+  box-shadow: 0 10rpx 10px 3px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-between;
 }
 
-.list .icon{
-    height: 60rpx;
-    width: 60rpx;
-    margin-right: 20rpx;
+.pagination view {
+  display: flex;
+  padding: 13px 90rpx;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
 }
 
-.list .title{
-    height: 60rpx;
-    width: 250rpx;
-    display: flex;
-    align-items: center;
+.scroll-area {
+  overflow: scroll;
+  flex-grow: 1;
 }
 
-.title .title-text{
-    font-size:26rpx;
-    font-weight: bold;
+.list {
+  width: 95%;
+  height: 120rpx;
+  border-bottom: #c5c5c5 3rpx solid;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
 }
 
-.list .description{
-    height: 40rpx;
-    /* background-color: #eeeeee; */
-    width: 320rpx;
-    margin-left: 24rpx;
+.tap_performance {
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0.7;
 }
 
-.list .right-arrow{
-    font-size: 36rpx;
+.left_text{
+  width: 80%;
+  margin-left: 20rpx;
 }
 
-.title .title-text{
-    font-size: 34rpx;
-    
+.icon_display{
+  height: 100%;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.right_icon{
+  height: 30%;
+  width: 25%;
+  float: right;
 }

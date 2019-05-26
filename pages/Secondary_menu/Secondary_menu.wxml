@@ -1,7 +1,7 @@
 <view class="pages">
   <view wx:for="{{menu}}" wx:key='{{index}}' bindtap='toDetail' data-type='{{item.module}}'>
-    <view class="card{{index}}">
-      <view class="circle{{index}}">
+    <view class="card{{index % 3}}">
+      <view class="circle{{index % 3}}">
         <image src="{{menu[index].url}}" class="icon"></image>
       </view>
       <view class="title">{{menu[index].module}}</view>
@@ -19,24 +19,3 @@
     </view>
   </view>
 </view>
-
-
-
-
-
-
-
-
-
-<!--<view class="pages">
-  <view class="image_area">
-
-    <view class = "area" bindtap="toList" wx:for="{{menu}}" data-id="{{item.module}}">
-      <view class="img_icon" hover-class='tap_performance' hover-stay-time='100'>
-        <image class ="icon" src="{{item.url}}"></image>
-      </view>
-      <view class = "icon_text">{{item.module}}</view>
-    </view>
-
-  </view>
-</view> -->

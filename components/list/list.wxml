@@ -1,11 +1,14 @@
-<view class="list" bindtap="_listFunction" hover-class="hover-class" hover-stay-time="200">
-    <image class="icon" src="{{imageUrl}}"/>
-    
-    <view class="title">
-        <text class="title-text">{{title}}</text>
+<view class="list-wrapper">
+  <view class='scroll-area'>
+    <view class="list" bindtap="toContent" wx:for="{{listData}}" wx:key='{{index}}' hover-class='tap_performance' hover-stay-time='100' data-id="{{index}}">
+      <view class="left_text">{{index + 1}}.{{item.title}}</view>
+      <view class="icon_display">
+        <image src="/pages/icon/right.png" class="right_icon"></image>
+      </view>
     </view>
-    <view class="description">
-        <text class="description-text"></text>
-    </view>
-    <text class="iconfont icon-right-arrow right-arrow"></text>
+  </view>
+  <view class='pagination'>
+    <view bindtap='changePage' data-type='prev'>上一页</view>
+    <view bindtap='changePage' data-type='next'>下一页</view>
+  </view>
 </view>
