@@ -13,4 +13,7 @@
       <view class="preview">来自成都的煎蛋</view>
     </view>
   </view>
+  <view class="button_box" hover-class="bindP" hover-stay-time='100' bindtap="toEdit">
+    <image class="button_img" src="../icon/add.png" ></image>
+  </view>
 </view>

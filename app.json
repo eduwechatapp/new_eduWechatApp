@@ -2,8 +2,11 @@
   "pages": [
     "pages/home/home",
     "pages/msg_board/msg_board",
+    "pages/msg_edit/msg_edit",
+
     "pages/board_detail/board_detail",
     "pages/display_board/display_board",
+
     "pages/question/question",
     "pages/question_list/question_list",
     "pages/question_detail/question_detail",
@@ -39,6 +42,12 @@
         "text": "主页",
         "iconPath": "pages/icon/home_1.png",
         "selectedIconPath": "pages/icon/home_2.png"
+      },
+      {
+        "pagePath": "pages/msg_board/msg_board",
+        "text": "留言板",
+        "iconPath": "pages/icon/board_1.png",
+        "selectedIconPath": "pages/icon/board_2.png"
       },
       {
         "pagePath": "pages/my/my",
