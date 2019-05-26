@@ -168,7 +168,7 @@ Page({
   toSecMenu(e) {
     var index = e.currentTarget.dataset.id
     app.route('../Secondary_menu/Secondary_menu', {
-      subject: this.data.subjects[index].engName,
+      subjectName: this.data.subjects[index].name,
     });
   },
 });

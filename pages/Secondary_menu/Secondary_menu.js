@@ -1,197 +1,86 @@
+const app = getApp();
+
+const Data = {
+  menuListEnum: {
+    '知识点': {
+      module: '知识点',
+      url: '../icon/light.png',
+    },
+    '专题': {
+      module: '专题',
+      url: '../icon/topic.png',
+    },
+    '归纳总结': {
+      module: '归纳总结',
+      url: '../icon/conclusion.png',
+    },
+    '答题模版': {
+      module: '答题模版',
+      url: '../icon/template.png',
+    },
+    '视频': {
+      module: '视频',
+      url: '../icon/video.png',
+    },
+    '真题试卷': {
+      module: '真题试卷',
+      url: '../icon/exam.png',
+    },
+    '上次记录': {
+      module: '上次记录',
+      url: '../icon/lastnote.png',
+    },
+    '需要留意': {
+      module: '需要留意',
+      url: '../icon/attention.png',
+    },
+    '重点关注': {
+      module: '重点关注',
+      url: '../icon/payAttention.png',
+    },
+    '收藏': {
+      module: '收藏',
+      url: '../icon/star.png',
+    },
+  },
+  subjectInfoEnum: {
+    '语文': ['知识点', '专题', '归纳总结'],
+    '数学': ['知识点'],
+    '英语': ['知识点', '专题', '归纳总结'],
+    '物理': ['知识点'],
+    '化学': ['知识点', '答题模版'],
+    '生物': ['知识点'],
+    '政治': ['知识点', '归纳总结'],
+    '历史': ['知识点'],
+    '地理': ['知识点', '专题', '归纳总结', '答题模版'],
+  },
+};
+
 Page({
   data: {
     menu: [],
-    subject: '',
-    lastView:"必修一：集合的定义",
+    subjectName: '',
+    lastView: '',
+  },
 
+  onLoad(options) {
+    this.setData({
+      subjectName: options.subjectName,
+    });
+    const menu = [];
+    Data.subjectInfoEnum[options.subjectName].forEach(e => {
+      menu.push(Data.menuListEnum[e]);
+    });
+    this.setData({
+      menu,
+    });
   },
-  onLoad: function(options) {
-    const that = this;
-    console.log(options.subject)
-    that.setData({
-      subject: options.subject
-    })
-    if (options.subject == 'english' || options.subject == 'chinese') {
-      that.setData({
-        menu: [{
-            module: "知识点",
-            url: "../icon/light.png"
-          },
-          //{ module: "视频", url: "../icon/video.png" },
-          {
-            module: "专题",
-            url: "../icon/topic.png"
-          },
-          //{ module: "真题试卷", url: "../icon/exam.png" },
-          {
-            module: "归纳总结",
-            url: "../icon/conclusion.png"
-          },
-          //{ module: "上次记录", url: "../icon/lastnote.png" },
-          // {
-          //   module: "需要留意",
-          //   url: "../icon/attention.png"
-          // },
-          // {
-          //   module: "重点关注",
-          //   url: "../icon/payAttention.png"
-          // },
-          //{ module: "收藏", url: "../icon/star.png" },
-        ]
-      })
-    }
-    if (options.subject == 'math' || options.subject == 'history') {
-      that.setData({
-        menu: [{
-            module: "知识点",
-          url: "../icon/light.png"
-          },
-          //{ module: "视频", url: "../icon/video.png" }, 
-          //{ module: "真题试卷", url: "../icon/exam.png" },
-          //{ module: "上次记录", url: "../icon/lastnote.png" },
-          // {
-          //   module: "需要留意",
-          //   url: "../icon/attention.png"
-          // },
-          // {
-          //   module: "重点关注",
-          //   url: "../icon/payAttention.png"
-          // },
-          //{ module: "收藏", url: "../icon/star.png" },
-        ]
-      })
-    }
-    if (options.subject == 'geography') {
-      that.setData({
-        menu: [{
-            module: "知识点",
-          url: "../icon/light.png"
-          },
-          //{ module: "视频", url: "../icon/video.png" },
-          {
-            module: "专题",
-            url: "../icon/topic.png"
-          },
-          //{ module: "真题试卷", url: "../icon/exam.png" },
-          {
-            module: "归纳总结",
-            url: "../icon/conclusion.png"
-          },
-          {
-            module: "答题模版",
-            url: "../icon/template.png"
-          },
-          //{ module: "上次记录", url: "../icon/lastnote.png" },
-          // {
-          //   module: "需要留意",
-          //   url: "../icon/attention.png"
-          // },
-          // {
-          //   module: "重点关注",
-          //   url: "../icon/payAttention.png"
-          // },
-          //{ module: "收藏", url: "../icon/star.png" },
-        ]
-      })
-    }
-    if (options.subject == 'political') {
-      that.setData({
-        menu: [{
-            module: "知识点",
-          url: "../icon/light.png"
-          },
-          //{ module: "视频", url: "../icon/video.png" },
-          //{ module: "真题试卷", url: "../icon/exam.png" },
-          {
-            module: "归纳总结",
-            url: "../icon/conclusion.png"
-          },
-          //{ module: "上次记录", url: "../icon/lastnote.png" },
-          // {
-          //   module: "需要留意",
-          //   url: "../icon/attention.png"
-          // },
-          // {
-          //   module: "重点关注",
-          //   url: "../icon/payAttention.png"
-          // },
-          //{ module: "收藏", url: "../icon/star.png" },
-        ]
-      })
-    }
-    if (options.subject == 'physics') {
-      that.setData({
-        menu: [{
-            module: "知识点",
-          url: "../icon/light.png"
-          },
-          //{ module: "视频", url: "../icon/video.png" },
-          //{ module: "真题试卷", url: "../icon/exam.png" },
-          //{ module: "上次记录", url: "../icon/lastnote.png" },
-          // {
-          //   module: "需要留意",
-          //   url: "../icon/attention.png"
-          // },
-          // {
-          //   module: "重点关注",
-          //   url: "../icon/payAttention.png"
-          // },
-          //{ module: "收藏", url: "../icon/star.png" },
-        ]
-      })
-    }
-    if (options.subject == 'chemistry') {
-      that.setData({
-        menu: [{
-            module: "知识点",
-          url: "../icon/light.png"
-          },
-          //{ module: "视频", url: "../icon/video.png" },
-          //{ module: "真题试卷", url: "../icon/exam.png" },
-          {
-            module: "答题模版",
-            url: "../icon/template.png"
-          },
-          //{ module: "上次记录", url: "../icon/lastnote.png" },
-          // {
-          //   module: "需要留意",
-          //   url: "../icon/attention.png"
-          // },
-          // {
-          //   module: "重点关注",
-          //   url: "../icon/payAttention.png"
-          // },
-          //{ module: "收藏", url: "../icon/star.png" },
-        ]
-      })
-    }
-    if (options.subject == 'biology') {
-      that.setData({
-        menu: [{
-            module: "知识点",
-          url: "../icon/light.png"
-          },
-          //{ module: "视频", url: "../icon/video.png" },
-          //{ module: "真题试卷", url: "../icon/exam.png" },
-          //{ module: "上次记录", url: "../icon/lastnote.png" },
-          // {
-          //   module: "需要留意",
-          //   url: "../icon/attention.png"
-          // },
-          // {
-          //   module: "重点关注",
-          //   url: "../icon/payAttention.png"
-          // },
-          //{ module: "收藏", url: "../icon/star.png" },
-        ]
-      })
-    }
-  },
+
   toList: function(event) {
     var id = event.currentTarget.dataset.id
     console.log(id)
     wx.navigateTo({
       url: '../Outer_list/Outer_list?arg=' + id + '&sub=' + this.data.subject,
-    })
-  }
+    });
+  },
 });
