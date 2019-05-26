@@ -1,7 +1,7 @@
 <view class="list_area">
 
-  <block wx:if="{{wxml_type=='storage'}}">
-    <view class="list" bindtap="toInnerList" wx:for="{{listName}}"  hover-class='tap_performance' hover-stay-time='100' data-id="{{index}}">
+  <block wx:if="{{false}}">
+    <view class="list" bindtap="toInnerList" wx:for="{{listName}}" wx:key='{{index}}' hover-class='tap_performance' hover-stay-time='100' data-id="{{index}}">
         <view class="left_text">{{item}}</view>
         <view class = "icon_display">
           <image src ="../icon/right.png" class="right_icon"></image>
@@ -10,7 +10,7 @@
   </block>
   
   <block wx:else>
-    <view  class="list" bindtap="toInnerList" wx:for="{{listName}}" hover-class='tap_performance' hover-stay-time='100' data-id="{{item.which}}">
+    <view  class="list" bindtap="toInnerList" wx:for="{{listName}}" wx:key='{{index}}' hover-class='tap_performance' hover-stay-time='100' data-id="{{item.which}}">
       <view class="left_text">{{item.titleName}}</view>
       <view class = "icon_display">
         <image src ="../icon/right.png" class="right_icon"></image>

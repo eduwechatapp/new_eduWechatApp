@@ -1,5 +1,5 @@
 <view class="pages">
-  <view wx:for="{{menu}}" wx:key='{{index}}'>
+  <view wx:for="{{menu}}" wx:key='{{index}}' bindtap='toDetail' data-type='{{item.module}}'>
     <view class="card{{index}}">
       <view class="circle{{index}}">
         <image src="{{menu[index].url}}" class="icon"></image>

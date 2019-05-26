@@ -76,11 +76,10 @@ Page({
     });
   },
 
-  toList: function(event) {
-    var id = event.currentTarget.dataset.id
-    console.log(id)
-    wx.navigateTo({
-      url: '../Outer_list/Outer_list?arg=' + id + '&sub=' + this.data.subject,
+  toDetail(event) {
+    app.route('../Outer_list/Outer_list', {
+      type: event.currentTarget.dataset.type,
+      subjectName: this.data.subjectName,
     });
   },
 });
