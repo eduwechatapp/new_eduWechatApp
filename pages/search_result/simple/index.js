@@ -61,23 +61,6 @@ Page({
 
   toContent(e) {
     const { index, subject: subjectName } = e.currentTarget.dataset;
-    const list = this.data.contentList;
-    for (let i = 0; i < list.length; i++) {
-      if (list[i].subject === subjectName) {
-        app.fetchContent = async function(_index) {
-          const url = `/search/simple/test/${Data.searchValue}/1/${_index}`;
-          const response = await app.post(url);
-          let dataList = [];
-          response.data.some(e => {
-            if (e.subject === subjectName) {
-              dataList = e.dataList;
-            }
-          });
-          return dataList;
-        };
-        app.route('../content/content', { index, subjectName });
-        return;
-      }
-    }
+    app.route('./content/index', { index, subjectName, searchValue: Data.searchValue });
   },
 });

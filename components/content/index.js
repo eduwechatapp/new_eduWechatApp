@@ -4,17 +4,18 @@ const app = getApp();
 
 const Data = {
   importanceList: ['不放心上', '我须留意', '重点关注'],
-  index: 0,
   title: '',
   erji: '',
   inital: true,
   type: '', // Using for pagination
+  index: 0,
 };
 
 Component({
   properties: {
     list: null,
     subject: null, // Name
+    index: null,
   },
 
   data: {
@@ -29,6 +30,13 @@ Component({
     },
 
     detached() {
+      Data.inital = true;
+      Data.type = '';
+      this.setData({
+        ifPopUpShow: false,
+        importanceText: '不放心上',
+        importance: 0,
+      });
     },
   },
 
@@ -39,6 +47,7 @@ Component({
         return;
       }
       if (e.length === 0) {
+        this.noMore();
         return;
       }
       if (Data.type === 'prev') {
@@ -52,6 +61,10 @@ Component({
       this.checkImportance(article.title, article.erji);
       WxParse.wxParse('article', 'html', article.content, this, 5);
       app.toast('加载成功!');
+    },
+
+    index(e) {
+      Data.index = e;
     },
   },
 

@@ -1,6 +1,4 @@
 {
     "component": true,
-    "usingComponents": {
-      "wux-pagination": "/dist/pagination/index"
-    }
+    "usingComponents": {}
 }

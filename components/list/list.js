@@ -88,5 +88,12 @@ Component({
       this.loadData(page);
       Data.type = type;
     },
+
+    tapItem(e) {
+      this.triggerEvent('tapitem', {
+        index: e.currentTarget.dataset.index,
+        data: this.data.listData[e.currentTarget.dataset.index],
+      }, {});
+    },
   },
 });

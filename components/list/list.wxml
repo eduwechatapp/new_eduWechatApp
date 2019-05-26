@@ -1,7 +1,7 @@
 <view class="list-wrapper">
   <view class='scroll-area'>
-    <view class="list" bindtap="toContent" wx:for="{{listData}}" wx:key='{{index}}' hover-class='tap_performance' hover-stay-time='100' data-id="{{index}}">
-      <view class="left_text">{{index + 1}}.{{item.title}}</view>
+    <view class="list" bindtap="tapItem" wx:for="{{listData}}" wx:key='{{index}}' hover-class='tap_performance' hover-stay-time='100' data-index="{{index}}">
+      <view class="left_text">{{item.title}}</view>
       <view class="icon_display">
         <image src="/pages/icon/right.png" class="right_icon"></image>
       </view>

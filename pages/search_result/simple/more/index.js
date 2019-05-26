@@ -3,6 +3,7 @@ const app = getApp();
 const Data = {
   searchValue: '',
   subjectName: '',
+  page: 0,
 };
 
 Page({
@@ -22,8 +23,17 @@ Page({
         this.setData({
           list: response.data[i].dataList,
         });
+        if (response.data[i].dataList.length > 0) {
+          Data.page = e.detail.page;
+        }
         return;
       }
     }
+  },
+
+  toContent(e) {
+    let { index } = e.detail;
+    index = Data.page * 20 + index;
+    app.route('./content/index', { index, subjectName: Data.subjectName, searchValue: Data.searchValue });
   },
 });

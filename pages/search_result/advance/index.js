@@ -4,6 +4,7 @@ const Data = {
   searchValue: '',
   subjectName: '',
   searchMode: '',
+  page: 0,
 };
 
 Page({
@@ -29,8 +30,23 @@ Page({
 
     const response = await app.post(url, {}, data);
 
+    if (response.data.dataList.length > 0) {
+      Data.page = e.detail.page;
+    }
+
     this.setData({
       list: response.data.dataList,
+    });
+  },
+
+  toContent(e) {
+    let { index } = e.detail;
+    index = Data.page * 20 + index;
+    app.route('./content/index', {
+      index,
+      subjectName: Data.subjectName,
+      searchValue: Data.searchValue,
+      searchMode: Data.searchMode,
     });
   },
 });
