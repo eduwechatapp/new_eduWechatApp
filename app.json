@@ -14,7 +14,6 @@
     "pages/inner_list/inner_list",
     "pages/content/content",
     "pages/logs/logs",
-    "pages/Secondary_menu/Secondary_menu",
     "pages/more/more",
     "pages/video/video",
     "pages/introduction/introduction",
@@ -23,7 +22,10 @@
     "pages/feedback/feedback",
     "pages/my/my",
     "pages/search_result/simple/index",
-    "pages/search_result/simple/more/index"
+    "pages/search_result/simple/more/index",
+    "pages/secondary_menu/index",
+    "pages/secondary_menu/outer_list/index",
+    "pages/secondary_menu/inner_list/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
