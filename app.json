@@ -46,6 +46,12 @@
         "selectedIconPath": "pages/icon/home_2.png"
       },
       {
+        "pagePath": "pages/question/question",
+        "text": "题库",
+        "iconPath": "pages/icon/practice_1.png",
+        "selectedIconPath": "pages/icon/practice_2.png"
+      },
+      {
         "pagePath": "pages/msg_board/msg_board",
         "text": "留言板",
         "iconPath": "pages/icon/board_1.png",
