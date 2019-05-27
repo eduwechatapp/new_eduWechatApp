@@ -8,7 +8,11 @@ Page({
     yiji: '',
     erji: '',
     subject: '',
+    type:[],
     contentList: [],
+    show: false,
+    currentTap: 0,
+    noData: false,
   },
 
   Set(options) {
@@ -23,19 +27,44 @@ Page({
       erji: options.erji,
       subject: options.subject,
     });
-    const response = await this.fetchData();
+    const type = await this.fetchTypeData();
+    await this.Set({
+      type: type.data
+    })
+    const response = await this.fetchListData();
     await this.Set({
       contentList: response.data,
     });
+    //没有数据的时候显示提示
+    if (this.data.contentList.length === 0){
+      await this.Set({
+        noData: true
+      })
+    }
+    else{
+      await this.Set({
+        noData: false
+      })
+    }
     response.data.forEach((value, index) => {
       WxParse.wxParse(`content[${index}]`, 'html', value.content, this);
     });
   },
 
-  async fetchData() {
+  async fetchListData() {
     return new Promise(resolve => {
       wx.request({
-        url: `http://129.204.216.249:4000/exercise/list/test/${this.data.subject}/${this.data.yiji}/${this.data.erji}/5/1`,
+        url: `http://129.204.216.249:4000/exercise/list/test/${this.data.subject}/${this.data.yiji}/${this.data.erji}/${this.data.type[this.data.currentTap]}/false/5/0`,
+        success(response) {
+          resolve(response.data);
+        },
+      });
+    });
+  },
+  async fetchTypeData() {
+    return new Promise(resolve => {
+      wx.request({
+        url: `http://129.204.216.249:4000/exercise/type/test/${this.data.subject}`,
         success(response) {
           resolve(response.data);
         },
@@ -49,4 +78,45 @@ Page({
       url: `../question_detail/question_detail?id=${id}&subject=${this.data.subject}`,
     });
   },
+  show(){
+    this.setData({
+      show:true
+    })
+  },
+  changeType(e){
+    this.setData({
+      currentTap: e.currentTarget.dataset.id
+    })
+  },
+  async confirm(e){
+    this.setData({
+      show: false
+    })
+    wx.showLoading({
+      title: '加载ing',
+    })
+    const type = await this.fetchTypeData();
+    await this.Set({
+      type: type.data
+    })
+    const response = await this.fetchListData();
+    await this.Set({
+      contentList: response.data,
+    });
+    //没有数据的时候显示提示
+    if (this.data.contentList.length === 0) {
+      await this.Set({
+        noData: true
+      })
+    }
+    else {
+      await this.Set({
+        noData: false
+      })
+    }
+    response.data.forEach((value, index) => {
+      WxParse.wxParse(`content[${index}]`, 'html', value.content, this);
+    });
+    wx.hideLoading();
+  }
 });

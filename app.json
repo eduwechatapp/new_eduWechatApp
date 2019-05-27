@@ -1,12 +1,14 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/question/question",
+
     "pages/msg_board/msg_board",
     "pages/msg_edit/msg_edit",
     "pages/index/index",
     "pages/board_detail/board_detail",
     "pages/display_board/display_board",
-    "pages/question/question",
+
     "pages/question_list/question_list",
     "pages/question_detail/question_detail",
     "pages/logs/logs",
@@ -46,6 +48,12 @@
         "text": "主页",
         "iconPath": "pages/icon/home_1.png",
         "selectedIconPath": "pages/icon/home_2.png"
+      },
+      {
+        "pagePath": "pages/question/question",
+        "text": "题库",
+        "iconPath": "pages/icon/practice_1.png",
+        "selectedIconPath": "pages/icon/practice_2.png"
       },
       {
         "pagePath": "pages/msg_board/msg_board",
