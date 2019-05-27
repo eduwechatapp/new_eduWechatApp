@@ -1,0 +1,1 @@
+<x-list list='{{list}}' bindload='fetchData' txt='{{txt}}' />

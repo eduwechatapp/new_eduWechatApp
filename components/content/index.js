@@ -137,7 +137,6 @@ Component({
 
     changePage(e) {
       const type = e.currentTarget.dataset.type;
-      console.log(type, Data.index);
       if (type === 'prev' && Data.index == 0) {
         this.noMore();
         return;

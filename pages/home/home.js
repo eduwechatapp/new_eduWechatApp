@@ -167,7 +167,7 @@ Page({
    */
   toSecMenu(e) {
     var index = e.currentTarget.dataset.id
-    app.route('../Secondary_menu/Secondary_menu', {
+    app.route('../secondary_menu/index', {
       subjectName: this.data.subjects[index].name,
     });
   },
