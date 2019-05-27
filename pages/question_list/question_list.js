@@ -11,7 +11,8 @@ Page({
     type:[],
     contentList: [],
     show: false,
-    currentTap: 0
+    currentTap: 0,
+    noData: false,
   },
 
   Set(options) {
@@ -34,6 +35,17 @@ Page({
     await this.Set({
       contentList: response.data,
     });
+    //没有数据的时候显示提示
+    if (this.data.contentList.length === 0){
+      await this.Set({
+        noData: true
+      })
+    }
+    else{
+      await this.Set({
+        noData: false
+      })
+    }
     response.data.forEach((value, index) => {
       WxParse.wxParse(`content[${index}]`, 'html', value.content, this);
     });
@@ -91,6 +103,17 @@ Page({
     await this.Set({
       contentList: response.data,
     });
+    //没有数据的时候显示提示
+    if (this.data.contentList.length === 0) {
+      await this.Set({
+        noData: true
+      })
+    }
+    else {
+      await this.Set({
+        noData: false
+      })
+    }
     response.data.forEach((value, index) => {
       WxParse.wxParse(`content[${index}]`, 'html', value.content, this);
     });
