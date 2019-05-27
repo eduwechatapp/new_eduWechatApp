@@ -98,7 +98,7 @@ page{
   position:fixed;
   z-index: 500;
   background-color: white;
-  height: 55%;
+  height: 52%;
   width: 90%;
   border-radius: 20rpx;
   margin: 0 auto;
@@ -108,13 +108,13 @@ page{
 }
 .prompt{
   position: absolute;
-  top: 20rpx;
-  left: 20rpx;
+  top: 30rpx;
+  left: 30rpx;
   font-size: 45rpx;
   color: #999999
 }
 .label_box{
-  height: 57%;
+  height: 62%;
   width: 100%;
   margin-top: 110rpx;
   display: flex;
@@ -131,7 +131,7 @@ page{
   justify-content: space-around;
   align-items: center;
   margin-top: 40rpx;
-  font-size: 25rpx;
+  font-size: 28rpx;
 }
 
 .selected_label{
@@ -143,7 +143,7 @@ page{
   justify-content: space-around;
   align-items: center;
   margin-top: 40rpx;
-  font-size: 25rpx;
+  font-size: 28rpx;
   background-color: #e5c493;
   color: white
 }
@@ -154,5 +154,5 @@ page{
   color: white;
   display: flex;
   justify-content: center;
-  align-items: center
+  align-items: center;
 }
