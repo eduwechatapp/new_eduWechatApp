@@ -1,6 +1,7 @@
+<!--<view class="top_box">题型筛选</view>-->
 <block wx:for="{{contentList}}" wx:key="{{index}}">
   <view class="question_box"> 
-    <view class="box_top">作文</view>
+    <view class="box_top">{{erji}}</view>
     <view class="box_content">
       <import src='../../wxParse/wxParse.wxml' />
       <template is="wxParse" data="{{wxParseData: content[index].nodes}}"/>
@@ -12,4 +13,16 @@
       </view>
     </view>
   </view>
-</block> 
+</block>
+<view class="switch_box" hover-class="bindP" hover-stay-time='100' bindtap="show">
+    <image class="button_img" src="../icon/switch.png" ></image>
+</view>
+<view class="shade" wx:if="{{show}}">
+</view>
+<view class="typeSelect" wx:if="{{show}}">
+  <view class="prompt">题型</view>
+  <view class="label_box">
+    <view class="{{index==currentTap? 'selected_label': 'label'}}"  wx:for="{{type}}" bindtap="changeType" data-id="{{index}}">{{item}}</view>
+  </view>
+  <button class="type_button" hover-class="bindP" bindtap="confirm">确定</button>
+</view>
