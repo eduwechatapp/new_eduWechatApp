@@ -1,1 +1,1 @@
-<x-list list='{{list}}' bindload='fetchData' bindtapitem='toContent'/>
+<x-list list='{{list}}' bindchangepage='changePage' bindtapitem='toContent'/>

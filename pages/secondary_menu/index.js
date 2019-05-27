@@ -86,8 +86,16 @@ Page({
   },
 
   toDetail(event) {
-    app.route('../Outer_list/Outer_list', {
-      type: event.currentTarget.dataset.type,
+    const type = event.currentTarget.dataset.type;
+    if (type === '需要留意' || type === '重点关注') {
+      app.route('./inner_list/index', {
+        type,
+        subjectName: Data.subjectName,
+      });
+      return;
+    }
+    app.route('./outer_list/index', {
+      type,
       subjectName: Data.subjectName,
     });
   },
