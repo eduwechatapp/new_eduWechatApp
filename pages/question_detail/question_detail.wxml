@@ -17,8 +17,8 @@
 
   </view>
 
-  <view class="analysis_box">
-    <view class="exam_point">
+  <view class="analysis_box" >
+    <view class="exam_point" wx:if="{{haveExamPoint}}">
       <view class="content_box">
         <view class="left_text">考点: </view>
         <view class="html_box"> 
@@ -27,7 +27,7 @@
       </view>  
     </view>
     
-    <view class="analysis">
+    <view class="analysis" wx:if="{{haveAnalysis}}">
       <view class="content_box">
         <view class="left_text">分析: </view>
         <view class="html_box"> 
@@ -36,7 +36,7 @@
       </view>
     </view>
 
-    <view class="answer">
+    <view class="answer" wx:if="{{haveAnswer}}">
       <view class="content_box">
         <view class="left_text">解答: </view>
         <view class="html_box"> 
@@ -45,7 +45,7 @@
       </view>
     </view>
 
-    <view class="comment">
+    <view class="comment" wx:if="{{haveComment}}">
       <view class="content_box">
         <view class="left_text">点评: </view>
         <view class="html_box"> 
