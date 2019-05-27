@@ -1,7 +1,7 @@
 <view class='content-wrapper'>
   <view class='article'>
     <import src='/wxParse/wxParse.wxml' />
-    <template is='wxParse' data='{{wxParseData:article.nodes}}' />
+    <template is='wxParse' data='{{wxParseData: articleParse.nodes}}' />
   </view>
 
   <view class='bottom'>

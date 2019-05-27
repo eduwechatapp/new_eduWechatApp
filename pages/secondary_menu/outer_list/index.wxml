@@ -1,8 +1,8 @@
 <view class="list_area">
-  <view class="list" bindtap="toInnerList" wx:for="{{listName}}" wx:key='{{index}}' hover-class='tap_performance' hover-stay-time='100' data-id="{{item.which}}">
+  <view class="list" bindtap="toInnerList" wx:for="{{listName}}" wx:key='{{index}}' hover-class='tap_performance' hover-stay-time='100' data-which="{{item.which}}">
     <view class="left_text">{{item.titleName}}</view>
     <view class="icon_display">
-      <image src="../icon/right.png" class="right_icon"></image>
+      <image src="/pages/icon/right.png" class="right_icon"></image>
     </view>
   </view>
 </view>

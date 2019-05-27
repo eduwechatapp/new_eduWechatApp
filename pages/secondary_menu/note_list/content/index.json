@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "x-content": "/components/content/index"
+  }
+}

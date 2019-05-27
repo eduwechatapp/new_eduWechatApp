@@ -88,7 +88,7 @@ Page({
   toDetail(event) {
     const type = event.currentTarget.dataset.type;
     if (type === '需要留意' || type === '重点关注') {
-      app.route('./inner_list/index', {
+      app.route('./note_list/index', {
         type,
         subjectName: Data.subjectName,
       });

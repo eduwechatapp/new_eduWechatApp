@@ -1,40 +1,52 @@
 const app = getApp();
 
 const Data = {
-  searchValue: '',
-  searchMode: '',
+  subjectEng: '',
+  typeEng: '',
+  which: '',
 };
 
 Page({
   data: {
-    articleList: [],
+    article: {},
     subjectName: '',
     contentIndex: 0,
   },
 
-  onLoad(options) {
-    Data.searchValue = options.searchValue;
-    Data.searchMode = options.searchMode;
+  async onLoad(options) {
+    const { typeEng, subjectEng, which, index } = options;
+    Data.subjectEng = subjectEng;
+    Data.typeEng = typeEng;
+    Data.which = which;
+
+    let subjectName = '';
+    app.globalData.subjectEnum.some(e => {
+      if (e.eng === subjectEng) {
+        subjectName = e.name;
+      }
+    });
+
+    const list = await this.fetchData(index);
+
     this.setData({
-      contentIndex: options.index,
-      subjectName: options.subjectName,
+      contentIndex: index,
+      subjectName: subjectName,
+      article: list[0],
     });
   },
 
-  async fetchData(e) {
-    let subjectUnique = '';
-    app.globalData.subjectEnum.some(e => {
-      if (e.name === this.data.subjectName) {
-        subjectUnique = e.unique;
-      }
-    });
-    const url = `/search/detail/test/${subjectUnique}/1/${e.detail.index}`;
-    const data = Data.searchMode == 0 ? { title: Data.searchValue } : { content: Data.searchValue };
+  Get(url) {
+    return new Promise(resolve => wx.request({ url: `https://www.vaskka.com/mp${url}`, success: res => resolve(res.data) }));
+  },
 
-    const response = await app.post(url, {}, data);
+  noMore() {
+    app.toast('没有更多数据了');
+  },
 
-    this.setData({
-      articleList: response.data.dataList,
-    });
+  async fetchData(page) {
+    app.toast('加载中');
+    const response = await this.Get(`/${Data.subjectEng}/${Data.typeEng}/get/test/${Data.which}/1/${page}`);
+    app.hideToast();
+    return response.data;
   },
 });

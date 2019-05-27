@@ -2,8 +2,9 @@ const app = getApp();
 
 const Data = {
   list: [],
-  type: '',
-  subjectName: '',
+  typeEng: '',
+  subjectEng: '',
+  which: '',
 };
 
 Page({
@@ -13,9 +14,10 @@ Page({
   },
 
   async onLoad(options) {
-    const { type, subjectName } = options;
-    Data.type = type;
-    Data.subjectName = subjectName;
+    const { typeEng, subjectEng, which } = options;
+    Data.typeEng = typeEng;
+    Data.subjectEng = subjectEng;
+    Data.which = which;
 
     const list = await this.fetchData(this.data.page);
     if (list.length === 0) {
@@ -25,27 +27,15 @@ Page({
     this.setData({ list });
   },
 
+  Get(url) {
+    return new Promise(resolve => wx.request({ url: `https://www.vaskka.com/mp${url}`, success: res => resolve(res.data) }));
+  },
+
   async fetchData(page) {
     app.toast('加载中');
-    const dict = {
-      '需要留意': 1,
-      '重点关注': 2,
-    };
-    if (dict[Data.type] !== undefined) {
-      const noteList = [];
-      app.globalData.noteList[Data.subjectName].forEach(e => {
-        if (e.importance === dict[Data.type]) {
-          noteList.push(e);
-        }
-      });
-      const list = [];
-      const begin = page * 20
-      for (let i = begin; i < noteList.length && i < begin + 20; i++) {
-        list.push(noteList[i]);
-      }
-      app.hideToast();
-      return list;
-    }
+    const response = await this.Get(`/${Data.subjectEng}/${Data.typeEng}/get/test/${Data.which}/20/${page}`);
+    app.hideToast();
+    return response.data;
   },
 
   noResult() {

@@ -1,7 +1,8 @@
 const app = getApp();
 
 const Data = {
-  searchValue: '',
+  list: [],
+  type: '',
   subjectName: '',
 };
 
@@ -12,8 +13,10 @@ Page({
   },
 
   async onLoad(options) {
-    Data.searchValue = options.searchValue;
-    Data.subjectName = options.subjectName;
+    const { type, subjectName } = options;
+    Data.type = type;
+    Data.subjectName = subjectName;
+
     const list = await this.fetchData(this.data.page);
     if (list.length === 0) {
       this.noResult();
@@ -24,13 +27,23 @@ Page({
 
   async fetchData(page) {
     app.toast('加载中');
-    const response = await app.post(`/search/simple/test/${Data.searchValue}/20/${page}`);
-    for (let i = 0; i < response.data.length; i++) {
-      if (response.data[i].subject === Data.subjectName) {
-        app.toast('加载成功!');
-        return response.data[i].dataList;
+    const dict = {
+      '需要留意': 1,
+      '重点关注': 2,
+    };
+    const noteList = [];
+    app.globalData.noteList[Data.subjectName].forEach(e => {
+      if (e.importance === dict[Data.type]) {
+        noteList.push(e);
       }
+    });
+    const list = [];
+    const begin = page * 20
+    for (let i = begin; i < noteList.length && i < begin + 20; i++) {
+      list.push(noteList[i]);
     }
+    app.hideToast();
+    return list;
   },
 
   noResult() {
@@ -64,6 +77,8 @@ Page({
 
   toContent(e) {
     const index = this.data.page * 20 + e.detail.index;
-    app.route('./content/index', { index, subjectName: Data.subjectName, searchValue: Data.searchValue });
+    app.route('./content/index', {
+      index,
+    });
   },
 });

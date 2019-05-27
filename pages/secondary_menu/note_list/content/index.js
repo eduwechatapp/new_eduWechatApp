@@ -3,34 +3,28 @@ const app = getApp();
 const Data = {
   searchValue: '',
   searchMode: '',
-  subjectName: '',
 };
 
 Page({
   data: {
-    article: {},
+    articleList: [],
     subjectName: '',
     cindex: 0,
   },
 
-  async onLoad(options) {
-    const { subjectName, index: sindex, searchValue, searchMode } = options;
-    const index = parseInt(sindex);
-    Data.searchValue = searchValue;
-    Data.subjectName = subjectName;
-    Data.searchMode = searchMode;
-    const response = await this.fetchData(index);
+  onLoad(options) {
+    Data.searchValue = options.searchValue;
+    Data.searchMode = options.searchMode;
     this.setData({
-      article: response[0],
-      subjectName: subjectName,
-      cindex: index,
+      contentIndex: options.index,
+      subjectName: options.subjectName,
     });
   },
 
   async fetchData(index) {
     let subjectUnique = '';
     app.globalData.subjectEnum.some(e => {
-      if (e.name === Data.subjectName) {
+      if (e.name === this.data.subjectName) {
         subjectUnique = e.unique;
       }
     });
@@ -39,7 +33,9 @@ Page({
 
     const response = await app.post(url, {}, data);
 
-    return response.data.dataList;
+    this.setData({
+      articleList: response.data.dataList,
+    });
   },
 
   async changePage(e) {
@@ -49,13 +45,5 @@ Page({
       return;
     }
     const response = await this.fetchData(index);
-    if (response.length === 0) {
-      app.toast('没有更多数据了');
-      return;
-    }
-    this.setData({
-      article: response[0],
-      cindex: index,
-    });
   },
 });

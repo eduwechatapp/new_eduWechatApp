@@ -9,9 +9,6 @@
     "pages/question/question",
     "pages/question_list/question_list",
     "pages/question_detail/question_detail",
-    "pages/Outer_list/Outer_list",
-    "pages/inner_list/inner_list",
-    "pages/content/content",
     "pages/logs/logs",
     "pages/more/more",
     "pages/video/video",
@@ -21,10 +18,17 @@
     "pages/feedback/feedback",
     "pages/my/my",
     "pages/search_result/simple/index",
+    "pages/search_result/simple/content/index",
     "pages/search_result/simple/more/index",
+    "pages/search_result/simple/more/content/index",
+    "pages/search_result/advance/index",
+    "pages/search_result/advance/content/index",
     "pages/secondary_menu/index",
     "pages/secondary_menu/outer_list/index",
-    "pages/secondary_menu/inner_list/index"
+    "pages/secondary_menu/inner_list/index",
+    "pages/secondary_menu/content/index",
+    "pages/secondary_menu/note_list/index",
+    "pages/secondary_menu/note_list/content/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

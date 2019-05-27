@@ -5,17 +5,14 @@ const app = getApp();
 const Data = {
   importanceList: ['不放心上', '我须留意', '重点关注'],
   title: '',
-  erji: '',
   inital: true,
-  type: '', // Using for pagination
-  index: 0,
 };
 
 Component({
   properties: {
-    list: null,
+    article: null,
     subject: null, // Name
-    index: null,
+    cindex: null,
   },
 
   data: {
@@ -25,13 +22,8 @@ Component({
   },
 
   lifetimes: {
-    ready() {
-      this.loadData(Data.index);
-    },
-
     detached() {
       Data.inital = true;
-      Data.type = '';
       this.setData({
         ifPopUpShow: false,
         importanceText: '不放心上',
@@ -41,49 +33,29 @@ Component({
   },
 
   observers: {
-    list(e) {
+    article(e) {
       if (Data.inital) {
         Data.inital = false;
         return;
       }
-      if (e.length === 0) {
-        this.noMore();
-        return;
-      }
-      if (Data.type === 'prev') {
-        Data.index--;
-      } else if (Data.type === 'next') {
-        Data.index++;
-      }
-      const article = e[0];
-      Data.erji = article.erji;
-      Data.title = article.title;
-      this.checkImportance(article.title, article.erji);
-      WxParse.wxParse('article', 'html', article.content, this, 5);
+      Data.title = e.title;
+      this.checkImportance(e.title);
+      WxParse.wxParse('articleParse', 'html', e.content, this, 5);
       app.toast('加载成功!');
-    },
-
-    index(e) {
-      Data.index = e;
     },
   },
 
   methods: {
-    loadData(index) {
-      app.toast('加载中');
-      this.triggerEvent('load', { index }, {});
-    },
-
     Set(options) {
       return new Promise(res => {
         this.setData(options, res);
       });
     },
 
-    checkImportance(title, erji) {
+    checkImportance(title) {
       let importance = 0;
       app.globalData.noteList[this.data.subject].some(e => {
-        if (e.title === title && e.erji === erji) {
+        if (e.title === title) {
           importance = e.importance;
         }
       });
@@ -109,7 +81,7 @@ Component({
       const list = app.globalData.noteList[this.data.subject];
       let hasFind = false;
       for (let i = 0; i < list.length; i++) {
-        if (list[i].erji === Data.erji && list[i].title === Data.title) {
+        if (list[i].title === Data.title) {
           hasFind = true;
           if (importance === 0) {
             list.splice(i, 1);
@@ -122,7 +94,6 @@ Component({
       if (!hasFind && importance !== 0) {
         list.push({
           title: Data.title,
-          erji: Data.erji,
           importance,
         });
       }
@@ -137,16 +108,11 @@ Component({
 
     changePage(e) {
       const type = e.currentTarget.dataset.type;
-      if (type === 'prev' && Data.index == 0) {
-        this.noMore();
-        return;
-      }
-      let index = Data.index;
-      type === 'prev' ? index-- : index++;
-      this.loadData(index);
-      Data.type = type;
+      let index = type === 'prev' ? -1 : 1;
+      index += this.data.cindex;
+      this.triggerEvent('changepage', { index }, {});
     },
-    
+
     noMore() {
       app.toast('没有更多数据了');
     },
