@@ -31,6 +31,10 @@ Page({
     cancelAnimation: {},
   },
 
+  onLoad(e){
+    app.getOpenid();
+    
+  },
   /**
    * 滑动swiper
    */
