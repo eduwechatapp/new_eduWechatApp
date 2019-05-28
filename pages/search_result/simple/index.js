@@ -18,7 +18,7 @@ Page({
   async fetchData(key) {
     await app.toast('加载中', 'loading');
 
-    const response = await app.post(`/search/simple/test/${key}/5/0`);
+    const response = await app.api.search.simple(key, 5, 0);
     await app.hideToast();
 
     if (response.data.every(e => e.dataList.length === 0)) {

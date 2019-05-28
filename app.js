@@ -1,3 +1,5 @@
+import api from './api/index';
+
 const host = 'https://www.vaskka.com/mp';
 
 App({
@@ -34,7 +36,12 @@ App({
     })
     // 加载缓存到 globalData
     this.checkCache();
+<<<<<<< HEAD
     
+=======
+    // 获取 open_id
+    this.open_id = 'test';
+>>>>>>> 8dca81e3f08d57223c7e3eecc1fde643d25c7df6
   },
 
   globalData: {
@@ -59,6 +66,7 @@ App({
       { name: '历史', unique: 'ls', index: 8, eng: 'history' },
     ],
   },
+<<<<<<< HEAD
   getOpenid() {
     let that = this;
     wx.cloud.callFunction({
@@ -71,13 +79,18 @@ App({
     })
   },
   post(_url, urlParam = {}, data = {}) {
+=======
+
+  post(_url, param = {}, data = {}) {
+>>>>>>> 8dca81e3f08d57223c7e3eecc1fde643d25c7df6
     let url = `${host}${_url}`;
-    if (Object.keys(urlParam) > 0) {
-      url += '?';
-      Object.keys(urlParam).forEach((k, i) => {
+    if (Object.keys(param).length > 0) {
+      urlParam = '?';
+      Object.keys(param).forEach((k, i) => {
         if (i > 0) {
-          url += `${k}=${urlParam[k]}`;
+          urlParam += '&';
         }
+        urlParam += `${k}=${param[k]}`;
       });
     }
     return new Promise((resolve, reject) => {
@@ -158,9 +171,16 @@ App({
     });
   },
 
+  clearStore() {
+    return new Promise(resolve => {
+      wx.clearStorage({ complete: resolve });
+    });
+  },
+
   async checkCache() {
+    await this.clearStore();
     let list = await this.getStore('noteList');
-    if (list === undefined) {
+    if (list === undefined || list === '') {
       list = {};
       this.globalData.subjectEnum.forEach(e => {
         list[e.name] = [];
@@ -170,3 +190,5 @@ App({
     this.globalData.noteList = list;
   },
 });
+
+getApp().api = api;

@@ -26,7 +26,7 @@ Page({
   },
 
   async fetchData(index) {
-    const response = await app.post(`/search/simple/test/${Data.searchValue}/1/${index}`);
+    const response = await app.api.search.simple(Data.searchValue, 1, index);
     for (let i = 0; i < response.data.length; i++) {
       if (response.data[i].subject === Data.subjectName) {
         return response.data[i].dataList;

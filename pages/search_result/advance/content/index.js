@@ -34,10 +34,9 @@ Page({
         subjectUnique = e.unique;
       }
     });
-    const url = `/search/detail/test/${subjectUnique}/1/${index}`;
-    const data = Data.searchMode == 0 ? { title: Data.searchValue } : { content: Data.searchValue };
+    const mode = Data.searchMode == 0 ? 'title' : 'content';
 
-    const response = await app.post(url, {}, data);
+    const response = await app.api.search.advance(Data.searchValue, 1, index, subjectUnique, mode);
 
     return response.data.dataList;
   },

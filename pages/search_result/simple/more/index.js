@@ -24,7 +24,7 @@ Page({
 
   async fetchData(page) {
     app.toast('加载中');
-    const response = await app.post(`/search/simple/test/${Data.searchValue}/20/${page}`);
+    const response = await app.api.search.simple(Data.searchValue, 20, page);
     for (let i = 0; i < response.data.length; i++) {
       if (response.data[i].subject === Data.subjectName) {
         app.toast('加载成功!');
