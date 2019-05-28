@@ -5,14 +5,23 @@ page{
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;
-  justify-content: space-around
+  justify-content: space-between
 }
-.msg_box{
+.msgBox_left{
   height: 400rpx;
   width: 300rpx;
   display: inline-block;
   margin-top: 30rpx;
   margin-bottom: 30rpx;
+  margin-left: 35rpx;
+}
+.msgBox_right{
+  height: 400rpx;
+  width: 300rpx;
+  display: inline-block;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+  margin-right: 35rpx
 }
 .image{
   height: 300rpx;

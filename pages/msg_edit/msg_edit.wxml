@@ -1,3 +1,5 @@
+<wux-cascader visible="{{ visible }}" default-value="{{ value }}" options="{{options}}"title="所在地区" bind:close="onClose" bind:change="onChange" />
+
 <view class="page">
   <view class="select_box">
     <view class="image_box" bindtap="showImageSelect">
@@ -13,12 +15,13 @@
       
     </view>
   </view>
+
   <!-- 虚线 -->
   <view class="split"></view>
-
+  <wux-cell title="选择地址" extra="{{ location }}" bind:click="onOpen"></wux-cell>
   <view class="content">
     <view class="top_box">
-      <picker mode="date" class="date" value="{{date}}" start="2019-05-25" end="2020-05-25" bindchange="bindDateChange">
+      <picker mode="date" class="date" value="{{time}}" start="2019-05-25" end="2020-05-25" bindchange="bindDateChange">
         <view>{{date}}</view>
       </picker>
       <view class="right_box">
@@ -26,6 +29,9 @@
         <input class="name" placeholder='输入昵称' bindinput="inputName"/>
       </view>
     </view>
+
+
+
     <input class="title" placeholder='输入标题' bindinput="inputTitle"/>
     <textarea class="text" placeholder='输入您的内容' bindinput="inputContent"></textarea>
   </view>

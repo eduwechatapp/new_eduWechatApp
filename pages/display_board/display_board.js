@@ -10,14 +10,32 @@ Page({
       "https://vaskka.com/static/redcar.jpeg"
     ],
     tapList:[],
-    heart:["../icon/redheart.png","../icon/heart.png"]
+    msgList:[],
+    heart:["../icon/redheart.png","../icon/heart.png"],
+    module:'',
+    id:'',
+    name:'',
+    location:'',
+    index:''
+
   },
   onLoad:function(options){
+    var that = this
     console.log(options)
     var taplist = new Array(this.data.imageList.length)
     taplist.fill(false)
     this.setData({
-      tapList:taplist
+      tapList:taplist,
+      module: options.module
+    })
+    wx.request({
+      url: `http://129.204.216.249:4000/message/get/${app.globalData.openid}/${this.data.module}/20/0`,
+      success(res){
+        console.log(res.data.data)
+        that.setData({
+          msgList:res.data.data
+        })
+      }
     })
   },
   like:function(e){
@@ -35,6 +53,7 @@ Page({
   },
   toEdit:function(e){
     app.route('../msg_edit/msg_edit', {
+      module: this.data.module
     });
   }
 })

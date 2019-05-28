@@ -79,7 +79,7 @@ Page({
 
     var that = this;
     wx.request({//选择完学科以后请求学科题目列表
-      url: `https://www.vaskka.com/mp/exercise/title/test/${title}`,
+      url: `https://www.vaskka.com/mp/exercise/title/${app.globalData.openid}/${title}`,
       success(res) {
         that.setData({
           list: res.data.data

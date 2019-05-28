@@ -1,6 +1,9 @@
 {
 "usingComponents": {
   "wux-icon": "../../dist/icon/index",
-  "wux-button": "../../dist/button/index"
+  "wux-button": "../../dist/button/index",
+  "wux-cell-group": "../../dist/cell-group/index",
+  "wux-cell": "../../dist/cell/index",
+  "wux-cascader": "../../dist/cascader/index"
 }
 }
