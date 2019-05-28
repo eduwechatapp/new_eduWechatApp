@@ -55,7 +55,7 @@ Page({
   async fetchData() {
     return new Promise(resolve => {
       wx.request({
-        url: `http://129.204.216.249:4000/exercise/detail/test/${this.data.subject}/${this.data.id}`,
+        url: `https://www.vaskka.com/mp/exercise/detail/test/${this.data.subject}/${this.data.id}`,
         success(response) {
           resolve(response.data);
         },

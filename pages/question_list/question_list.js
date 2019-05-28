@@ -54,7 +54,7 @@ Page({
   async fetchListData() {
     return new Promise(resolve => {
       wx.request({
-        url: `http://129.204.216.249:4000/exercise/list/test/${this.data.subject}/${this.data.yiji}/${this.data.erji}/${this.data.type[this.data.currentTap]}/false/5/0`,
+        url: `https://www.vaskka.com/mp/exercise/list/test/${this.data.subject}/${this.data.yiji}/${this.data.erji}/${this.data.type[this.data.currentTap]}/false/5/0`,
         success(response) {
           resolve(response.data);
         },
@@ -64,7 +64,7 @@ Page({
   async fetchTypeData() {
     return new Promise(resolve => {
       wx.request({
-        url: `http://129.204.216.249:4000/exercise/type/test/${this.data.subject}`,
+        url: `https://www.vaskka.com/mp/exercise/type/test/${this.data.subject}`,
         success(response) {
           resolve(response.data);
         },
