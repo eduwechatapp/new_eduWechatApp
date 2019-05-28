@@ -36,12 +36,8 @@ App({
     })
     // 加载缓存到 globalData
     this.checkCache();
-<<<<<<< HEAD
-    
-=======
     // 获取 open_id
     this.open_id = 'test';
->>>>>>> 8dca81e3f08d57223c7e3eecc1fde643d25c7df6
   },
 
   globalData: {
@@ -66,7 +62,6 @@ App({
       { name: '历史', unique: 'ls', index: 8, eng: 'history' },
     ],
   },
-<<<<<<< HEAD
   getOpenid() {
     let that = this;
     wx.cloud.callFunction({
@@ -79,10 +74,6 @@ App({
     })
   },
   post(_url, urlParam = {}, data = {}) {
-=======
-
-  post(_url, param = {}, data = {}) {
->>>>>>> 8dca81e3f08d57223c7e3eecc1fde643d25c7df6
     let url = `${host}${_url}`;
     if (Object.keys(param).length > 0) {
       urlParam = '?';
