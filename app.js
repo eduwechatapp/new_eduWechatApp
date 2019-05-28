@@ -1,3 +1,5 @@
+import api from './api/index';
+
 const host = 'https://www.vaskka.com/mp';
 
 App({
@@ -30,6 +32,8 @@ App({
     });
     // 加载缓存到 globalData
     this.checkCache();
+    // 获取 open_id
+    this.open_id = 'test';
   },
 
   globalData: {
@@ -54,14 +58,15 @@ App({
     ],
   },
 
-  post(_url, urlParam = {}, data = {}) {
+  post(_url, param = {}, data = {}) {
     let url = `${host}${_url}`;
-    if (Object.keys(urlParam) > 0) {
-      url += '?';
-      Object.keys(urlParam).forEach((k, i) => {
+    if (Object.keys(param).length > 0) {
+      urlParam = '?';
+      Object.keys(param).forEach((k, i) => {
         if (i > 0) {
-          url += `${k}=${urlParam[k]}`;
+          urlParam += '&';
         }
+        urlParam += `${k}=${param[k]}`;
       });
     }
     return new Promise((resolve, reject) => {
@@ -142,9 +147,16 @@ App({
     });
   },
 
+  clearStore() {
+    return new Promise(resolve => {
+      wx.clearStorage({ complete: resolve });
+    });
+  },
+
   async checkCache() {
+    await this.clearStore();
     let list = await this.getStore('noteList');
-    if (list === undefined) {
+    if (list === undefined || list === '') {
       list = {};
       this.globalData.subjectEnum.forEach(e => {
         list[e.name] = [];
@@ -154,3 +166,5 @@ App({
     this.globalData.noteList = list;
   },
 });
+
+getApp().api = api;

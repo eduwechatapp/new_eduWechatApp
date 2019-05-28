@@ -32,10 +32,9 @@ Page({
         subjectUnique = e.unique;
       }
     });
-    const url = `/search/detail/test/${subjectUnique}/20/${page}`;
-    const data = Data.searchMode == 0 ? { title: Data.searchValue } : { content: Data.searchValue };
+    const mode = Data.searchMode == 0 ? 'title' : 'content';
 
-    const response = await app.post(url, {}, data);
+    const response = await app.api.search.advance(Data.searchValue, 20, page, subjectUnique, mode);
 
     app.hideToast();
     return response.data.dataList;
