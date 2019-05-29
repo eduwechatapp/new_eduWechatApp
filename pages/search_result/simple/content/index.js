@@ -26,7 +26,10 @@ Page({
   },
 
   async fetchData(index) {
+    app.toast('加载中...');
     const response = await app.api.search.simple(Data.searchValue, 1, index);
+    app.hideToast();
+
     for (let i = 0; i < response.data.length; i++) {
       if (response.data[i].subject === Data.subjectName) {
         return response.data[i].dataList;

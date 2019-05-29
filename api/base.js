@@ -10,7 +10,7 @@ export function post(path, data = {}, param = {}) {
 export function get(path, param = {}) {
   const url = `${host}${path}?${toURLParam(param)}`;
   return new Promise(resolve => {
-    wx.request({ url, data, method: 'POST', success: res => resolve(res.data) });
+    wx.request({ url, success: res => resolve(res.data) });
   });
 }
 

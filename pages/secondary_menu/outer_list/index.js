@@ -22,13 +22,9 @@ const Data = {
   typeEng: '',
 };
 
-Page({
+export default Page({
   data: {
     listName: [],
-  },
-
-  Get(url) {
-    return new Promise(resolve => wx.request({ url: `http://129.204.216.249:4000${url}`, success: res => resolve(res.data) }));
   },
 
   async onLoad(options) {
@@ -38,7 +34,7 @@ Page({
     Data.typeEng = typeEng;
     Data.subjectEng = subjectEng;
 
-    const response = await this.Get(`/${subjectEng}/${typeEng}/mapping/get`);
+    const response = await app.api.secondary.map(subjectEng, typeEng);
     this.setData({
       listName: response.data,
     });

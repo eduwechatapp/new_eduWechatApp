@@ -1,4 +1,4 @@
-import { post, get } from './base';
+import { post } from './base';
 
 const search = {
   simple(key, pageSize, page) {
