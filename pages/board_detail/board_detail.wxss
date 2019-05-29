@@ -52,5 +52,148 @@ page{
   font-size: 35rpx;
   color: #6f6f6f;
   overflow: auto;
-  z-index: 100
+  z-index: 100;
+  white-space: pre-wrap;
+  position: relative
+}
+.more_img{
+  height: 40rpx;
+  width: 50rpx;
+  border-radius: 10rpx;
+
+}
+.more{
+  height: 40rpx;
+  width: 50rpx;
+  position: absolute;
+  right: 25rpx;
+  margin-top: 50rpx;
+  border-radius: 10rpx;
+  z-index:　100
+}
+.tap{
+  opacity: 0.6
+}
+
+
+.dialog{
+  position: fixed;
+  display: inline-block;
+  width: 25%;
+  background-color: rgb(102,102,103);
+  padding: 40rpx 20rpx 60rpx 20rpx;
+  z-index: 2;
+  margin-left: 40rpx;
+  margin-top: 20rpx;
+  height: 0rpx;
+  border-radius: 20rpx;
+  right: 100rpx
+}
+.imagehover{
+  border: 3rpx solid #4a93f3c0;
+  border-radius: 20rpx;
+}
+
+.u-tri::before{
+  position: absolute;
+  right: -2rpx;
+  top: 20rpx;
+  content: '';
+  width: 50rpx;
+  height: 50rpx;
+  border-style:solid;
+  border-width:2rpx;
+  border-color: rgb(102,102,103);
+  border-radius:6rpx;
+  background-color: rgb(102,102,103);
+  transform:rotate(45deg);
+  z-index: -1;
+}
+.comment_image{
+  height:50rpx;
+  width:50rpx;
+  margin-right:10rpx;
+
+}
+.comment_text{
+  font-size:38rpx;
+  color:white;
+  margin-left:10rpx;
+  margin-bottom:10rpx;
+}
+.contain{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  top:-15rpx;
+
+}
+.input{
+  background-color:white;
+  width:85%;
+  border-radius:15rpx;
+  height:80rpx;
+  display:flex;
+  margin-left:10rpx;
+  margin-bottom:10rpx;
+  padding-left:10rpx;
+}
+.input_area{
+  position: fixed;
+  bottom: 0;
+  height: 110rpx;
+  background-color: #eeeeee;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center
+}
+.button{
+  width:18%;
+  margin-left:12rpx;
+  height:68rpx;
+  font-size:36rpx;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background-color:#f0d39d;
+}
+.comment_box{
+  width: 90%;
+  margin:120rpx auto 0 auto;
+  background-color: #f7f7f7;
+  position:relative;
+  z-index: 2;
+  border-radius: 10rpx
+}
+
+.comment{
+  width: 100%;
+  border-radius: 15rpx;
+  padding:10px 20rpx 20px 20rpx;
+}
+.user_name{
+  display: inline-block;
+  color: #586b95
+}
+.user_comment{
+  display: inline-block;
+  margin-left: 20rpx
+}
+
+.rotate::before{
+  position: absolute;
+  top: -4rpx;
+  left: 20rpx;
+  content: '';
+  width: 50rpx;
+  height: 50rpx;
+  border-style:solid;
+  border-width:2rpx;
+  border-color: #f7f7f7 ;
+  border-radius:6rpx;
+  background-color: #f7f7f7;
+  transform:rotate(45deg);
+  z-index: -1;
 }

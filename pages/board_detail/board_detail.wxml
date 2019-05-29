@@ -1,17 +1,45 @@
-<image src="{{imageList[index]}}" class="image"></image>
-<movable-area class="movable_area">
-  <movable-view class="content" direction="vertical" y="100" damping="70" out-of-bounds="true">
-    <view class="top_box">
-      <view class="date">{{infoList[index].date}}</view>
-      <view class="right_box">
-        <view class="right_text">By </view>
-        <view class="name">{{infoList[index].name}}</view>
+<view class="page" bindtap="hideShow">
+  <image src="{{imageList[index]}}" class="image"></image>
+  <movable-area class="movable_area">
+    <movable-view class="content" direction="vertical" y="100" damping="70" out-of-bounds="true">
+      <view class="top_box">
+        <view class="date">{{infoList.createTime}}</view>
+        <view class="right_box">
+          <view class="right_text">By </view>
+          <view class="name">{{infoList.name}}</view>
+        </view>
       </view>
-    </view>
-    <view class="title">{{infoList[index].title}}</view>
-    <view class="text">{{infoList[index].content}}</view>
-  </movable-view>
-</movable-area>
+      <view class="title">{{infoList.title}}</view>
+      <view class="text">{{infoList.content}}</view>
+      <view class="more" catchtap="show" hover-class="tap" hover-stay-time='100'>
+        <image class="more_img" src="../icon/more.png"></image>
+      </view>
+
+      <view class='dialog u-tri' wx:if="{{show}}" catchtap="writeComment">
+        <view class="contain">
+          <image class="comment_image" src="../icon/comment.png"></image>
+          <view class="comment_text">评论</view>
+        </view>
+      </view>
+
+      <view class="comment_box rotate">
+        <view class="comment" wx:for="{{commentList}}">
+          <view class="user_name">{{item.name}}:</view>
+          <view class="user_comment">{{item.content}}</view>
+        </view>
+      </view>
+
+      
+      
+    </movable-view>
+  </movable-area>
+  <view class="input_area" wx:if='{{inputShow}}' catchtap="catch" style="bottom:{{bottom}}px">
+    <textarea fixed="{{true}}" show-confirm-bar="{{false}}"  auto-focus='true' class="input" placeholder='请输入留言' bindinput="input" adjust-position='{{false}}' bindfocus="focus" ></textarea>
+    <button catchtap="sent" class="button" disabled='{{disabled}}'>确定</button>
+  </view>
+  
+</view>
+
 
 
 

@@ -127,6 +127,14 @@ Page({
         console.log(res)
       }
     })
+    //获取页面栈并且更新前一个页面的数据
+    var pages = getCurrentPages();
+    if (pages.length > 1) {
+      //上一个页面实例对象
+      var prePage = pages[pages.length - 2];
+      var options={module:this.data.type}
+      prePage.onLoad(options)
+    }
     wx.navigateBack({
       delta: 1
     })
