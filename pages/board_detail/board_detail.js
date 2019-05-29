@@ -1,3 +1,4 @@
+var app = getApp()
 Page({
   data:{
     imageList: [
@@ -9,16 +10,103 @@ Page({
       "https://vaskka.com/static/redcar.jpeg"
     ],
     index:'',
-    infoList:[
-      { date: "2019.5.25", name: "煎蛋", title: "与煎蛋相处的一天", content:"今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大"},
-      { date: "2019.5.26", name: "欧巴", title: "与煎蛋相处的一天", content: "今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大"},
-      { date: "2019.5.27", name: "面包", title: "与煎蛋相处的一天", content: "今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大，今天成都太阳很大"}
-    ]
+    infoList:[],
+    id:'',
+    show: false,
+    inputShow: false,
+    disabled:true,
+    comment:'',
+    bottom:''
   },
   onLoad:function(options){
+    var that = this
     console.log(options)
     this.setData({
-      index:options.id%6
+      index:options.index,
+      id: options.id
     })
-  }
+    wx.request({
+      url: `http://129.204.216.249:4000/message/detail/${app.globalData.openid}/${this.data.id}`,
+      success(res){
+        res.data.data.createTime = res.data.data.createTime.slice(5).replace(/-/, "月") + "日"
+        that.setData({
+          infoList: res.data.data
+        })
+      }
+    })
+    wx.request({
+      url: `http://129.204.216.249:4000/message/reply/get/${app.globalData.openid}/${this.data.id}`,
+      success(res){
+        that.setData({
+          commentList:res.data.data 
+        })
+      }
+    })
+  },
+  show(e){
+    this.setData({
+      show: !this.data.show
+    })
+  },
+  hideShow(e){
+    this.setData({
+      show:false,
+      inputShow: false,
+      disabled: true
+    })
+  },
+  writeComment(e){
+    this.setData({
+      show: false,
+      inputShow: true
+    })
+
+  },
+  input(e){
+    this.setData({
+      comment: e.detail.value
+    })
+    if(this.data.comment!=''){
+      this.setData({
+        disabled: false
+      })
+    }
+    else{
+      this.setData({
+        disabled: true
+      })
+    }
+  },
+  catch(e){
+    //空函数阻止tap冒泡
+  },
+  sent(e){
+    var that = this
+    var body = {}
+    body.time=""
+    body.name=""
+    body.content=this.data.comment
+    wx.request({
+      url: `http://129.204.216.249:4000/message/reply/create/reply/${app.globalData.openid}/${this.data.id}`,
+      method:'POST',
+      data:body,
+      success(res){
+        var array = that.data.commentList
+        array.push(body)
+        that.setData({
+          show: false,
+          inputShow: false,
+          disabled: true,
+          commentList: array
+        })
+        
+      }
+    })
+  },
+  focus: function (e) {
+    var that = this;
+    that.setData({
+      bottom: e.detail.height
+    })
+  },
 })

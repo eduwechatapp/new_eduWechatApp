@@ -8,7 +8,7 @@
   width: 150rpx;
   height: 150rpx;
   margin-left: 50rpx;
-  margin-top: 50rpx;
+  margin-top: 25rpx;
   
 }
 .content{
@@ -113,7 +113,7 @@
 }
 .button{
   width: 60%;
-  margin: 250rpx auto 0 auto;
+  margin: 220rpx auto 0 auto;
 
 
 }

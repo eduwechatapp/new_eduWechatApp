@@ -23,7 +23,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.0",
+	"libVersion": "2.6.6",
 	"appid": "wx34f69a4b4a8c4829",
 	"projectname": "KDGZ",
 	"debugOptions": {
