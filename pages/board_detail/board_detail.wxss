@@ -11,6 +11,7 @@ page{
   z-index: 100;
   border-radius: 20rpx;
   
+
 }
 .movable_area{
   height: 100%;
@@ -160,12 +161,16 @@ page{
   background-color:#f0d39d;
 }
 .comment_box{
-  width: 90%;
+  width:90%;
   margin:120rpx auto 0 auto;
-  background-color: #f7f7f7;
+  background-color:#f7f7f7;
   position:relative;
-  z-index: 2;
-  border-radius: 10rpx
+  z-index:2;
+  border-radius:10rpx;
+  /*overflow-x:hidden;
+ overflow-y:scroll;*/
+  height:530rpx;
+
 }
 
 .comment{
