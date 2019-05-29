@@ -16,7 +16,9 @@ Page({
     const { type, subjectName } = options;
     Data.type = type;
     Data.subjectName = subjectName;
+  },
 
+  onShow() {
     const list = await this.fetchData(this.data.page);
     if (list.length === 0) {
       this.noResult();
@@ -26,7 +28,6 @@ Page({
   },
 
   async fetchData(page) {
-    app.toast('加载中');
     const dict = {
       '需要留意': 1,
       '重点关注': 2,
@@ -38,11 +39,10 @@ Page({
       }
     });
     const list = [];
-    const begin = page * 20
+    const begin = page * 20;
     for (let i = begin; i < noteList.length && i < begin + 20; i++) {
       list.push(noteList[i]);
     }
-    app.hideToast();
     return list;
   },
 
@@ -79,6 +79,8 @@ Page({
     const index = this.data.page * 20 + e.detail.index;
     app.route('./content/index', {
       index,
+      type: Data.type,
+      subjectName: Data.subjectName,
     });
   },
 });

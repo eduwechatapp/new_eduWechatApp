@@ -63,6 +63,7 @@ App({
       { name: '历史', unique: 'ls', index: 8, eng: 'history' },
     ],
   },
+
   getOpenid() {
     let that = this;
     wx.cloud.callFunction({
@@ -74,6 +75,7 @@ App({
       }
     })
   },
+
   post(_url, urlParam = {}, data = {}) {
     let url = `${host}${_url}`;
     if (Object.keys(param).length > 0) {
@@ -170,7 +172,6 @@ App({
   },
 
   async checkCache() {
-    await this.clearStore();
     let list = await this.getStore('noteList');
     if (list === undefined || list === '') {
       list = {};
