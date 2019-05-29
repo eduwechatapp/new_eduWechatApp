@@ -1,1 +1,1 @@
-<x-content bindload='fetchData' list='{{articleList}}' subject='{{subjectName}}' index='{{contentIndex}}' />
+<x-content article='{{article}}' subject='{{subjectName}}' cindex='{{cindex}}' bindchangepage='changePage' />

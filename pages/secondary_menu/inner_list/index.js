@@ -33,7 +33,7 @@ Page({
 
   async fetchData(page) {
     app.toast('加载中');
-    const response = await this.Get(`/${Data.subjectEng}/${Data.typeEng}/get/test/${Data.which}/20/${page}`);
+    const response = await app.api.secondary.getDataByMap(Data.subjectEng, Data.typeEng, Data.which, 20, page);
     app.hideToast();
     return response.data;
   },
@@ -70,6 +70,9 @@ Page({
   toContent(e) {
     const index = this.data.page * 20 + e.detail.index;
     app.route('../content/index', {
+      typeEng: Data.typeEng,
+      subjectEng: Data.subjectEng,
+      which: Data.which,
       index,
     });
   },

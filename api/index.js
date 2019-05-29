@@ -1,9 +1,9 @@
 import search from './search';
-
-const app = getApp();
+import secondary from './secondary';
 
 const api = {
   search,
+  secondary,
 };
 
 export default api;

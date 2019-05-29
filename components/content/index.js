@@ -41,7 +41,6 @@ Component({
       Data.title = e.title;
       this.checkImportance(e.title);
       WxParse.wxParse('articleParse', 'html', e.content, this, 5);
-      app.toast('加载成功!');
     },
   },
 

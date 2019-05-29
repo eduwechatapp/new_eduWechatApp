@@ -72,7 +72,6 @@ Page({
       menu.push(Data.menuListEnum[e]);
     });
     const noteList = app.globalData.noteList[subjectName];
-    app.toast('here8');
     if (noteList.length > 0) {
       if (noteList.some(e => e.importance === 1)) {
         menu.push(Data.menuListEnum['需要留意']);

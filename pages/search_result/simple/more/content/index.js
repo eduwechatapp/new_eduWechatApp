@@ -17,7 +17,11 @@ Page({
     const index = parseInt(sindex);
     Data.searchValue = searchValue;
     Data.subjectName = subjectName;
+
+    app.toast('加载中...');
     const response = await this.fetchData(index);
+    app.hideToast();
+
     this.setData({
       article: response[0],
       cindex: index,

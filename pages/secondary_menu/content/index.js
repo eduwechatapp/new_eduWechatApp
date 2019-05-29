@@ -10,11 +10,12 @@ Page({
   data: {
     article: {},
     subjectName: '',
-    contentIndex: 0,
+    cindex: 0,
   },
 
   async onLoad(options) {
-    const { typeEng, subjectEng, which, index } = options;
+    const { typeEng, subjectEng, which, index: sindex } = options;
+    const index = parseInt(sindex);
     Data.subjectEng = subjectEng;
     Data.typeEng = typeEng;
     Data.which = which;
@@ -29,23 +30,36 @@ Page({
     const list = await this.fetchData(index);
 
     this.setData({
-      contentIndex: index,
+      cindex: index,
       subjectName: subjectName,
       article: list[0],
     });
-  },
-
-  Get(url) {
-    return new Promise(resolve => wx.request({ url: `https://www.vaskka.com/mp${url}`, success: res => resolve(res.data) }));
   },
 
   noMore() {
     app.toast('没有更多数据了');
   },
 
-  async fetchData(page) {
-    app.toast('加载中');
-    const response = await this.Get(`/${Data.subjectEng}/${Data.typeEng}/get/test/${Data.which}/1/${page}`);
+  async changePage(e) {
+    const { index } = e.detail;
+    if (index < 0) {
+      app.toast('已经是第一页了');
+      return;
+    }
+    const response = await this.fetchData(index);
+    if (response.length === 0) {
+      app.toast('没有更多数据了');
+      return;
+    }
+    this.setData({
+      article: response[0],
+      cindex: index,
+    });
+  },
+
+  async fetchData(index) {
+    app.toast('加载中...');
+    const response = await app.api.secondary.getDataByMap(Data.subjectEng, Data.typeEng, Data.which, 1, index);
     app.hideToast();
     return response.data;
   },

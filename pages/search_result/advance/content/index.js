@@ -36,7 +36,9 @@ Page({
     });
     const mode = Data.searchMode == 0 ? 'title' : 'content';
 
+    app.toast('加载中...');
     const response = await app.api.search.advance(Data.searchValue, 1, index, subjectUnique, mode);
+    app.hideToast();
 
     return response.data.dataList;
   },
