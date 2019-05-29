@@ -38,6 +38,7 @@ App({
     this.checkCache();
     // 获取 open_id
     this.open_id = 'test';
+    this.api = api;
   },
 
   globalData: {
@@ -181,5 +182,3 @@ App({
     this.globalData.noteList = list;
   },
 });
-
-getApp().api = api;

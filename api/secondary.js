@@ -1,4 +1,4 @@
-import { get } from './base';
+import { get, openid } from './base';
 
 const secondary = {
   map(subjectEng, typeEng) {
@@ -6,8 +6,7 @@ const secondary = {
   },
 
   getDataByMap(subjectEng, typeEng, which, pageSize, page) {
-    const openid = getApp().open_id;
-    return get(`/${subjectEng}/${typeEng}/get/${openid}/${which}/${pageSize}/${page}`);
+    return get(`/${subjectEng}/${typeEng}/get/${openid()}/${which}/${pageSize}/${page}`);
   },
 };
 

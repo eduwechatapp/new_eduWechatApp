@@ -24,3 +24,7 @@ export function toURLParam(data) {
   });
   return ret;
 }
+
+export function openid() {
+  return getApp().globalData.openid;
+}

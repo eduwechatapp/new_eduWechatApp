@@ -1,14 +1,12 @@
-import { post } from './base';
+import { post, openid } from './base';
 
 const search = {
   simple(key, pageSize, page) {
-    const open_id = getApp().open_id;
-    return post(`/search/simple/${open_id}/${key}/${pageSize}/${page}`);
+    return post(`/search/simple/${openid()}/${key}/${pageSize}/${page}`);
   },
 
   advance(key, pageSize, page, subjectUnique, mode) {
-    const open_id = getApp().open_id;
-    return post(`/search/detail/${open_id}/${subjectUnique}/${pageSize}/${page}`, {
+    return post(`/search/detail/${openid()}/${subjectUnique}/${pageSize}/${page}`, {
       [mode]: key,
     });
   }
