@@ -1,3 +1,5 @@
+import data from './data.js'
+var app = getApp()
 Page({
   data:{
     imageList: [
@@ -14,7 +16,26 @@ Page({
     currentSelect:0,
     name:'',
     title:'',
-    content:''
+    content:'',
+    visible: false,
+    location:'',
+    options: data,
+    value:''
+  },
+  onLoad(option){
+    this.setData({
+      type: option.module
+    })
+  },
+  onOpen() {
+    this.setData({ visible: true })
+  },
+  onClose() {
+    this.setData({ visible: false })
+  },
+  onChange(e) {
+    this.setData({ location: e.detail.options.map((n) => n.label).join('/') })
+    console.log('onChange', e.detail)
   },
   bindDateChange:function(e){
     this.setData({
@@ -75,11 +96,36 @@ Page({
       });
       return;
     }
+
+    if (this.data.location == "") {
+      wx.showModal({
+        title: '提示',
+        content: '您还没选择您的地址哦',
+        showCancel: false,
+      });
+      return;
+    }
     wx.showToast({
       title: '留言成功',
       icon: 'succes',
       duration: 700,
       mask: true
+    })
+    var body={};
+    body.index = this.data.currentSelect
+    body.type = this.data.type
+    body.time = this.data.date
+    body.location = this.data.location
+    body.name = this.data.name
+    body.title = this.data.title
+    body.content = this.data.content
+    wx.request({
+      url: `http://129.204.216.249:4000/message/create/${app.globalData.openid}`,
+      method:'POST',
+      data:body,
+      success(res){
+        console.log(res)
+      }
     })
     wx.navigateBack({
       delta: 1

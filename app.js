@@ -30,6 +30,10 @@ App({
         }
       }
     });
+    wx.cloud.init({
+      env: 'kdgz-6vgzs',
+      traceUser: true
+    })
     // 加载缓存到 globalData
     this.checkCache();
     // 获取 open_id
@@ -45,6 +49,7 @@ App({
     template: '',
     summary: '',
     content: '',
+    openid:'',
     subjectEnum: [
       { name: '英语', unique: 'yy', index: 0, eng: 'english' },
       { name: '数学', unique: 'sx', index: 1, eng: 'math' },
@@ -57,8 +62,18 @@ App({
       { name: '历史', unique: 'ls', index: 8, eng: 'history' },
     ],
   },
-
-  post(_url, param = {}, data = {}) {
+  getOpenid() {
+    let that = this;
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      complete: res => {
+        console.log('云函数获取到的openid: ', res.result.openId)
+        var openid = res.result.openId;
+        that.globalData.openid = openid
+      }
+    })
+  },
+  post(_url, urlParam = {}, data = {}) {
     let url = `${host}${_url}`;
     if (Object.keys(param).length > 0) {
       urlParam = '?';
