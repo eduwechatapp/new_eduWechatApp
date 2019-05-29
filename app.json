@@ -2,13 +2,11 @@
   "pages": [
     "pages/home/home",
     "pages/question/question",
-
     "pages/msg_board/msg_board",
     "pages/msg_edit/msg_edit",
     "pages/index/index",
     "pages/board_detail/board_detail",
     "pages/display_board/display_board",
-
     "pages/question_list/question_list",
     "pages/question_detail/question_detail",
     "pages/logs/logs",

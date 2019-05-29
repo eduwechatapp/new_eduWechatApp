@@ -1,3 +1,4 @@
 *.ts
 *.bak.*
 /distbak
+*.py
