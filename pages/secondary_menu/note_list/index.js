@@ -18,13 +18,32 @@ Page({
     Data.subjectName = subjectName;
   },
 
-  onShow() {
-    const list = await this.fetchData(this.data.page);
-    if (list.length === 0) {
-      this.noResult();
-      return;
+  async onShow() {
+    /**
+     * onShow 时如果 data.page !== 0, 则表示是从 content 目录返回
+     * 回来的, 此时由于 list.length === 0, 表示用户在 content 目录更改
+     * 了 article 的 importance, 那么就为用户显示最后一页。
+     */
+    await this.Set({ list: [] });
+    const toLastPage = async page => {
+      const list = await this.fetchData(page);
+      if (list.length === 0) {
+        if (page === 0) {
+          this.noResult();
+          return;
+        }
+        toLastPage(page - 1);
+        return;
+      }
+      this.setData({ list, page });
     }
-    this.setData({ list });
+    await toLastPage(this.data.page);
+  },
+
+  Set(options) {
+    return new Promise(resolve => {
+      this.setData(options, resolve);
+    });
   },
 
   async fetchData(page) {

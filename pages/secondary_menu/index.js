@@ -67,11 +67,14 @@ Page({
   onLoad(options) {
     const { subjectName } = options;
     Data.subjectName = subjectName;
+  },
+
+  onShow() {
     const menu = [];
-    Data.subjectInfoEnum[options.subjectName].forEach(e => {
+    Data.subjectInfoEnum[Data.subjectName].forEach(e => {
       menu.push(Data.menuListEnum[e]);
     });
-    const noteList = app.globalData.noteList[subjectName];
+    const noteList = app.globalData.noteList[Data.subjectName];
     if (noteList.length > 0) {
       if (noteList.some(e => e.importance === 1)) {
         menu.push(Data.menuListEnum['需要留意']);

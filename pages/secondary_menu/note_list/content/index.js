@@ -38,8 +38,9 @@ Page({
       }
     });
     if (noteList.length > index) {
+      app.toast('加载中...');
       const { data: article } = await app.api.notelist.fetchContent(Data.subjectName, noteList[index].title);
-      console.log('article', article);
+      app.hideToast();
       return [article];
     }
     return [];
