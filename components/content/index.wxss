@@ -1,27 +1,31 @@
-.content-wrapper {
+.scroll-view {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  margin-bottom: -60px;
 }
 
-.content-wrapper .article {
+.article {
   padding: 15px;
-  overflow: scroll;
-  flex-grow: 1;
 }
 
-.content-wrapper .bottom {
-  padding: 15rpx;
+.push-back {
+  height: 60px;
+}
+
+.bottom {
+  height: 60px;
   box-shadow: 0 10rpx 10px 3px rgba(0, 0, 0, 0.3);
+  background: white;
+  position: relative;
+  z-index: 9999;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 .button {
   width: 200rpx;
-  height: 40px;
+  height: 80rpx;
   display: flex;
   justify-content: center;
   align-items: center;

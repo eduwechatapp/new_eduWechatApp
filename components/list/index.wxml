@@ -1,14 +1,14 @@
-<view class="list-wrapper">
-  <view class='scroll-area'>
-    <view class="list" bindtap="tapItem" wx:for="{{list}}" wx:key='{{index}}' hover-class='tap_performance' hover-stay-time='100' data-index="{{index}}">
-      <view class="left_text">{{item.title}}</view>
-      <view class="icon_display">
-        <image src="/pages/icon/right.png" class="right_icon"></image>
-      </view>
+<scroll-view scroll-y scroll-top='{{top}}' enable-back-to-top class='scroll-view'>
+  <view class="list" bindtap="tapItem" wx:for="{{list}}" wx:key='{{index}}' hover-class='on-tap' hover-stay-time='100' data-index="{{index}}">
+    <view class="left-text">{{item.title}}</view>
+    <view class="icon-display">
+      <image src="/pages/icon/right.png" class="right-icon"></image>
     </view>
   </view>
-  <view class='pagination'>
-    <view bindtap='changePage' data-type='prev'>上一页</view>
-    <view bindtap='changePage' data-type='next'>下一页</view>
-  </view>
+  <view class='push-back' />
+</scroll-view>
+
+<view class='pagination'>
+  <view bindtap='changePage' data-type='prev'>上一页</view>
+  <view bindtap='changePage' data-type='next'>下一页</view>
 </view>
