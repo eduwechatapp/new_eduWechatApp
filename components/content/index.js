@@ -39,6 +39,9 @@ Component({
         return;
       }
       Data.title = e.title;
+      wx.setNavigationBarTitle({
+        title: e.title,
+      });
       this.checkImportance(e.title);
       WxParse.wxParse('articleParse', 'html', e.content, this, 5);
     },
