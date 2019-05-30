@@ -22,21 +22,25 @@ Page({
   onLoad:function(options){
     var that = this
     console.log(options)
-    var taplist = new Array(this.data.imageList.length)
-    taplist.fill(false)
+    
     this.setData({
-      tapList:taplist,
+      
       module: options.module
     })
     wx.request({
-      url: `https://www.vaskka.com/mp/message/get/${app.globalData.openid}/${this.data.module}/20/0`,
+      url: `https://www.vaskka.com/mp/message/get/${app.globalData.openid}/${that.data.module}/20/0`,
       success(res){
         for(let i = 0;i<res.data.data.length;i++){
           res.data.data[i].createTime = res.data.data[i].createTime.slice(5).replace(/-/,"月")+"日"
         }
-        console.log(res.data.data)
         that.setData({
-          msgList:res.data.data
+          msgList:res.data.data,
+        })
+        var taplist = new Array(that.data.msgList.length)
+        console.log(that.data.msgList.length)
+        taplist.fill(false)
+        that.setData({
+          tapList:taplist
         })
       }
     })
