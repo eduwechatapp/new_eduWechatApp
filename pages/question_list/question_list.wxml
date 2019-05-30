@@ -22,7 +22,10 @@
 </view>
 
 
-<view class="nodata" wx:if="{{noData}}">本题型下暂无数据哦，请切换题型~</view>
+<view class="nodata" wx:if="{{noData}}">
+  <image src="../icon/nodata.png" class="nodata_img"></image>
+  <view class="nodata_text">本题型下暂无数据哦，请切换题型~</view>
+</view>
 
 <view class="switch_box" hover-class="bindP" hover-stay-time='100' bindtap="show">
     <image class="button_img" src="../icon/switch.png" ></image>

@@ -69,3 +69,23 @@ page{
   background-color: rgb(0, 0, 0);
   opacity: 0.8
 }
+.nodata{
+  width:80%;
+  position:fixed;
+  top:300rpx;
+  margin:0 auto;
+  right:0;
+  left:0;
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+}
+.nodata_img{
+  width: 250rpx;
+  height: 250rpx;
+  margin-bottom: 80rpx
+}
+.nodata_text{
+  color: #000000;
+  font-size: 35rpx
+}

@@ -147,11 +147,12 @@ Page({
     })
     console.log(response)
     if (response.data.length == 0) {
+      wx.hideLoading()
       app.toast('没有更多数据了')
       that.setData({
         currentPage: that.data.currentPage - 1
       })
-      wx.hideLoading()
+      
       return
     }
     else {

@@ -16,7 +16,8 @@ Page({
     id:'',
     name:'',
     location:'',
-    index:''
+    index:'',
+    nodata: false
 
   },
   onLoad:function(options){
@@ -30,6 +31,11 @@ Page({
     wx.request({
       url: `https://www.vaskka.com/mp/message/get/${app.globalData.openid}/${that.data.module}/20/0`,
       success(res){
+        if(res.data.data.length == 0){
+          that.setData({
+            nodata: true
+          })
+        }
         for(let i = 0;i<res.data.data.length;i++){
           res.data.data[i].createTime = res.data.data[i].createTime.slice(5).replace(/-/,"月")+"日"
         }
