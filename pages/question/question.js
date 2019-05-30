@@ -19,7 +19,6 @@ Page({
       '地理', '历史', '生物'
     ],
     contentHeight: 0,
-    testAni: 'transition: all 1s ease; height: 0; opacity: 0;',
   },
   onLoad(e) {
     wx.showLoading({
@@ -28,39 +27,36 @@ Page({
     this.request("语文")
   },
   changeShow(e) {
-    var that = this;
-    for (var i = 0; i < that.data.list.length; i++) {
-      if (e.currentTarget.dataset.id == that.data.list[i].id) {
-        var index = "list[" + e.currentTarget.dataset.id + "].show"
-        if (that.data.list[i].show) {
-          console.log('hide');
-          that.setData({
-            testAni: 'transition: height .5s .1s ease, opacity .5s ease; height: 0; opacity: 0;',
+    const id = e.currentTarget.dataset.id;
+    const tranHO = 'transition: height .5s ease, opacity .5s .1s ease;';
+    const tranOH = 'transition: height .5s .1s ease, opacity .5s ease;';
+    const tout = `${tranOH}height: 0; opacity: 0;`;
+    const tin = `${tranHO}height: 100rpx; opacity: 1;`;
+    this.data.list.forEach((v, i) => {
+      const name = `list[${i}].show`;
+      if (v.show) {
+        this.setData({
+          [`list[${i}].style`]: tout,
+        });
+        setTimeout(() => {
+          this.setData({
+            [name]: false,
           });
-          setTimeout(() => {
-            that.setData({
-              [index]: false,
-              currentTap: null,
-            });
-          }, 550);
-        } else {
-          that.setData({
-            [index]: true,
-            currentTap: e.currentTarget.dataset.id,
-          }, () => {
-            let testAni = 'transition: height .5s ease, opacity .5s .1s ease;';
-            testAni += 'height: 100rpx;';
-            testAni += 'opacity: 1;';
-            that.setData({ testAni });
-          });
-        }
-      } else {
-        var index1 = "list[" + i + "].show"
-        that.setData({
-          [index1]: false
-        })
+        }, 550);
+        return;
       }
-    }
+      if (v.id != id) {
+        return;
+      }
+      this.setData({
+        [name]: true,
+        currentTap: id,
+      }, () => {
+        this.setData({
+          [`list[${i}].style`]: tin,
+        });
+      });
+    });
   },
   toQuestion: function(e) {
     var that = this;
@@ -94,6 +90,9 @@ Page({
     wx.request({ //选择完学科以后请求学科题目列表
       url: `https://www.vaskka.com/mp/exercise/title/${app.globalData.openid}/${title}`,
       success(res) {
+        res.data.data.forEach(e => {
+          e.style = 'opacity: 0; height: 0;';
+        });
         that.setData({
           list: res.data.data
         })

@@ -10,7 +10,7 @@
     wx:if="{{item.show}}"
     wx:for="{{item.children}}"
     wx:key='{{index}}'
-    style='{{testAni}}'
+    style='{{item.style}}'
     wx:for-item="sub_title"
     data-id="{{index}}"
     catchtap="toQuestion">
