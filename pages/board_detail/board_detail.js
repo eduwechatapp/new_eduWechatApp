@@ -16,7 +16,8 @@ Page({
     inputShow: false,
     disabled:true,
     comment:'',
-    bottom:''
+    bottom:'',
+    writeCommentStyle: 'transform: scaleX(0); transition: all .5s ease;',
   },
   onLoad:function(options){
     var that = this
@@ -43,10 +44,25 @@ Page({
       }
     })
   },
-  show(e){
+  show() {
+    if (this.data.show) {
+      this.setData({
+        writeCommentStyle: 'transform: scaleX(0); transformOrigin: 100%; transition: all .5s ease;',
+      });
+      setTimeout(() => {
+        this.setData({
+          show: !this.data.show,
+        });
+      }, 550);
+      return;
+    }
     this.setData({
-      show: !this.data.show
-    })
+      show: !this.data.show,
+    }, () => {
+      this.setData({
+        writeCommentStyle: 'transform: scaleX(1); transform-origin: 100%; transition: all .5s ease;',
+      });
+    });
   },
   hideShow(e){
     this.setData({
