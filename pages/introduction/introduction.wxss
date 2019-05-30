@@ -2,7 +2,7 @@
   font-size: 16px;
   padding: 15px;
   background: rgb(240, 240, 240);
-  height: 100vh;
+  height: 100%;
 }
 
 .introduction-wrapper .li {
@@ -12,4 +12,9 @@
 .introduction-wrapper .topic {
   font-weight: bold;
   color: rosybrown;
+}
+.split {
+  border-bottom: rgb(200, 200, 200) dashed 5rpx;
+  height: 20rpx;
+  margin-bottom: 30rpx
 }

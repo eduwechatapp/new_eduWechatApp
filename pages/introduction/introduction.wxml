@@ -1,8 +1,15 @@
 <view class='introduction-wrapper'>
-  <view class='li'>学霸の口袋高中共有九科资料，在首页点击按钮可以进入各科资料页。</view>
+  <view class='li'>口袋高中共有九科资料，在首页点击按钮可以进入各科资料页。</view>
   <view class='li'><view class='topic'>#知识点#</view>包含了各科课本上的基础知识，是各科知识点的汇总和集中。</view>
   <view class='li'><view class='topic'>#专题#</view>各科的模块知识点总结，有助于考生快速系统的掌握知识点。</view>
   <view class='li'><view class='topic'>#归纳总结#</view>各类常考知识点，易错知识点的汇总和提炼。</view>
   <view class='li'><view class='topic'>#答题模版#</view>常见题型的固定答题模版和套路，帮助考生用最短的时间掌握答题套路，把握答题要点。</view>
-  <view class='li'><view class='topic'>#需要留意、重点关注#</view>你可以在阅读页面顶部按钮对感兴趣的内容，进行需要留意或者重点关注的标注，标注过的内容将会出现在对应的板块中，方便快速查看。</view>
+  <view class='li'><view class='topic'>#需要留意、重点关注#</view>可以在阅读页面顶部按钮对感兴趣的内容，进行需要留意或者重点关注的标注，标注过的内容将会出现在对应的板块中，方便快速查看。</view>
+  <view class='li'><view class='topic'>#知识点搜索#</view>首页顶部提供了知识点搜索入口，直接键入关键词搜索结果或者展开下方高级搜素选项来精确搜索内容</view>
+  <view class="split"></view>
+  <view class='li'><view class='topic'>#题库#</view>提供了高中九科的题库。涵盖了高中九科的绝大部分知识点，有丰富的题型供您选择。可通过题库检测知识点的缺漏</view>
+  <view class="split"></view>
+  <view class='li'><view class='topic'>#留言板#</view>提供了留言板功能，在这里所有想法都可以与人分享，所有的烦恼还有困惑都可以在此留言，是您心情的记录板，力量的充电站</view>
+  <view class="split"></view>
+  <view class='li'><view class='topic'>#我的页面#</view>可以设置您的基本信息，使用小程序中遇见的不愉快，也可以提交给我们哦</view>
 </view>
