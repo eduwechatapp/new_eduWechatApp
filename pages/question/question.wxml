@@ -1,22 +1,21 @@
 <wux-select id="wux-select" />
-
 <wux-cell title="学科 (请选择)" extra="{{ title }}" bind:click="onClick"></wux-cell>
-
-
-<view wx:for="{{list}}" wx:key='{{index}}'  data-id="{{index}}" bindtap="changeShow">
-
-  <view class="item-title"   >
+<view wx:for="{{list}}" wx:key='{{index}}' data-id="{{index}}" bindtap="changeShow">
+  <view class="item-title">
     <image class="left-icon" src="{{item.show? srcPath[1] : srcPath[0]}}"></image>
     <view class="title-text">{{item.title}}</view>
     <image class="right-icon"></image>
   </view>
-
-  <view class="item-content" wx:if="{{item.show}}" wx:for="{{item.children}}" wx:key='{{index}}' wx:for-item="sub_title" data-id="{{index}}" catchtap="toQuestion">
+  <view class="item-content"
+    wx:if="{{item.show}}"
+    wx:for="{{item.children}}"
+    wx:key='{{index}}'
+    style='{{testAni}}'
+    wx:for-item="sub_title"
+    data-id="{{index}}"
+    catchtap="toQuestion">
     <image class="content-icon-l" src="../icon/spot.png"></image>
     <view class="title-text">{{sub_title}}</view>
     <image class="right-icon" src="../icon/eye.png"></image>
   </view>
-
 </view>
-
-
