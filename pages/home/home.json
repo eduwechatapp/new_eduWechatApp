@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "学霸の口袋高中",
+  "navigationBarTitleText": "口袋高中",
   "usingComponents": {
     "wux-animation-group": "../../dist/animation-group/index",
     "wux-accordion-group": "../../dist/accordion-group/index",
