@@ -51,6 +51,10 @@ App({
     summary: '',
     content: '',
     openid:'',
+    name:'',
+    location:'',
+    school:'',
+    haveset:false,
     subjectEnum: [
       { name: '英语', unique: 'yy', index: 0, eng: 'english' },
       { name: '数学', unique: 'sx', index: 1, eng: 'math' },

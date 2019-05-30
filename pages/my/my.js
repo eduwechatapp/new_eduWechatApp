@@ -17,7 +17,7 @@ Page({
   data: {
     infoList: [{
       imageUrl: '../../pages/icon/score.png',
-      title: '设置留言板昵称',
+      title: '基本信息设置',
       function: 'toInfoChange',
       params: 'score'
     }],
