@@ -20,9 +20,9 @@
     </view>
 
     <view style="width:100%" wx:if="{{type=='score'}}">
-        <text class="title">选择您的模考分数区间</text>
-        <view style="font-size:30rpx;margin:20rpx 0;">区间：{{score}}</view>
-        <wux-slider step="1" defaultValue="{{ [40, 65] }}" min="0" max="100"  bind:afterChange="afterChange" bind:change="change"/>
+        <text class="title">设置您的留言板昵称</text>
+        <view  class="text">你的昵称</view>
+        <input placeholder="请输入您的昵称" class="input"></input>
     </view>
 
     <view class="btn" hover-class="hover-class" bindtap="submit">

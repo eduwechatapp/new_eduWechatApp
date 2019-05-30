@@ -41,3 +41,13 @@
 .hover-class{
     opacity: .7;
 }
+.input{
+  width:90%;
+  height:80rpx;
+  border-bottom:2rpx solid #cdcdcd;
+  font-size:30rpx;
+}
+.text{
+  font-size: 30rpx;
+  
+}

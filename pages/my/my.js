@@ -17,7 +17,7 @@ Page({
   data: {
     infoList: [{
       imageUrl: '../../pages/icon/score.png',
-      title: '模考分数区间',
+      title: '设置留言板昵称',
       function: 'toInfoChange',
       params: 'score'
     }],
