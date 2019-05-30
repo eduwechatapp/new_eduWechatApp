@@ -21,6 +21,12 @@ Page({
       function: 'toInfoChange',
       params: 'score'
     }],
+    infoList1 :[{
+      imageUrl: '../../pages/icon/clean.png',
+      title: '清除缓存',
+      function: 'clean',
+      params: 'clean'
+    }],
     funcList: [{
       imageUrl: '../../pages/icon/feedback.png',
       title: '功能建议',
@@ -158,5 +164,22 @@ Page({
     wx.navigateTo({
       url: '../feedback/feedback'
     })
+  },
+  clean:function(e){
+    var that = this
+    wx.showModal({
+      title: '警告',
+      content: '您对文章的标记还有个人信息将会失效，确定继续吗？',
+      success(res){
+        if(res.confirm){
+          wx.clearStorageSync()
+          that.setData({
+            ["info.major"]:"请选择科目",
+            ["info.grade"]:"请选择年级"
+          })
+        }
+      }
+    })
+    
   }
 })
