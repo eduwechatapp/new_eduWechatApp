@@ -56,13 +56,14 @@ page{
   bottom: 140rpx;
 }
 .button_box{
-  height: 100rpx;
-  width: 100rpx;
-  border-radius: 50%;
-  position: fixed;
-  right:10rpx;
-  bottom: 140rpx;
-  box-shadow: 0 5rpx 10rpx #afafa6
+  height:90rpx;
+  width:90rpx;
+  border-radius:50%;
+  position:fixed;
+  right:15rpx;
+  bottom:147rpx;
+  box-shadow:0 7rpx 13rpx #afafa6;
+
 }
 .bindP{
   background-color: rgb(0, 0, 0);
