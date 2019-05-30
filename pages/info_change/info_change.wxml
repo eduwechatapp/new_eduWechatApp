@@ -20,12 +20,19 @@
     </view>
 
     <view style="width:100%" wx:if="{{type=='score'}}">
-        <text class="title">选择您的模考分数区间</text>
-        <view style="font-size:30rpx;margin:20rpx 0;">区间：{{score}}</view>
-        <wux-slider step="1" defaultValue="{{ [40, 65] }}" min="0" max="100"  bind:afterChange="afterChange" bind:change="change"/>
+        <text class="title">{{haveset?"个人信息":"设置您的个人信息"}}</text>
+        <view  class="text">你的称呼</view>
+        <input wx:if="{{!haveset}}"placeholder="请输入您的称呼(用于留言板)" class="input" bindinput="input" data-type="name"></input>
+        <view wx:if="{{haveset}}" class="user_info">{{name}}</view>
+        <view  class="text">所在省份</view>
+        <input wx:if="{{!haveset}}" placeholder="请输入您的省份 (xx省)" class="input" bindinput="input" data-type="location"></input>
+        <view wx:if="{{haveset}}"class="user_info">{{location}}</view>
+        <view  class="text">学校</view>
+        <input wx:if="{{!haveset}}" placeholder="请输入您的学校" class="input" bindinput="input" data-type="school"></input>
+        <view wx:if="{{haveset}}"class="user_info">{{school}}</view>
     </view>
 
-    <view class="btn" hover-class="hover-class" bindtap="submit">
-        <text class="btn-text">完成</text>
+    <view class="btn" hover-class="hover-class" hover-stay-time='100' bindtap="setMsg">
+        <text class="btn-text">{{haveset?"修改":"完成"}}</text>
     </view>
 </view>

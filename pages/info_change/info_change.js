@@ -1,4 +1,5 @@
 // pages/info_change/info_change.js
+var app = getApp()
 Page({
 
   /**
@@ -17,7 +18,10 @@ Page({
     ],
 
     score:'400 - 650',
-    
+    name:'',
+    location:'',
+    school:'',
+    haveset:''
   },
 
   /**
@@ -25,10 +29,44 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    
     that.setData({
-      type: options.type
+      type: options.type,
     })
-    console.log(options)
+    var value = wx.getStorageSync('haveset')
+    that.setData({
+      haveset: value
+    })
+    app.globalData.haveset = value
+    console.log(app.globalData.haveset)
+    if(app.globalData.haveset){
+      wx.getStorage({
+        key: 'name',
+        success: function(res) {
+          that.setData({
+            name:res.data
+          })
+        },
+      })
+      wx.getStorage({
+        key: 'location',
+        success: function (res) {
+          that.setData({
+            location: res.data
+          })
+        },
+      })
+      wx.getStorage({
+        key: 'school',
+        success: function (res) {
+          that.setData({
+            school: res.data
+          })
+        },
+      })
+      
+    }
+    
   },
 
   /**
@@ -96,6 +134,13 @@ Page({
       score
     })
   },
+  input:function(e){
+    var type = e.currentTarget.dataset.type
+    this.setData({
+      [type]:e.detail.value
+    })
+
+  },
 
   submit:function(e){
     
@@ -105,5 +150,73 @@ Page({
       });
         
     },0)
+  },
+  setMsg:function(e){
+    var that  = this
+    if(that.data.haveset==false){
+      if (this.data.name == '' || this.data.location == '' || this.data.school == '') {
+        wx.showModal({
+          title: '提示',
+          content: '请输入完整信息哦',
+          showCancel: false
+        })
+      }
+      else {
+        wx.setStorage({
+          key: 'name',
+          data: that.data.name,
+        })
+        wx.setStorage({
+          key: 'location',
+          data: that.data.location,
+        })
+        wx.setStorage({
+          key: 'school',
+          data: that.data.school,
+        })
+        wx.setStorage({
+          key: 'haveset',
+          data: true,
+        })
+        that.setData({
+          haveset: true
+        })
+        app.globalData.haveset = true
+        wx.showModal({
+          title: '消息',
+          content: '设置成功！',
+          showCancel: false,
+          success(res) {
+            if(res.confirm){
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          }
+        })
+      }
+    }
+    else{
+      wx.showModal({
+        title: '提示',
+        content: '请问您确定要修改信息吗？',
+        success(res){
+          if(res.confirm){
+            that.setData({
+              haveset:false,
+              name:'',
+              location:'',
+              school:''
+            })
+            app.globalData.haveset=false
+            wx.setStorage({
+              key: 'haveset',
+              data: false,
+            })
+          }
+        }
+      })
+    }
+    
   }
 })

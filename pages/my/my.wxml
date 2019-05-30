@@ -7,15 +7,22 @@
     <view class='li' data-type='grade' bindtap='choose'>{{info.grade}}</view>
     <wux-actionsheet id="wux-actionsheet" />
   </view>
-  <!--<view class="lists" style="margin-top:15rpx;">
+  <view class="lists" style="margin-top:15rpx;">
     <block wx:for="{{infoList}}" wx:key='{{index}}'>
       <r-list imageUrl="{{item.imageUrl}}" title="{{item.title}}" bind:listFunction="{{item.function}}" params="{{item.params}}" />
     </block>
-  </view>-->
+  </view>
 
   <view class="lists">
     <block wx:for="{{funcList}}" wx:key='{{index}}'>
       <r-list imageUrl="{{item.imageUrl}}" title="{{item.title}}" params="{{item.params}}" bind:listFunction="{{item.function}}" />
     </block>
   </view>
+
+  <view class="lists" style="margin-top:15rpx;">
+    <block wx:for="{{infoList1}}" wx:key='{{index}}'>
+      <r-list imageUrl="{{item.imageUrl}}" title="{{item.title}}" bind:listFunction="{{item.function}}" params="{{item.params}}" />
+    </block>
+  </view>
+
 </view>
