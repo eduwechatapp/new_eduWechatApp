@@ -11,7 +11,7 @@ page{
   box-shadow:0 10rpx 10px 3px rgba(0, 0, 0, 0.3);
   display:flex;
   justify-content:space-between;
-  height:9%;
+  height:8%;
   position:fixed;
   bottom:0;
   width:100%;
@@ -20,10 +20,10 @@ page{
 
 }
 .pre{
-  margin-left: 20rpx
+  margin-left: 80rpx
 }
 .next{
-  margin-right: 20rpx
+  margin-right: 80rpx
 }
 .content_box{
   /* height: 90%;
