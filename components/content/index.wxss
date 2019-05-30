@@ -1,7 +1,7 @@
 .scroll-view {
   width: 100vw;
   height: 100vh;
-  margin-bottom: -60px;
+  margin-bottom: -55px;
 }
 
 .article {
@@ -9,11 +9,11 @@
 }
 
 .push-back {
-  height: 60px;
+  height: 55px;
 }
 
 .bottom {
-  height: 60px;
+  height: 55px;
   box-shadow: 0 10rpx 10px 3px rgba(0, 0, 0, 0.3);
   background: white;
   position: relative;
@@ -104,9 +104,9 @@
 }
 
 .popup {
-  position:fixed;
-  bottom:120rpx;
-  width:100vw;
+  position: fixed;
+  bottom: 65px;
+  width: 100vw;
   display: flex;
   justify-content: space-around;
 }

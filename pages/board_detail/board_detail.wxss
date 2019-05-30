@@ -70,7 +70,7 @@ page{
   right: 25rpx;
   margin-top: 50rpx;
   border-radius: 10rpx;
-  z-index:　100
+  z-index:　100 
 }
 .tap{
   opacity: 0.6

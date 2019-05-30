@@ -15,7 +15,7 @@
         <image class="more_img" src="../icon/more.png"></image>
       </view>
 
-      <view class='dialog u-tri' wx:if="{{show}}" catchtap="writeComment">
+      <view class='dialog u-tri' wx:if="{{show}}" style="{{writeCommentStyle}}" catchtap="writeComment">
         <view class="contain">
           <image class="comment_image" src="../icon/comment.png"></image>
           <view class="comment_text">评论</view>
