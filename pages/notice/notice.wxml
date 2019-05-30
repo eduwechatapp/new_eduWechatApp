@@ -1,4 +1,5 @@
 <view class='notice-wrapper'>
-  <view class='li'>学霸の口袋高中正式版本发布了！</view>
-  <view class='li'>此版本1.0版本，包含功能有高中九科的知识点，易错题和答题模板等资料,欢迎您使用</view>
+  <view class='li'>口袋高中正式版本2.0发布了！</view>
+  <view class='li'>在原先九科资料的基础上，新增了留言板、题库还有知识搜索模块</view>
+  <view class="li">在进行留言前，请记得先在我的页面设置您的昵称哦</view>
 </view>
