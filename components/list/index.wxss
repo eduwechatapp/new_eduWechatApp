@@ -1,14 +1,20 @@
-.list-wrapper {
+.scroll-view {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  margin-bottom: -50px;
+}
+
+.push-back {
+  height: 50px;
 }
 
 .pagination {
   box-shadow: 0 10rpx 10px 3px rgba(0, 0, 0, 0.3);
+  height: 50px;
   display: flex;
+  background: white;
   justify-content: space-between;
+  z-index: 10;
+  position: relative;
 }
 
 .pagination view {
@@ -19,10 +25,7 @@
   font-size: 32rpx;
 }
 
-.scroll-area {
-  overflow: scroll;
-  flex-grow: 1;
-}
+/* */
 
 .list {
   width: 95%;
@@ -35,17 +38,17 @@
   margin-right: 20rpx;
 }
 
-.tap_performance {
+.on-tap {
   background-color: rgba(0, 0, 0, 0.1);
   opacity: 0.7;
 }
 
-.left_text{
+.left-text{
   width: 80%;
   margin-left: 20rpx;
 }
 
-.icon_display{
+.icon-display{
   height: 100%;
   width: 20%;
   display: flex;
@@ -53,7 +56,7 @@
   justify-content: flex-end;
 }
 
-.right_icon{
+.right-icon{
   height: 30%;
   width: 25%;
   float: right;

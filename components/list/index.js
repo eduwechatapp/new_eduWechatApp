@@ -10,6 +10,10 @@ Component({
     page: null,
   },
 
+  data: {
+    top: 0,
+  },
+
   lifetimes: {
     detached() {
       Data.inital = true;
