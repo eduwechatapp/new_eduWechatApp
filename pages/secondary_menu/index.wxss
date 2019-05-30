@@ -78,7 +78,7 @@
   background: linear-gradient(to right, #dfa872 ,#fa8f99);
   border-radius: 25rpx;
   position: relative;
-  margin-top: 20rpx;
+  margin-top: 35rpx;
 }
 .circle0{
   background: linear-gradient(to bottom, #f6b58f , #fb7196);
@@ -100,7 +100,7 @@
   background: linear-gradient(to right, #6e45e2,#88d3ce);
   border-radius: 25rpx;
   position: relative;
-  margin-top: 20rpx;
+  margin-top: 35rpx;
 }
 .circle1{
   background: linear-gradient(to bottom, #7387b3 , #6e45e2);
@@ -122,7 +122,7 @@
   background-image: linear-gradient(120deg, #96e6a1 0%,#d4fc79 100% );
   border-radius: 25rpx;
   position: relative;
-  margin-top: 20rpx;
+  margin-top: 35rpx;
 }
 .circle2{
   background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
@@ -144,7 +144,7 @@
   background-image: linear-gradient(to right, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
   border-radius: 25rpx;
   position: relative;
-  margin-top: 20rpx;
+  margin-top: 35rpx;
 }
 .circle3{
   background-image: linear-gradient(to top, #0c3483 0%, #8091b3 100%, #6b8cce 100%, #a2b6df 100%);

@@ -4,6 +4,31 @@ page{
   height: 100%;
   width: 100%
 }
+.page_container{
+  height: 100%;
+}
+.pagination {
+  box-shadow:0 10rpx 10px 3px rgba(0, 0, 0, 0.3);
+  display:flex;
+  justify-content:space-between;
+  height:9%;
+  position:fixed;
+  bottom:0;
+  width:100%;
+  align-items:center;
+  background-color:white;
+
+}
+.pre{
+  margin-left: 20rpx
+}
+.next{
+  margin-right: 20rpx
+}
+.content_box{
+  /* height: 90%;
+  margin-bottom: 120rpx */
+}
 .top_box{
   height: 100rpx;
   width: 100%;
@@ -23,6 +48,11 @@ page{
 }
 .question_box{
   margin-bottom: 50rpx;
+  background-color: white;
+  padding: 0 20rpx 0 20rpx;
+}
+.question_box_bottom{
+  margin-bottom: 120rpx;
   background-color: white;
   padding: 0 20rpx 0 20rpx;
 }
@@ -66,12 +96,12 @@ page{
   opacity: 0.7;
 }
 .switch_box{
-  height: 90rpx;
-  width: 90rpx;
+  height: 85rpx;
+  width: 85rpx;
   border-radius: 50%;
   position: fixed;
   right:15rpx;
-  bottom: 147rpx;
+  bottom: 260rpx;
   box-shadow: 0 5rpx 10rpx #afafa6;
   background-color: white
 }
@@ -80,8 +110,8 @@ page{
   height: 100rpx;
   width: 100rpx;
   position: fixed;
-  right:10rpx;
-  bottom: 140rpx;
+  right:8rpx;
+  bottom: 250rpx;
 }
 .bindP{
   opacity: 0.8
@@ -104,7 +134,8 @@ page{
   margin: 0 auto;
   top: 300rpx;
   left: 0;
-  right: 0
+  right: 0;
+  padding: 0 10rpx 0 10rpx
 }
 .prompt{
   position: absolute;
@@ -120,7 +151,6 @@ page{
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  justify-content: space-around
 }
 .label{
   height: 70rpx;
@@ -132,6 +162,9 @@ page{
   align-items: center;
   margin-top: 40rpx;
   font-size: 28rpx;
+  margin-left:10rpx;
+  margin-right:10rpx;
+
 }
 
 .selected_label{
@@ -145,18 +178,24 @@ page{
   margin-top: 40rpx;
   font-size: 28rpx;
   background-color: #e5c493;
-  color: white
+  color: white;
+  margin-left:10rpx;
+  margin-right:10rpx;
+
 }
 .type_button{
   width: 90%;
-  height: 15%;
+  height: 13%;
   background-color: #e5c493;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top:10rpx
 }
 .nodata{
-  margin: 200rpx auto 0 auto;
   width: 80%;
+  position:fixed;
+  top:100rpx;
+  margin-left: 50rpx
 }

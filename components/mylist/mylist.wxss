@@ -1,0 +1,48 @@
+@import '../../pages/icon/icon.wxss';
+
+.hover-class{
+    opacity: 0.3;
+}
+
+.list{
+    position: relative;
+    display: flex;
+    padding:15rpx 0 15rpx 0;
+    width: 710rpx;
+    align-items: center;
+    background: #ffffff;
+}
+
+.list .icon{
+    height: 60rpx;
+    width: 60rpx;
+    margin-right: 20rpx;
+}
+
+.list .title{
+    height: 60rpx;
+    width: 250rpx;
+    display: flex;
+    align-items: center;
+}
+
+.title .title-text{
+    font-size:26rpx;
+    font-weight: bold;
+}
+
+.list .description{
+    height: 40rpx;
+    /* background-color: #eeeeee; */
+    width: 320rpx;
+    margin-left: 24rpx;
+}
+
+.list .right-arrow{
+    font-size: 36rpx;
+}
+
+.title .title-text{
+    font-size: 34rpx;
+
+} 

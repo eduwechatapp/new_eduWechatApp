@@ -13,6 +13,7 @@ Page({
     show: false,
     currentTap: 0,
     noData: false,
+    currentPage:0
   },
 
   Set(options) {
@@ -54,7 +55,7 @@ Page({
   async fetchListData() {
     return new Promise(resolve => {
       wx.request({
-        url: `https://www.vaskka.com/mp/exercise/list/test/${this.data.subject}/${this.data.yiji}/${this.data.erji}/${this.data.type[this.data.currentTap]}/false/5/0`,
+        url: `https://www.vaskka.com/mp/exercise/list/test/${this.data.subject}/${this.data.yiji}/${this.data.erji}/${this.data.type[this.data.currentTap]}/false/5/${this.data.currentPage}`,
         success(response) {
           resolve(response.data);
         },
@@ -90,7 +91,8 @@ Page({
   },
   async confirm(e){
     this.setData({
-      show: false
+      show: false,
+      currentPage: 0
     })
     wx.showLoading({
       title: '加载ing',
@@ -118,5 +120,48 @@ Page({
       WxParse.wxParse(`content[${index}]`, 'html', value.content, this);
     });
     wx.hideLoading();
+  },
+  async changePage(e){
+    var that = this
+    console.log(e)
+    var type = e.currentTarget.dataset.type
+    if(type=="next"){
+      that.setData({
+        currentPage: that.data.currentPage + 1
+      })
+    }
+    else{
+      if (that.data.currentPage==0){
+        app.toast('已经是第一页了');
+        return 
+      }
+      else{
+        that.setData({
+          currentPage: that.data.currentPage - 1
+        })
+      }
+    }
+    const response = await that.fetchListData();
+    wx.showLoading({
+      title: '加载ing',
+    })
+    console.log(response)
+    if (response.data.length == 0) {
+      app.toast('没有更多数据了')
+      that.setData({
+        currentPage: that.data.currentPage - 1
+      })
+      wx.hideLoading()
+      return
+    }
+    else {
+      await that.Set({
+        contentList: response.data,
+      });
+    }
+    wx.hideLoading()
+    response.data.forEach((value, index) => {
+      WxParse.wxParse(`content[${index}]`, 'html', value.content, this);
+    });
   }
 });

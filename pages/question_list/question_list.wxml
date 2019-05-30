@@ -1,19 +1,26 @@
 <!--<view class="top_box">题型筛选</view>-->
-<block wx:for="{{contentList}}" wx:key="{{index}}" wx:if="{{!noData}}">
-  <view class="question_box"> 
-    <view class="box_top">{{erji}}</view>
-    <view class="box_content">
-      <import src='../../wxParse/wxParse.wxml' />
-      <template is="wxParse" data="{{wxParseData: content[index].nodes}}"/>
-    </view>
-    <view class="box_bottom">
-      <view class="left_text"></view>
-      <view class="button_box">
-        <button class="button" hover-class='tapPerformance' bindtap="toDetail" data-id="{{index}}">查看答案</button>
+<view class="page_container">
+  <view wx:for="{{contentList}}" wx:key="{{index}}" wx:if="{{!noData}}" class="content_box">
+    <view class="{{(index+1)%5==0? 'question_box_bottom':'question_box'}}"> 
+      <view class="box_top">{{erji}}</view>
+      <view class="box_content">
+        <import src='../../wxParse/wxParse.wxml' />
+        <template is="wxParse" data="{{wxParseData: content[index].nodes}}"/>
+      </view>
+      <view class="box_bottom">
+        <view class="left_text"></view>
+        <view class="button_box">
+          <button class="button" hover-class='tapPerformance' bindtap="toDetail" data-id="{{index}}">查看答案</button>
+        </view>
       </view>
     </view>
   </view>
-</block>
+  <view class='pagination'>
+      <view bindtap='changePage' data-type='prev' class="pre">上一页</view>
+      <view bindtap='changePage' data-type='next' class="next">下一页</view>
+  </view>
+</view>
+
 
 <view class="nodata" wx:if="{{noData}}">本题型下暂无数据哦，请切换题型~</view>
 

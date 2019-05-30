@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "r-list":"/components/list/list",
+    "r-list":"/components/mylist/mylist",
     "wux-button": "/dist/button/index",
     "wux-actionsheet": "/dist/actionsheet/index"
   }
