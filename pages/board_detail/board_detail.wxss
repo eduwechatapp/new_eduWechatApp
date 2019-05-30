@@ -169,7 +169,9 @@ page{
   border-radius:10rpx;
   /*overflow-x:hidden;
  overflow-y:scroll;*/
-  height:530rpx;
+  max-height:530rpx;
+  min-height:100rpx;
+
 
 }
 

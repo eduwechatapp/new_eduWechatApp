@@ -26,7 +26,7 @@ Page({
       id: options.id
     })
     wx.request({
-      url: `http://129.204.216.249:4000/message/detail/${app.globalData.openid}/${this.data.id}`,
+      url: `https://www.vaskka.com/mp/message/detail/${app.globalData.openid}/${this.data.id}`,
       success(res){
         res.data.data.createTime = res.data.data.createTime.slice(5).replace(/-/, "月") + "日"
         that.setData({
@@ -35,7 +35,7 @@ Page({
       }
     })
     wx.request({
-      url: `http://129.204.216.249:4000/message/reply/get/${app.globalData.openid}/${this.data.id}`,
+      url: `https://www.vaskka.com/mp/message/reply/get/${app.globalData.openid}/${this.data.id}`,
       success(res){
         that.setData({
           commentList:res.data.data 
@@ -87,7 +87,7 @@ Page({
     body.name=""
     body.content=this.data.comment
     wx.request({
-      url: `http://129.204.216.249:4000/message/reply/create/reply/${app.globalData.openid}/${this.data.id}`,
+      url: `https://www.vaskka.com/mp/message/reply/create/reply/${app.globalData.openid}/${this.data.id}`,
       method:'POST',
       data:body,
       success(res){

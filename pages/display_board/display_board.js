@@ -29,7 +29,7 @@ Page({
       module: options.module
     })
     wx.request({
-      url: `http://129.204.216.249:4000/message/get/${app.globalData.openid}/${this.data.module}/20/0`,
+      url: `https://www.vaskka.com/mp/message/get/${app.globalData.openid}/${this.data.module}/20/0`,
       success(res){
         for(let i = 0;i<res.data.data.length;i++){
           res.data.data[i].createTime = res.data.data[i].createTime.slice(5).replace(/-/,"月")+"日"

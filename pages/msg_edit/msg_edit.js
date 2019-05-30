@@ -120,7 +120,7 @@ Page({
     body.title = this.data.title
     body.content = this.data.content
     wx.request({
-      url: `http://129.204.216.249:4000/message/create/${app.globalData.openid}`,
+      url: `https://www.vaskka.com/mp/message/create/${app.globalData.openid}`,
       method:'POST',
       data:body,
       success(res){
