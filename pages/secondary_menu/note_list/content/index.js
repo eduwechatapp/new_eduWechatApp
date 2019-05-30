@@ -19,6 +19,12 @@ Page({
     const index = parseInt(sindex);
     const list = await this.fetchData(index);
 
+    if (app.globalData.lastView[Data.subjectName][type] === undefined) {
+      app.globalData.lastView[Data.subjectName][type] = {};
+    }
+    app.globalData.lastView[Data.subjectName][type].title = list[0].title;
+    app.setStore('lastView', app.globalData.lastView);
+
     this.setData({
       cindex: index,
       subjectName: subjectName,
@@ -57,8 +63,11 @@ Page({
       app.toast('没有更多数据了');
       return;
     }
+    const article = response[0];
+    app.globalData.lastView[Data.subjectName][type].title = article.title;
+    app.setStore('lastView', app.globalData.lastView);
     this.setData({
-      article: response[0],
+      article,
       cindex: index,
     });
   },

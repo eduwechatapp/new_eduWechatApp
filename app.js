@@ -172,14 +172,29 @@ App({
   },
 
   async checkCache() {
-    let list = await this.getStore('noteList');
-    if (list === undefined || list === '') {
-      list = {};
-      this.globalData.subjectEnum.forEach(e => {
-        list[e.name] = [];
-      });
-      await this.setStore('noteList', list);
-    }
-    this.globalData.noteList = list;
+    const notelist = async () => { // noteList
+      let list = await this.getStore('noteList');
+      if (list === undefined || list === '' || Object.keys(list).length === 0) {
+        list = {};
+        this.globalData.subjectEnum.forEach(e => {
+          list[e.name] = [];
+        });
+        await this.setStore('noteList', list);
+      }
+      this.globalData.noteList = list;
+    };
+    notelist();
+    const lastview = async () => { // lastView
+      let list = await this.getStore('lastView');
+      if (list === undefined || list === '' || Object.keys(list).length === 0) {
+        list = {};
+        this.globalData.subjectEnum.forEach(e => {
+          list[e.name] = {};
+        });
+        await this.setStore('lastView', list);
+      }
+      this.globalData.lastView = list;
+    };
+    lastview();
   },
 });
