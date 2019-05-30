@@ -33,14 +33,16 @@
 }
 
 .btn{
-    margin-top: 40rpx;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #409EFF;
-    height: 80rpx;
-    width: 250rpx;
-    border-radius: 10rpx;
+  margin-top:40rpx;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#638CE6;
+  height:80rpx;
+  width:90%;
+  border-radius:10rpx;
+  box-shadow:0 10rpx 20rpx #cdcdcd;
+
 }
 
 .btn .btn-text{

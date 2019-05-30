@@ -55,16 +55,41 @@ Page({
         that.setData({
           [_target]: item.text,
         });
+        wx.setStorage({
+          key: _target,
+          data: item.text,
+        })
         return true;
       },
+
     });
+
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    var major = "info.major"
+    var grade = "info.grade"
+    var that = this
+    wx.getStorage({
+      key: 'info.major',
+      success(res) {
+        that.setData({
+          [major]:res.data
+        })
+      }
+    })
+    wx.getStorage({
+      key: 'info.grade',
+      success(res) {
+        that.setData({
+          [grade]: res.data
+        })
+      }
+    })
   },
 
   /**

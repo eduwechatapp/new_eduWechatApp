@@ -75,5 +75,29 @@ Page({
       content: value,
       len: len
     })
+  },
+  sentMsg:function(e){
+    if(this.data.content!=''){
+      wx.showModal({
+        title: '消息',
+        content: '感谢您的反馈，我们会努力做的更好哦~',
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        }
+      });
+    }
+    else{
+      wx.showModal({
+        title: '提示',
+        content: '请输入内容哦',
+        showCancel: false,
+      });
+    }
+    
   }
 })

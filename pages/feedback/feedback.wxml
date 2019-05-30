@@ -5,7 +5,7 @@
             <view class='fr'>{{len}}/140</view>
         </view>
     </view>
-    <view class="btn" hover-class="hover-class">
+    <view class="btn" hover-class="hover-class" hover-stay-time='100' bindtap="sentMsg">
         <text class="btn-text">完成</text>
     </view>
 </view>
