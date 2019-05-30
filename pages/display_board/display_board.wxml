@@ -1,4 +1,4 @@
-<view>
+<view wx:if="{{!nodata}}">
   <view class="contain">
     <view class="{{index%2==0?'msgBox_left':'msgBox_right'}}" wx:for="{{msgList}}">
       <view bindtap="toDetail" data-id="{{index}}">
@@ -13,7 +13,13 @@
       <view class="preview">来自{{item.location}}的{{item.name}}</view>
     </view>
   </view>
-  <view class="button_box" hover-class="bindP" hover-stay-time='100' bindtap="toEdit">
-    <image class="button_img" src="../icon/add.png" ></image>
-  </view>
+</view>
+
+<view class="button_box" hover-class="bindP" hover-stay-time='100' bindtap="toEdit">
+  <image class="button_img" src="../icon/add.png" ></image>
+</view>
+
+<view class="nodata" wx:if="{{nodata}}">
+  <image src="../icon/noMessage.png" class="nodata_img"></image>
+  <view class="nodata_text">本板块暂无留言,快写点什么吧~</view>
 </view>
