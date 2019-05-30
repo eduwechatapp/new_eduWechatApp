@@ -36,8 +36,19 @@ Page({
             nodata: true
           })
         }
+        const deal = str => {
+          let s = `${str}`;
+          if (s.includes('/')) {
+            s = s.replace(/^[^\/]*\//, '');
+            if (s.includes('/')) {
+              s = s.replace(/\/.*$/, '');
+            }
+          }
+          return s;
+        };
         for(let i = 0;i<res.data.data.length;i++){
           res.data.data[i].createTime = res.data.data[i].createTime.slice(5).replace(/-/,"月")+"日"
+          res.data.data[i].location = deal(res.data.data[i].location);
         }
         that.setData({
           msgList:res.data.data,
