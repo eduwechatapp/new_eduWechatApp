@@ -100,10 +100,16 @@ Page({
     var that = this
     var body = {}
     body.time=""
-    body.name=""
+    var name = wx.getStorageSync('name')
+    if(name==''){
+      body.name = "用户"
+    }
+    else{
+      body.name=name
+    }
     body.content=this.data.comment
     wx.request({
-      url: `https://www.vaskka.com/mp/message/reply/create/reply/${app.globalData.openid}/${this.data.id}`,
+      url: `https://www.vaskka.com/mp/message/reply/create/message/${app.globalData.openid}/${this.data.id}`,
       method:'POST',
       data:body,
       success(res){

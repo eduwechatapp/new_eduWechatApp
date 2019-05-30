@@ -17,7 +17,8 @@ Page({
     name:'',
     location:'',
     index:'',
-    nodata: false
+    nodata: false,
+    currentPage:0
 
   },
   onLoad:function(options){
@@ -29,7 +30,7 @@ Page({
       module: options.module
     })
     wx.request({
-      url: `https://www.vaskka.com/mp/message/get/${app.globalData.openid}/${that.data.module}/20/0`,
+      url: `https://www.vaskka.com/mp/message/get/${app.globalData.openid}/${that.data.module}/6/${that.data.currentPage}`,
       success(res){
         if(res.data.data.length == 0){
           that.setData({
