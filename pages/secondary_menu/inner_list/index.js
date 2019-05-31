@@ -1,6 +1,23 @@
 const app = getApp();
 
 const Data = {
+  subjectEnum: {
+    '语文': 'chinese',
+    '数学': 'math',
+    '英语': 'english',
+    '物理': 'physics',
+    '化学': 'chemistry',
+    '生物': 'biology',
+    '政治': 'political',
+    '历史': 'history',
+    '地理': 'geography',
+  },
+  typeEnum: {
+    '知识点': 'knowledge',
+    '归纳总结': 'summary',
+    '专题': 'topic',
+    '答题模版': 'template',
+  },
   list: [],
   typeEng: '',
   subjectEng: '',
@@ -14,10 +31,9 @@ Page({
   },
 
   async onLoad(options) {
-    const { typeEng, subjectEng, which } = options;
-    Data.typeEng = typeEng;
-    Data.subjectEng = subjectEng;
-    Data.which = which;
+    const { type, subjectName } = options;
+    Data.typeEng = Data.typeEnum[type];
+    Data.subjectEng = Data.subjectEnum[subjectName];
 
     const list = await this.fetchData(this.data.page);
     if (list.length === 0) {
@@ -27,13 +43,9 @@ Page({
     this.setData({ list });
   },
 
-  Get(url) {
-    return new Promise(resolve => wx.request({ url: `https://www.vaskka.com/mp${url}`, success: res => resolve(res.data) }));
-  },
-
   async fetchData(page) {
     app.toast('加载中');
-    const response = await app.api.secondary.getDataByMap(Data.subjectEng, Data.typeEng, Data.which, 20, page);
+    const response = await app.api.secondary.getData(Data.subjectEng, Data.typeEng, 20, page);
     app.hideToast();
     return response.data;
   },
@@ -72,7 +84,6 @@ Page({
     app.route('../content/index', {
       typeEng: Data.typeEng,
       subjectEng: Data.subjectEng,
-      which: Data.which,
       index,
     });
   },

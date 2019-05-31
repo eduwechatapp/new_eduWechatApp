@@ -87,6 +87,9 @@ Page({
     menu.forEach(e => {
       if (lastView[Data.subjectName][e.module] !== undefined) {
         e.lastView = lastView[Data.subjectName][e.module].title;
+        if (e.lastView.length > 12) {
+          e.lastView = e.lastView.substring(0, 9) + '...';
+        }
         return;
       }
       e.lastView = '未开始';
@@ -105,9 +108,13 @@ Page({
       });
       return;
     }
-    app.route('./outer_list/index', {
+    app.route('./inner_list/index', {
       type,
       subjectName: Data.subjectName,
     });
+    // app.route('./outer_list/index', {
+    //   type,
+    //   subjectName: Data.subjectName,
+    // });
   },
 });
