@@ -42,7 +42,7 @@ export default Page({
 
   toInnerList(event) {
     const which = event.currentTarget.dataset.which;
-    app.route('../inner_list/index', {
+    app.route('./inner_list/index', {
       subjectEng: Data.subjectEng,
       which,
       typeEng: Data.typeEng,

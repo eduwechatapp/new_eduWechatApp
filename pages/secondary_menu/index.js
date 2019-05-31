@@ -101,20 +101,28 @@ Page({
 
   toDetail(event) {
     const type = event.currentTarget.dataset.type;
-    if (type === '需要留意' || type === '重点关注') {
+    let dict = { '需要留意': 0, '重点关注': 1 };
+    if (dict[type] !== undefined) {
       app.route('./note_list/index', {
         type,
         subjectName: Data.subjectName,
       });
       return;
+    } else
+
+    dict = { '数学': 0, '地理': 1, '化学': 2, '物理': 3, '生物': 4 };
+    if (dict[Data.subjectName] !== undefined) {
+      app.route('./inner_list/index', {
+        type,
+        subjectName: Data.subjectName,
+      });
+    } else
+
+    {
+      app.route('./outer_list/index', {
+        type,
+        subjectName: Data.subjectName,
+      });
     }
-    app.route('./inner_list/index', {
-      type,
-      subjectName: Data.subjectName,
-    });
-    // app.route('./outer_list/index', {
-    //   type,
-    //   subjectName: Data.subjectName,
-    // });
   },
 });

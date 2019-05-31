@@ -25,6 +25,8 @@
     "pages/search_result/advance/content/index",
     "pages/secondary_menu/index",
     "pages/secondary_menu/outer_list/index",
+    "pages/secondary_menu/outer_list/inner_list/index",
+    "pages/secondary_menu/outer_list/inner_list/content/index",
     "pages/secondary_menu/inner_list/index",
     "pages/secondary_menu/content/index",
     "pages/secondary_menu/note_list/index",
