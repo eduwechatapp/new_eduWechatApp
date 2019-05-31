@@ -24,7 +24,7 @@
   <view class="nodata_text">本板块暂无留言,快写点什么吧~</view>
 </view>
 
-<!-- <view class='pagination'>
+<view class='pagination'>
       <view bindtap='changePage' data-type='prev' class="pre">上一页</view>
       <view bindtap='changePage' data-type='next' class="next">下一页</view>
-</view> -->
+</view> 

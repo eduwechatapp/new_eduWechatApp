@@ -122,5 +122,21 @@ Page({
       });
     }
     wx.hideLoading()
-  }
+  },
+  async fetchListData() {
+    var that = this
+    return new Promise(resolve => {
+      wx.request({
+        url: `https://www.vaskka.com/mp/message/get/${app.globalData.openid}/${that.data.module}/6/${that.data.currentPage}`,
+        success(response) {
+          resolve(response.data);
+        },
+      });
+    });
+  },
+  Set(options) {
+    return new Promise(res => {
+      this.setData(options, res);
+    });
+  },
 })
