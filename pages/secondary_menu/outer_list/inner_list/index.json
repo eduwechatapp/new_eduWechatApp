@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "x-list": "/components/list/index"
+  }
+}
