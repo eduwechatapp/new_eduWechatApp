@@ -7,13 +7,13 @@
 </scroll-view>
 
 <view class='bottom'>
-  <view class='prev' bindtap='changePage' data-type='prev'>
+  <view class='prev' bindtap='changePage' data-type='prev' hover-class='on-tap'>
     <view class='prev-icon' />
   </view>
   <view class='{{"button im-" + importance + " im-" + importance + "-focus"}}' bindtap='togglePopUp'>
     {{importanceText}}
   </view>
-  <view class='next' bindtap='changePage' data-type='next'>
+  <view class='next' bindtap='changePage' data-type='next' hover-class='on-tap'>
     <view class='next-icon' />
   </view>
 </view>
