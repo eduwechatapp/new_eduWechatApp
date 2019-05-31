@@ -22,11 +22,10 @@ Page({
   },
 
   async onLoad(options) {
-    const { typeEng, subjectEng, which, index: sindex } = options;
+    const { typeEng, subjectEng, index: sindex } = options;
     const index = parseInt(sindex);
     Data.subjectEng = subjectEng;
     Data.typeEng = typeEng;
-    Data.which = which;
     Data.type = Data.typeEnum[typeEng];
 
     app.globalData.subjectEnum.some(e => {
@@ -75,7 +74,7 @@ Page({
 
   async fetchData(index) {
     app.toast('加载中...');
-    const response = await app.api.secondary.getDataByMap(Data.subjectEng, Data.typeEng, Data.which, 1, index);
+    const response = await app.api.secondary.getData(Data.subjectEng, Data.typeEng, 1, index);
     app.hideToast();
     return response.data;
   },
