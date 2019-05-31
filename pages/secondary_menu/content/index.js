@@ -2,8 +2,16 @@ const app = getApp();
 
 const Data = {
   subjectEng: '',
+  subjectName: '',
   typeEng: '',
+  type: '',
   which: '',
+  typeEnum: {
+    'knowledge': '知识点',
+    'summary': '归纳总结',
+    'topic': '专题',
+    'template': '答题模版',
+  },
 };
 
 Page({
@@ -19,19 +27,25 @@ Page({
     Data.subjectEng = subjectEng;
     Data.typeEng = typeEng;
     Data.which = which;
+    Data.type = Data.typeEnum[typeEng];
 
-    let subjectName = '';
     app.globalData.subjectEnum.some(e => {
       if (e.eng === subjectEng) {
-        subjectName = e.name;
+        Data.subjectName = e.name;
       }
     });
 
     const list = await this.fetchData(index);
 
+    if (app.globalData.lastView[Data.subjectName][Data.type] === undefined) {
+      app.globalData.lastView[Data.subjectName][Data.type] = {};
+    }
+    app.globalData.lastView[Data.subjectName][Data.type].title = list[0].title;
+    app.setStore('lastView', app.globalData.lastView);
+
     this.setData({
       cindex: index,
-      subjectName: subjectName,
+      subjectName: Data.subjectName,
       article: list[0],
     });
   },
@@ -51,6 +65,8 @@ Page({
       app.toast('没有更多数据了');
       return;
     }
+    app.globalData.lastView[Data.subjectName][Data.type].title = response[0].title;
+    app.setStore('lastView', app.globalData.lastView);
     this.setData({
       article: response[0],
       cindex: index,

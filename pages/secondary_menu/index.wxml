@@ -15,7 +15,7 @@
         <image src="../icon/locate.png" class="left_icon"></image>
       </view>
       <view class="left_text">上次看到：</view>
-      <view class="right_text">{{lastView}}</view>
+      <view class="right_text">{{item.lastView}}</view>
     </view>
   </view>
 </view>

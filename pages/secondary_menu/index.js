@@ -83,6 +83,14 @@ Page({
         menu.push(Data.menuListEnum['重点关注']);
       }
     }
+    const lastView = app.globalData.lastView;
+    menu.forEach(e => {
+      if (lastView[Data.subjectName][e.module] !== undefined) {
+        e.lastView = lastView[Data.subjectName][e.module].title;
+        return;
+      }
+      e.lastView = '未开始';
+    });
     this.setData({
       menu,
     });
