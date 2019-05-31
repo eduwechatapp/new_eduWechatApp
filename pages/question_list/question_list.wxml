@@ -1,7 +1,7 @@
 <!--<view class="top_box">题型筛选</view>-->
 <view class="page_container">
   <view wx:for="{{contentList}}" wx:key="{{index}}" wx:if="{{!noData}}" class="content_box">
-    <view class="{{(index+1)%5==0? 'question_box_bottom':'question_box'}}"> 
+    <view class="question_box"> 
       <view class="box_top">{{erji}}</view>
       <view class="box_content">
         <import src='../../wxParse/wxParse.wxml' />

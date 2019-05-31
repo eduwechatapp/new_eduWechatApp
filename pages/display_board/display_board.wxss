@@ -5,7 +5,8 @@ page{
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;
-  justify-content: space-between
+  justify-content: space-between;
+  padding-bottom: 140rpx
 }
 .msgBox_left{
   height: 400rpx;
@@ -88,4 +89,28 @@ page{
 .nodata_text{
   color: #000000;
   font-size: 35rpx
+}
+.pagination {
+  box-shadow:0 10rpx 10px 3px rgba(0, 0, 0, 0.3);
+  display:flex;
+  justify-content:space-between;
+  height:8%;
+  position:fixed;
+  bottom:0;
+  width:100%;
+  align-items:center;
+  background-color:#F2EAD0;
+
+}
+.button{
+  height:100%;
+  display:flex;
+  align-items:center;
+  width:35%;
+  justify-content:center;
+}
+
+.tap{
+  opacity: 0.7;
+  background-color: rgba(0, 0, 0, 0.3)
 }
