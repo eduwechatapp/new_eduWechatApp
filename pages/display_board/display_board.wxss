@@ -102,9 +102,15 @@ page{
   background-color:#F2EAD0;
 
 }
-.pre{
-  margin-left: 80rpx
+.button{
+  height:100%;
+  display:flex;
+  align-items:center;
+  width:35%;
+  justify-content:center;
 }
-.next{
-  margin-right: 80rpx
+
+.tap{
+  opacity: 0.7;
+  background-color: rgba(0, 0, 0, 0.3)
 }
