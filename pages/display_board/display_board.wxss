@@ -5,7 +5,8 @@ page{
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;
-  justify-content: space-between
+  justify-content: space-between;
+  padding-bottom: 140rpx
 }
 .msgBox_left{
   height: 400rpx;
@@ -98,7 +99,7 @@ page{
   bottom:0;
   width:100%;
   align-items:center;
-  background-color:white;
+  background-color:#F2EAD0;
 
 }
 .pre{
