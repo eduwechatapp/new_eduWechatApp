@@ -110,7 +110,7 @@ Page({
       return;
     } else
 
-    dict = { '数学': 0, '化学': 1, '物理': 2, '生物': 3 };
+    dict = { '数学': 0, '化学': 1, '物理': 2, '生物': 3, '地理': 4 };
     if (dict[Data.subjectName] !== undefined) {
       app.route('./inner_list/index', {
         type,
