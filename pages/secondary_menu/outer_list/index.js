@@ -48,4 +48,6 @@ export default Page({
       typeEng: Data.typeEng,
     });
   },
+
+  
 });

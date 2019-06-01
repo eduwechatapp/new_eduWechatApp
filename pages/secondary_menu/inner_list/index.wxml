@@ -1,1 +1,1 @@
-<x-list list='{{list}}' bindchangepage='changePage' bindtapitem='toContent'/>
+<x-list list='{{list}}' bindchangepage='changePage' bindtapitem='toContent' page='{{page}}'/>
