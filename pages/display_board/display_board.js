@@ -23,8 +23,7 @@ Page({
   },
 
   onLoad:function(options){
-    var that = this
-    console.log(options);
+    var that = this;
     this.setData({
       module: options.module,
     })
@@ -53,8 +52,7 @@ Page({
         that.setData({
           msgList:res.data.data,
         })
-        var taplist = new Array(that.data.msgList.length)
-        console.log(that.data.msgList.length)
+        var taplist = new Array(that.data.msgList.length);
         taplist.fill(false)
         that.setData({
           tapList:taplist
@@ -104,8 +102,7 @@ Page({
     const response = await that.fetchListData();
     wx.showLoading({
       title: '加载ing',
-    })
-    console.log(response)
+    });
     if (response.data.length == 0) {
       wx.hideLoading()
       app.toast('没有更多数据了')

@@ -53,13 +53,13 @@
       },
       {
         "pagePath": "pages/question/question",
-        "text": "题库",
+        "text": "知识巩固",
         "iconPath": "pages/icon/practice_1.png",
         "selectedIconPath": "pages/icon/practice_2.png"
       },
       {
         "pagePath": "pages/msg_board/msg_board",
-        "text": "留言板",
+        "text": "扶智专区",
         "iconPath": "pages/icon/board_1.png",
         "selectedIconPath": "pages/icon/board_2.png"
       },

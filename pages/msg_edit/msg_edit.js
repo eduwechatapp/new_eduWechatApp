@@ -1,7 +1,7 @@
 import data from './data.js'
 var app = getApp()
 Page({
-  data:{
+  data: {
     imageList: [
       "https://vaskka.com/static/bread.jpeg",
       "https://vaskka.com/static/beach.jpeg",
@@ -10,19 +10,19 @@ Page({
       "https://vaskka.com/static/people.jpeg",
       "https://vaskka.com/static/redcar.jpeg"
     ],
-    index:0,
-    date:'2019-05-26',
-    show:false,
-    currentSelect:0,
-    name:'',
-    title:'',
-    content:'',
+    index: 0,
+    date: '2019-05-26',
+    show: false,
+    currentSelect: 0,
+    name: '',
+    title: '',
+    content: '',
     visible: false,
-    location:'',
+    location: '',
     options: data,
-    value:''
+    value: ''
   },
-  onLoad(option){
+  onLoad(option) {
     this.setData({
       type: option.module
     })
@@ -35,30 +35,29 @@ Page({
   },
   onChange(e) {
     this.setData({ location: e.detail.options.map((n) => n.label).join('/') })
-    console.log('onChange', e.detail)
+    // console.log('onChange', e.detail)
   },
-  bindDateChange:function(e){
+  bindDateChange: function (e) {
     this.setData({
-      date:e.detail.value
+      date: e.detail.value
     })
   },
-  showImageSelect:function(e){
+  showImageSelect: function (e) {
     this.setData({
-      show:!this.data.show
+      show: !this.data.show
     })
   },
-  changeImage:function(e){
-    console.log(e)
+  changeImage: function (e) {
     this.setData({
       currentSelect: e.currentTarget.dataset.id,
     })
-    setTimeout(()=>this.setData({
+    setTimeout(() => this.setData({
       show: false
-    }),200)
+    }), 200)
   },
-  inputName:function(e){
+  inputName: function (e) {
     this.setData({
-      name:e.detail.value
+      name: e.detail.value
     })
   },
   inputTitle: function (e) {
@@ -71,8 +70,8 @@ Page({
       content: e.detail.value
     })
   },
-  finish:function(e){
-    if(this.data.name==""){
+  finish: function (e) {
+    if (this.data.name == "") {
       wx.showModal({
         title: '提示',
         content: '您还没输入昵称哦',
@@ -80,7 +79,7 @@ Page({
       });
       return;
     }
-    if(this.data.title==""){
+    if (this.data.title == "") {
       wx.showModal({
         title: '提示',
         content: '您还没输入留言标题哦',
@@ -111,7 +110,7 @@ Page({
       duration: 700,
       mask: true
     })
-    var body={};
+    var body = {};
     body.index = this.data.currentSelect
     body.type = this.data.type
     body.time = this.data.date
@@ -121,10 +120,10 @@ Page({
     body.content = this.data.content
     wx.request({
       url: `https://www.vaskka.com/mp/message/create/${app.globalData.openid}`,
-      method:'POST',
-      data:body,
-      success(res){
-        console.log(res)
+      method: 'POST',
+      data: body,
+      success(res) {
+        // console.log(res)
       }
     })
     //获取页面栈并且更新前一个页面的数据
@@ -132,7 +131,7 @@ Page({
     if (pages.length > 1) {
       //上一个页面实例对象
       var prePage = pages[pages.length - 2];
-      var options={module:this.data.type}
+      var options = { module: this.data.type }
       prePage.onLoad(options)
     }
     wx.navigateBack({
