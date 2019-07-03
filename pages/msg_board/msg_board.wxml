@@ -1,7 +1,7 @@
 <view >
   <view class="top_box"></view>
   <view class="msg_space">
-    <view class="space_box" wx:for="{{imageList}}">
+    <view class="space_box" wx:for="{{imageList}}" wx:key="{{index}}">
       <view class="text">{{textList[index]}}</view>
       <view class="mask{{index}}" bindtap="toBoard" data-id="{{index}}" ></view>
       <image src="{{item}}" class="image"></image>

@@ -1,4 +1,5 @@
-const app = getApp()
+const app = getApp();
+
 Page({
   data:{
     imageList:[
@@ -19,15 +20,13 @@ Page({
     index:'',
     nodata: false,
     currentPage:0
-
   },
+
   onLoad:function(options){
     var that = this
-    console.log(options)
-    
+    console.log(options);
     this.setData({
-      
-      module: options.module
+      module: options.module,
     })
     wx.request({
       url: `https://www.vaskka.com/mp/message/get/${app.globalData.openid}/${that.data.module}/6/${that.data.currentPage}`,
@@ -113,10 +112,8 @@ Page({
       that.setData({
         currentPage: that.data.currentPage - 1
       })
-
-      return
-    }
-    else {
+      return;
+    } else {
       await that.Set({
         msgList: response.data,
       });
@@ -139,4 +136,4 @@ Page({
       this.setData(options, res);
     });
   },
-})
+});
