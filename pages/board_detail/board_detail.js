@@ -20,8 +20,7 @@ Page({
     writeCommentStyle: 'transform: scaleX(0); transition: all .5s ease;',
   },
   onLoad:function(options){
-    var that = this
-    console.log(options)
+    var that = this;
     this.setData({
       index:options.index,
       id: options.id

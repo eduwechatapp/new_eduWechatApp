@@ -1,6 +1,6 @@
 <view wx:if="{{!nodata}}">
   <view class="contain">
-    <view class="{{index%2==0?'msgBox_left':'msgBox_right'}}" wx:for="{{msgList}}">
+    <view class="{{index%2==0?'msgBox_left':'msgBox_right'}}" wx:for="{{msgList}}" wx:key="{{index}}">
       <view bindtap="toDetail" data-id="{{index}}">
         <image src="{{imageList[item.index]}}" class="image"></image>
       </view>
