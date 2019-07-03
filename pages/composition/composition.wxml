@@ -1,0 +1,67 @@
+<view class="page">
+  <camera wx-if="{{camera==true}}" device-position="back" flash="off" binderror="error" class="camera">
+    <cover-view class="cover-1" bindtap="takePhoto">
+      <cover-view class="cover-2">
+        <cover-view wx:if="{{type=='startRecord'&&startRecord}}">{{time}}S</cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view bindtap="cancel" class="cancel_area">
+      <cover-image src="/pages/icon/cancel.png" class="cancel">
+      </cover-image>
+    </cover-view>
+  </camera>
+
+  <view wx-if="{{showImage==true}}" class="image_page">
+    <image mode="widthFix" src="{{src}}" class="photo"></image>
+    <view class="button_area">
+      <view class="circle_left" bindtap="returnback">
+        <image src="/pages/icon/return.png" class="button"></image>
+      </view>
+      <view class="circle_right">
+        <image src="/pages/icon/ok.png" class="button" bindtap="confirm"></image>
+      </view>
+    </view>
+  </view>
+  <view wx-if="{{showSavedPhoto==true}}" style="height: 100%;">
+    <image src="{{src}}" class="savedPhoto">
+    </image>
+    <view class="circle" bindtap="closePhoto">
+        <image src="/pages/icon/return.png" class="button"></image>
+    </view>
+  </view>
+
+  <wux-tabs wux-class="bordered" controlled current="{{ key }}" bindchange="onTabsChange" wx-if="{{show}}">
+    <block wx:for="{{ tabs }}" wx:key="key">
+        <wux-tab key="{{ item.key }}" title="{{ item.title }}"></wux-tab>
+    </block>
+  </wux-tabs>
+  <swiper current="{{ index }}" bindchange="onSwiperChange" class="swiper" wx-if="{{show}}">
+      <block wx:for="{{ tabs }}" wx:key="key">
+        <swiper-item>
+          <view wx:if="{{key=='upload'}}" >
+            <view class="top_area">
+              <view class="opendata">
+                <open-data class="avatar" type="userAvatarUrl"/>
+                <open-data type="userNickName" class="nickname" style="font-size:32rpx;" />
+              </view>
+            </view>
+
+            <view class='center_func' hover-class='bind_func' bindtap="callCamera" hover-stay-time='100'>
+              <image src='/pages/icon/upload.png' class='add_bigicon'></image>
+            </view>
+            <view class="see_photo" wx:if="{{src!=''}}" bindtap="showSavedPhoto">
+              <image src="/pages/icon/photo.png" class="photo_area"></image>
+              <view class="text">查看图片</view>
+            </view>
+            <view class="btn" wx:if="{{src!=''}}" hover-class="hover-class" hover-stay-time='100' bindtap="setMsg">
+              <text class="btn-text">发送作文</text>
+            </view>
+
+          </view>
+        </swiper-item>
+
+      </block>
+  </swiper>
+
+
+</view>
