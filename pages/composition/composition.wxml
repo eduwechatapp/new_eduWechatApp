@@ -38,6 +38,7 @@
   <swiper current="{{ index }}" bindchange="onSwiperChange" class="swiper" wx-if="{{show}}">
       <block wx:for="{{ tabs }}" wx:key="key">
         <swiper-item>
+          <!-- 中间 上传作文的页面-->
           <view wx:if="{{key=='upload'}}" >
             <view class="top_area">
               <view class="opendata">
@@ -56,8 +57,26 @@
             <view class="btn" wx:if="{{src!=''}}" hover-class="hover-class" hover-stay-time='100' bindtap="setMsg">
               <text class="btn-text">发送作文</text>
             </view>
-
           </view>
+          <!-- 批改反馈-->
+          <view class="message_area" wx-if="{{key=='envelope'}}">
+            <view class="message">
+              <view class="left_image_area">
+                <image class="left_image"></image>
+              </view>
+              <view class="vertical_line"></view>
+                <view class="right_area">
+                  <view class="title">作文标题：</view>
+                    <view class="comment">评语：</view>
+                    <view class="message_button" hover-class='bind_func'>
+                      <text class="btn-text">查看详情</text>
+                    </view>
+                </view>
+                
+            </view>
+          </view>
+          <!-- 结对设置-->
+          <view></view>
         </swiper-item>
 
       </block>

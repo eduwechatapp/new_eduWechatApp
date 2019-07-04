@@ -1,0 +1,22 @@
+<view class="register">
+  <image src="../icon/bg.png" class="bg"></image>
+  <view class="top_text">
+    <view class="text">选择您的身份角色</view>
+  </view>
+  <view class="icon_area">
+    <view class="{{select=='student'? 'selected_stu':'left_area'}}" bindtap="changeRole" data-role="student">
+      <image src="../icon/student.png" class="left_icon"></image>
+      <view>学生</view>
+    </view>
+    <view class="{{select=='volunteer'? 'selected_vol':'right_area'}}" bindtap="changeRole" data-role="volunteer">
+      <image src="../icon/volunteer.png" class="right_icon"></image>
+      <view>志愿者</view>
+    </view>
+
+  </view>
+
+  <button wx:if="{{canIUse}}" class="button" hover-class='bind_func' wx-if="{{select=='student'||select=='volunteer'}}" bindtap="next"
+  open-type="getUserInfo">
+    <text class="btn-text">下一步</text>
+  </button>
+</view>

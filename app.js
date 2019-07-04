@@ -55,6 +55,9 @@ App({
     location:'',
     school:'',
     haveset:false,
+    nickname:'',
+    avatorUrl:'',
+    uid:'',
     subjectEnum: [
       { name: '英语', unique: 'yy', index: 0, eng: 'english' },
       { name: '数学', unique: 'sx', index: 1, eng: 'math' },

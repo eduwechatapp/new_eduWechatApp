@@ -23,7 +23,8 @@ Page({
     show:true,
     showSavedPhoto: false,
     ctx:{},
-    src:''
+    src:'',
+    key: 'upload'
   },
   onLoad(){
     this.ctx = wx.createCameraContext()
