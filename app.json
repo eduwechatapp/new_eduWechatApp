@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/composition/composition",
+    "pages/video/video",
     "pages/home/home",
     "pages/question/question",
     "pages/msg_board/msg_board",
@@ -11,7 +13,7 @@
     "pages/question_detail/question_detail",
     "pages/logs/logs",
     "pages/more/more",
-    "pages/video/video",
+
     "pages/introduction/introduction",
     "pages/notice/notice",
     "pages/info_change/info_change",
