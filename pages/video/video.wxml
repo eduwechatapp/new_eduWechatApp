@@ -1,0 +1,13 @@
+<view>
+  <view class="li"
+    bind:tap="toDetail"
+    hover-class="on-tap"
+    wx:key="{{index}}"
+    data-index="{{index}}"
+    wx:for="{{videoList}}">
+    <view class="text">{{item.title}}</view>
+    <view class="icon">
+      <image src="/pages/icon/right.png"></image>
+    </view>
+  </view>
+</view>

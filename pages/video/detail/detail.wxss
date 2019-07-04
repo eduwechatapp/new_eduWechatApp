@@ -1,0 +1,17 @@
+.title {
+  margin: 15px;
+  font-size: 40rpx;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.video-container {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-container video {
+  width: 90%;
+}

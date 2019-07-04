@@ -1,0 +1,14 @@
+<view>
+  <view class="li" bind:tap="toPractice" hover-class="on-tap">
+    <view class="text">题库</view>
+    <view class="icon">
+      <image src="/pages/icon/right.png"></image>
+    </view>
+  </view>
+  <view class="li" bind:tap="toVideo" hover-class="on-tap">
+    <view class="text">视频</view>
+    <view class="icon">
+      <image src="/pages/icon/right.png"></image>
+    </view>
+  </view>
+</view>
