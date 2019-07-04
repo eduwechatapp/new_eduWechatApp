@@ -30,7 +30,8 @@
     "pages/secondary_menu/inner_list/index",
     "pages/secondary_menu/content/index",
     "pages/secondary_menu/note_list/index",
-    "pages/secondary_menu/note_list/content/index"
+    "pages/secondary_menu/note_list/content/index",
+    "pages/consolidate/consolidate"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -50,7 +51,7 @@
         "selectedIconPath": "pages/icon/home_2.png"
       },
       {
-        "pagePath": "pages/question/question",
+        "pagePath": "pages/consolidate/consolidate",
         "text": "知识巩固",
         "iconPath": "pages/icon/practice_1.png",
         "selectedIconPath": "pages/icon/practice_2.png"

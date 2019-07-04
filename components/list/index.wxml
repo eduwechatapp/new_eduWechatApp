@@ -7,7 +7,6 @@
   </view>
   <view class='push-back' />
 </scroll-view>
-
 <view class='pagination'>
   <view bindtap='changePage' data-type='prev' hover-class="tap" hover-stay-time='150'>上一页</view>
   <view bindtap='changePage' data-type='next' hover-class="tap" hover-stay-time='150'>下一页</view>
