@@ -1,8 +1,9 @@
 {
   "pages": [
-    "pages/composition/composition",
-    "pages/video/video",
     "pages/home/home",
+    "pages/video/video",
+    "pages/video/detail/detail",
+    "pages/composition/composition",
     "pages/question/question",
     "pages/msg_board/msg_board",
     "pages/msg_edit/msg_edit",
@@ -13,7 +14,6 @@
     "pages/question_detail/question_detail",
     "pages/logs/logs",
     "pages/more/more",
-
     "pages/introduction/introduction",
     "pages/notice/notice",
     "pages/info_change/info_change",
