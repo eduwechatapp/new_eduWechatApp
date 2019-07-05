@@ -1,13 +1,10 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/video/video",
     "pages/login/login",
     "pages/volunteer/volunteer",
     "pages/composition/composition",
-
-
-
-    "pages/video/video",
     "pages/video/detail/detail",
     "pages/question/question",
     "pages/msg_board/msg_board",
@@ -37,8 +34,7 @@
     "pages/secondary_menu/inner_list/index",
     "pages/secondary_menu/content/index",
     "pages/secondary_menu/note_list/index",
-    "pages/secondary_menu/note_list/content/index",
-    "pages/consolidate/consolidate"
+    "pages/secondary_menu/note_list/content/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -58,7 +54,7 @@
         "selectedIconPath": "pages/icon/home_2.png"
       },
       {
-        "pagePath": "pages/consolidate/consolidate",
+        "pagePath": "pages/question/question",
         "text": "知识巩固",
         "iconPath": "pages/icon/practice_1.png",
         "selectedIconPath": "pages/icon/practice_2.png"
