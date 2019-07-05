@@ -1,8 +1,8 @@
 import { get, openid } from './base';
 
 const video = {
-  fetchVideo(subject, pageSize, page) {
-    return get(`/video/${openid()}/${subject}/${pageSize}/${page}`);
+  fetchVideo(subjectName, pageSize, page) {
+    return get(`/video/${openid()}/${subjectName}/${pageSize}/${page}`);
   },
 };
 

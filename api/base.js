@@ -1,4 +1,5 @@
-const host = 'https://www.vaskka.com/mp';
+// const host = 'https://www.vaskka.com/mp';
+const host = 'http://129.204.216.249:4000';
 
 export function post(path, data = {}, param = {}) {
   const url = `${host}${path}`;

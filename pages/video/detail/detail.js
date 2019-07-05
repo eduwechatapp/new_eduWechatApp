@@ -1,14 +1,32 @@
+const app = getApp();
+
+const Data = {
+  subjectName: '',
+};
+
 Page({
   data: {
-    title: '',
-    src: '',
+    name: '',
+    url: '',
   },
 
   onLoad(options) {
-    const { title, src } = options;
+    const { name, url, subjectName } = options;
+    Data.subjectName = subjectName;
     this.setData({
-      title,
-      src,
+      name,
+      url,
     });
+  },
+
+  onShow() {
+    if (app.globalData.lastView[Data.subjectName].公开课 === undefined) {
+      app.globalData.lastView[Data.subjectName].公开课 = {
+        title: this.data.name,
+      };
+    } else {
+      app.globalData.lastView[Data.subjectName].公开课.title = this.data.name;
+    }
+    app.setStore('lastView', app.globalData.lastView);
   },
 });

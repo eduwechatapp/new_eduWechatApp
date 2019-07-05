@@ -1,23 +1,52 @@
 const app = getApp();
 
+const Data = {
+  subjectName: '',
+};
+
 Page({
   data: {
     videoList: [],
+  },
+
+  onLoad(options) {
+    ({
+      subjectName: Data.subjectName,
+    } = options);
   },
 
   async onShow() {
     await this.fetchData();
   },
 
+  onNoResult() {
+    wx.showModal({
+      title: '提示',
+      content: '该科目下暂无公开课视频哦',
+      showCancel: false,
+      success(res) {
+        if (res.confirm) {
+          wx.navigateBack({
+            delta: 1
+          });
+        }
+      },
+    });
+  },
+
   async fetchData() {
-    const response = await app.api.video.fetchVideo('english', 20, 1);
-    console.log(response);
-    // this.setData({ videoList });
+    const response = await app.api.video.fetchVideo(Data.subjectName, 20, 1);
+    const videoList = response.data;
+    if (videoList.length === 0) {
+      this.onNoResult();
+      return;
+    }
+    this.setData({ videoList });
   },
 
   toDetail(e) {
     const index = e.currentTarget.dataset.index;
-    const { title, src } = this.data.videoList[index];
-    app.route('/pages/video/detail/detail', { title, src });
+    const { name, url } = this.data.videoList[index];
+    app.route('/pages/video/detail/detail', { name, url, subjectName: Data.subjectName });
   },
 });
