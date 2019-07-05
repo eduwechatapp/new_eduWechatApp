@@ -10,11 +10,9 @@ Page({
   },
 
   async fetchData() {
-    const videoList = [{
-      title: '疯狂动物城',
-      src: 'https://www.sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
-    }];
-    this.setData({ videoList });
+    const response = await app.api.video.fetchVideo('english', 20, 1);
+    console.log(response);
+    // this.setData({ videoList });
   },
 
   toDetail(e) {
