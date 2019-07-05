@@ -23,7 +23,7 @@
     </view>
   </view>
   <view wx-if="{{showSavedPhoto==true}}" style="height: 100%;">
-    <image src="{{src}}" class="savedPhoto">
+    <image src="{{article[index_].url}}" class="savedPhoto">
     </image>
     <view class="circle" bindtap="closePhoto">
         <image src="/pages/icon/return.png" class="button"></image>
@@ -54,29 +54,66 @@
               <image src="/pages/icon/photo.png" class="photo_area"></image>
               <view class="text">查看图片</view>
             </view>
-            <view class="btn" wx:if="{{src!=''}}" hover-class="hover-class" hover-stay-time='100' bindtap="setMsg">
+            <view class="btn" wx:if="{{src!=''}}" hover-class="hover-class" hover-stay-time='100' bindtap="sentMsg">
               <text class="btn-text">发送作文</text>
             </view>
           </view>
           <!-- 批改反馈-->
           <view class="message_area" wx-if="{{key=='envelope'}}">
-            <view class="message">
+            <view class="message" wx:for="{{article}}">
               <view class="left_image_area">
-                <image class="left_image"></image>
+                <image class="left_image" src="{{item.url}}"></image>
               </view>
               <view class="vertical_line"></view>
-                <view class="right_area">
-                  <view class="title">作文标题：</view>
-                    <view class="comment">评语：</view>
-                    <view class="message_button" hover-class='bind_func'>
-                      <text class="btn-text">查看详情</text>
-                    </view>
-                </view>
-                
+              <view class="right_area">
+                <view class="title">作文标题：{{item.title}}</view>
+                  <view class="comment">评语：{{item.reply.content}}</view>
+                  <view class="message_button" hover-class='bind_func' bindtap="seeMore" data-id="{{index}}">
+                    <text class="btn-text">查看详情</text>
+                  </view>
+              </view>
             </view>
+              <view wx:if="{{showArticle}}" class="pairMessage" >
+                <view class="messageArea">
+                  <view class="title_edit">查看评语</view>
+                  <view class="see_photo" bindtap="showSavedPhoto">
+                    <image src="/pages/icon/photo.png" class="photo_area"></image>
+                    <view class="text">查看图片</view>
+                  </view>
+                  <view class="input_area">
+                    <view class="name_edit">评语：{{comment}}</view>
+                    <view  class="input" ></view>
+                  </view>
+
+                  <view class="button_area">
+                    <button class="cancel_but" bindtap="cancel_article" hover-class='tap'>关闭</button>
+                  </view>
+                </view>
+              </view>
           </view>
           <!-- 结对设置-->
-          <view></view>
+
+          <view wx:if="{{key=='option'}}">
+            <view class="top_text">
+              请选择结对对象
+            </view>
+            <view class='list-msg2' bindtap='bindShowMsg'>
+              <view class="left_area">
+                <image src="{{leftAvatar}}" class="left_avatar"></image>
+                <text class="name">{{nickname}}</text>
+              </view>
+                <image style='height:70rpx;width:70rpx;' src='/pages/icon/down.png'></image>
+            </view>
+            <view class="select_box" wx:if="{{select}}" >
+              <view class="select_one" bindtap="mySelect" wx:for="{{volunteer}}" data-item="{{item}}">
+                <image src="{{item.url}}" class="left_avatar"></image>
+                <view>{{item.name}}</view>
+              </view>
+            </view>
+            <button class="btn_pair" wx:if="{{uid!=''}}" hover-class="hover-class" hover-stay-time='100' bindtap="pair">
+              <text class="btn-text_pair">确认</text>
+            </button>
+          </view>
         </swiper-item>
 
       </block>
@@ -84,3 +121,21 @@
 
 
 </view>
+
+<view wx:if="{{showEdit}}" class="pairMessage" >
+  <view class="messageArea_upload">
+    <view class="title_edit">输入作文标题</view>
+    <view class="input_area_upload">
+      <view class="name_edit_upload">标题：</view>
+      <input placeholder='输入您的作文标题' class="input" bindinput="input"></input>
+    </view>
+
+    <view class="button_area">
+      <button class="cancel_but" bindtap="cancel_edit" hover-class='tap'>取消</button>
+      <button class="confirm" bindtap="sent" hover-class='tap'>发送</button>
+    </view>
+  </view>
+
+</view>
+
+ 

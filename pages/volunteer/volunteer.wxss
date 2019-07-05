@@ -1,0 +1,252 @@
+
+.top_area{
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+.avatar {
+  display:block;
+  margin: 50rpx 0 20rpx 0;
+  height: 128rpx;
+  width: 128rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.nickname{
+  font-size: 32rpx;
+  margin:0 0 0 25rpx;
+}
+.opendata{
+  display: inline-block;
+}
+.line{
+  width:100%;
+  height:1rpx;
+  border:5rpx #cdcdcd;
+  margin:50rpx 0 50rpx 0;
+  border-style:dashed none none none;
+}
+.message{
+  width: 90%;
+  height: 240rpx;
+  margin: 50rpx auto 0 auto;
+  border-radius: 30rpx;
+  background-color: whitesmoke;
+  border: 1rpx solid #cbc8c3;
+  box-shadow: 5rpx 10rpx 15rpx #c0b6a7;
+  position: relative
+}
+.left_image{
+  width:170rpx;
+  height:220rpx;
+  display:inline-block;
+  border-radius:20rpx;
+  margin:10rpx;
+}
+.left_image_area{
+  display: inline-block
+}
+.vertical_line{
+  width: 1rpx;
+  height: 100%;
+  border: 1rpx dotted #cdcdcd;
+  display: inline-block
+}
+.right_area{
+  display:inline-block;
+  width:60%;
+  margin-left:30rpx;
+  position:absolute;
+  top: -20rpx
+}
+.title{
+  display:flex;
+  margin:35rpx 0 0 0;
+  align-items:center;
+  font-size:40rpx;
+  font-weight:bold;
+}
+.name{
+  margin: 20rpx 0 30rpx 40rpx;
+  font-size:38rpx;
+  font-weight:bold;
+}
+.content{
+  margin: 0 0 100rpx 40rpx;
+  font-size:38rpx;
+  font-weight:bold;
+}
+.comment{
+  display: block;
+  margin-top: 20rpx
+}
+.message_area{
+  max-height: 860rpx;
+  overflow: scroll
+}
+.message_button{
+  display:flex;
+  border-radius:15rpx;
+  background-color:rgb(49, 177, 68);
+  height:60rpx;
+  justify-content:center;
+  align-items:center;
+  width:160rpx;
+  border:1rpx solid rgb(43, 151, 63);
+  color:white;
+  font-size:30rpx;
+  position:absolute;
+  right:30rpx;
+  bottom:22rpx;
+
+}
+.envelope{
+  position: fixed;
+  top: 40rpx;
+  right: 40rpx;
+  height: 120rpx;
+  width: 120rpx
+}
+.pairMessage{
+  height:100%;
+  width:100%;
+  background-color:rgba(139, 139, 139, 0.7);
+  padding-top:150rpx;
+  position:absolute;
+  top:0;
+
+}
+.messageArea{
+  height:38%;
+  width:85%;
+  margin:150rpx auto 0 auto;
+  background-color:whitesmoke;
+  border-radius:25rpx;
+  border:1rpx solid #aaaaaa;
+}
+.button_area{
+  height:70rpx;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+
+}
+.cancel{
+  width:30%;
+  height:70rpx;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background-color:#adadad;
+  color:white;
+
+}
+.confirm{
+  width:30%;
+  height:70rpx;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background-color:rgb(49, 177, 68);
+  color:white;
+}
+.tap{
+  opacity: 0.7;
+}
+.pairMessage{
+  height:100%;
+  width:100%;
+  background-color:rgba(139, 139, 139, 0.7);
+  padding-top:150rpx;
+  position:absolute;
+  top:0;
+
+}
+.messageArea{
+  height:70%;
+  width:85%;
+  margin:-50rpx auto 0 auto;
+  background-color:whitesmoke;
+  border-radius:25rpx;
+  border:1rpx solid #aaaaaa;
+}
+.title_edit{
+  display:flex;
+  margin:35rpx 0 0 0;
+  justify-content:center;
+  align-items:center;
+  font-size:48rpx;
+  font-weight:bold;
+}
+.input{
+  display:inline-block;
+  margin:-1rpx 0 10rpx 0;
+  border-style:solid;
+  border-color:#858585;
+  border-width:1rpx;
+  border-radius:20rpx;
+  padding:10rpx 0 0 10rpx;
+}
+.input_area{
+  display:flex;
+  justify-content:space-around;
+  margin:65rpx 60rpx 50rpx 60rpx;
+}
+.name_edit{
+  font-size:38rpx;
+  font-weight:bold;
+  display:inline-block;
+  width:40%;
+}
+.cancel_but{
+  width:30%;
+  height:70rpx;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background-color:#adadad;
+  color:white;
+
+}
+.confirm{
+  width:30%;
+  height:70rpx;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background-color:rgb(49, 177, 68);
+  color:white;
+}
+.photo_area{
+  height: 120rpx;
+  width: 120rpx;
+}
+.see_photo{
+  height: 150rpx;
+  width: 150rpx;
+  margin: 60rpx auto 0 auto;
+  padding-left: 25rpx
+}
+.savedPhoto{
+  width: 100%;
+  height: 1200rpx;
+}
+.circle{
+  height: 150rpx;
+  width: 150rpx;
+  background-color: white;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:0 auto;
+  left:0;
+  right:0;
+}
+.button{
+  height: 60rpx;
+  width: 60rpx;
+
+}
