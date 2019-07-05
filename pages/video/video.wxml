@@ -5,7 +5,7 @@
     wx:key="{{index}}"
     data-index="{{index}}"
     wx:for="{{videoList}}">
-    <view class="text">{{item.title}}</view>
+    <view class="text">{{item.name}}</view>
     <view class="icon">
       <image src="/pages/icon/right.png"></image>
     </view>

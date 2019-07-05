@@ -42,17 +42,21 @@ const Data = {
       module: '收藏',
       url: '../icon/star.png',
     },
+    '公开课': {
+      module: '公开课',
+      url: '../icon/video_1.png',
+    },
   },
   subjectInfoEnum: {
-    '语文': ['知识点', '专题', '归纳总结'],
-    '数学': ['知识点'],
-    '英语': ['知识点', '专题', '归纳总结'],
-    '物理': ['知识点'],
-    '化学': ['知识点'],
-    '生物': ['知识点'],
-    '政治': ['知识点', '归纳总结'],
-    '历史': ['知识点'],
-    '地理': ['知识点'],
+    '语文': ['知识点', '专题', '归纳总结', '公开课'],
+    '数学': ['知识点', '公开课'],
+    '英语': ['知识点', '专题', '归纳总结', '公开课'],
+    '物理': ['知识点', '公开课'],
+    '化学': ['知识点', '公开课'],
+    '生物': ['知识点', '公开课'],
+    '政治': ['知识点', '归纳总结', '公开课'],
+    '历史': ['知识点', '公开课'],
+    '地理': ['知识点', '公开课'],
   },
   subjectName: '',
 };
@@ -101,7 +105,8 @@ Page({
 
   toDetail(event) {
     const type = event.currentTarget.dataset.type;
-    let dict = { '需要留意': 0, '重点关注': 1 };
+    const dict = { '需要留意': 0, '重点关注': 1 };
+    const dict2 = { '数学': 0, '化学': 1, '物理': 2, '生物': 3, '地理': 4 };
     if (dict[type] !== undefined) {
       app.route('./note_list/index', {
         type,
@@ -110,8 +115,13 @@ Page({
       return;
     } else
 
-    dict = { '数学': 0, '化学': 1, '物理': 2, '生物': 3, '地理': 4 };
-    if (dict[Data.subjectName] !== undefined) {
+    if (type === '公开课') {
+      app.route('/pages/video/video', {
+        subjectName: Data.subjectName,
+      });
+    } else
+
+    if (dict2[Data.subjectName] !== undefined) {
       app.route('./inner_list/index', {
         type,
         subjectName: Data.subjectName,

@@ -1,7 +1,5 @@
 import api from './api/index';
 
-const host = 'https://www.vaskka.com/mp';
-
 App({
   onLaunch() {
     // 登录
@@ -39,6 +37,7 @@ App({
     // 获取 open_id
     this.open_id = 'test';
     this.api = api;
+    this.subject = subject;
   },
 
   globalData: {
@@ -162,3 +161,25 @@ App({
     lastview();
   },
 });
+
+function subject(k) {
+  const data = [
+    { name: '英语', unique: 'yy', index: 0, eng: 'english' },
+    { name: '数学', unique: 'sx', index: 1, eng: 'math' },
+    { name: '语文', unique: 'yw', index: 2, eng: 'chinese' },
+    { name: '化学', unique: 'hx', index: 3, eng: 'chemistry' },
+    { name: '物理', unique: 'wl', index: 4, eng: 'physics' },
+    { name: '生物', unique: 'sw', index: 5, eng: 'biology' },
+    { name: '地理', unique: 'dl', index: 6, eng: 'geography' },
+    { name: '政治', unique: 'zz', index: 7, eng: 'political' },
+    { name: '历史', unique: 'ls', index: 8, eng: 'history' },
+  ];
+  let ret = {};
+  data.some(s => {
+    if (s.name === k || s.unique === k || s.index === k || s.eng === k) {
+      ret = s;
+      return true;
+    }
+  });
+  return ret;
+}

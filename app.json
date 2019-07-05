@@ -3,7 +3,10 @@
     "pages/home/home",
     "pages/video/video",
     "pages/login/login",
+<<<<<<< HEAD
     "pages/volunteer/volunteer",
+=======
+>>>>>>> 2ab35009cf31562c93d195a9ddec4c61d76cf7b9
     "pages/composition/composition",
     "pages/video/detail/detail",
     "pages/question/question",
