@@ -3,6 +3,7 @@
     "pages/home/home",
     "pages/video/video",
     "pages/login/login",
+    "pages/volunteer/volunteer",
     "pages/composition/composition",
     "pages/video/detail/detail",
     "pages/question/question",

@@ -74,6 +74,9 @@ Page({
                       })
                     }
                     else {
+                      wx.navigateTo({
+                        url: '../volunteer/volunteer',
+                      })
                     }
                   } 
                 }

@@ -1,0 +1,70 @@
+<view wx:if="{{show}}">
+  <view class="top_area" >
+    <view class="opendata">
+      <open-data class="avatar" type="userAvatarUrl"/>
+      <open-data type="userNickName" class="nickname" style="font-size:32rpx;" />
+    </view>
+    <view bindtap="showPairMessage">
+      <image src="../icon/envelope.png" class="envelope"></image>
+    </view>
+  </view>
+
+
+  <view class="line" ></view>
+
+  <view class="message_area" >
+    <view class="message" wx:for="{{article}}">
+      <view class="left_image_area">
+        <image class="left_image" src="{{item.url}}"></image>
+      </view>
+      <view class="vertical_line"></view>
+      <view class="right_area">
+        <view class="title">作文标题：{{item.title}}</view>
+      </view>
+      <view class="message_button" hover-class='tap' bindtap="seeMore" data-id="{{index}}" hover-stay-time='70'>
+        <text class="btn-text">查看详情</text>
+      </view>  
+    </view>
+  </view>
+
+  <view wx:if="{{showMessage}}" class="pairMessage" >
+    <view class="messageArea">
+      <view class="title">是否结对？</view>
+      <view class="name">学生：{{name}}</view>
+      <view class="content">内容：{{content}}</view>
+      <view class="button_area">
+        <button class="cancel" bindtap="cancel" hover-class='tap'>否</button>
+        <button class="confirm" bindtap="confirm" hover-class='tap'>是</button>
+      </view>
+    </view>
+
+  </view>
+
+  <view wx:if="{{showEdit}}" class="pairMessage" >
+    <view class="messageArea">
+      <view class="title_edit">发送评语</view>
+      <view class="see_photo" bindtap="showSavedPhoto">
+        <image src="/pages/icon/photo.png" class="photo_area"></image>
+        <view class="text">查看图片</view>
+      </view>
+      <view class="input_area">
+        <view class="name_edit">评语：</view>
+        <textarea placeholder='输入您的评语' class="input" bindinput="input"></textarea>
+      </view>
+
+      <view class="button_area">
+        <button class="cancel_but" bindtap="cancel_edit" hover-class='tap'>取消</button>
+        <button class="confirm" bindtap="sent" hover-class='tap'>发送</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view wx-if="{{showSavedPhoto==true}}" style="height: 100%;">
+  <image src="{{article[index].url}}" class="savedPhoto">
+  </image>
+  <view class="circle" bindtap="closePhoto">
+      <image src="/pages/icon/return.png" class="button"></image>
+  </view>
+</view>
