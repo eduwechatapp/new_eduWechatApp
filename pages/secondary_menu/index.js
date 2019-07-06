@@ -1,62 +1,24 @@
 const app = getApp();
 
 const Data = {
-  menuListEnum: {
-    '知识点': {
-      module: '知识点',
-      url: '../icon/light.png',
-    },
-    '专题': {
-      module: '专题',
-      url: '../icon/topic.png',
-    },
-    '归纳总结': {
-      module: '归纳总结',
-      url: '../icon/conclusion.png',
-    },
-    '答题模版': {
-      module: '答题模版',
-      url: '../icon/template.png',
-    },
-    '视频': {
-      module: '视频',
-      url: '../icon/video.png',
-    },
-    '真题试卷': {
-      module: '真题试卷',
-      url: '../icon/exam.png',
-    },
-    '上次记录': {
-      module: '上次记录',
-      url: '../icon/lastnote.png',
-    },
-    '需要留意': {
-      module: '需要留意',
-      url: '../icon/attention.png',
-    },
-    '重点关注': {
-      module: '重点关注',
-      url: '../icon/payAttention.png',
-    },
-    '收藏': {
-      module: '收藏',
-      url: '../icon/star.png',
-    },
-    '公开课': {
-      module: '公开课',
-      url: '../icon/video_1.png',
-    },
-  },
-  subjectInfoEnum: {
-    '语文': ['知识点', '专题', '归纳总结', '公开课'],
-    '数学': ['知识点', '公开课'],
-    '英语': ['知识点', '专题', '归纳总结', '公开课'],
-    '物理': ['知识点', '公开课'],
-    '化学': ['知识点', '公开课'],
-    '生物': ['知识点', '公开课'],
-    '政治': ['知识点', '归纳总结', '公开课'],
-    '历史': ['知识点', '公开课'],
-    '地理': ['知识点', '公开课'],
+  iconUrlList: [
+    '../icon/attention.png',
+    '../icon/payAttention.png',
+    '../icon/star.png',
+    '../icon/light.png',
+    '../icon/conclusion.png',
+    '../icon/video_1.png',
+    '../icon/topic.png',
+    '../icon/template.png',
+    '../icon/video.png',
+    '../icon/exam.png',
+    '../icon/lastnote.png',
+  ],
+  subjectWithOldInterface: {
+    语文: ['知识点', '专题', '归纳总结', '公开课'],
+    英语: ['知识点', '专题', '归纳总结', '公开课'],
+    政治: ['知识点', '归纳总结', '公开课'],
+    历史: ['知识点', '公开课'],
   },
   subjectName: '',
 };
@@ -73,41 +35,39 @@ Page({
     Data.subjectName = subjectName;
   },
 
-  onShow() {
-    const menu = [];
-    Data.subjectInfoEnum[Data.subjectName].forEach(e => {
-      menu.push(Data.menuListEnum[e]);
-    });
-    const noteList = app.globalData.noteList[Data.subjectName];
-    if (noteList.length > 0) {
-      if (noteList.some(e => e.importance === 1)) {
-        menu.push(Data.menuListEnum['需要留意']);
-      }
-      if (noteList.some(e => e.importance === 2)) {
-        menu.push(Data.menuListEnum['重点关注']);
-      }
+  async onShow() {
+    let m = [];
+    if (Data.subjectName in Data.subjectWithOldInterface) {
+      m = Data.subjectWithOldInterface[Data.subjectName];
+    } else {
+      ({
+        data: m,
+      } = await app.api.secondary.getYiji(app.subject(Data.subjectName).eng));
     }
-    const lastView = app.globalData.lastView;
-    menu.forEach(e => {
-      if (lastView[Data.subjectName][e.module] !== undefined) {
-        e.lastView = lastView[Data.subjectName][e.module].title;
-        if (e.lastView.length > 12) {
-          e.lastView = e.lastView.substring(0, 9) + '...';
+    m = m.concat(['需要留意', '重点关注']);
+    const menu = [];
+    m.forEach((e, index) => {
+      const obj = {
+        module: e,
+        url: Data.iconUrlList[index % Data.iconUrlList.length],
+      };
+      const lastView = app.globalData.lastView;
+      if (lastView[Data.subjectName][e] !== undefined) {
+        obj.lastView = lastView[Data.subjectName][e].title;
+        if (obj.lastView.length > 12) {
+          obj.lastView = obj.lastView.substring(0, 9) + '...';
         }
-        return;
+      } else {
+        obj.lastView = '未开始';
       }
-      e.lastView = '未开始';
+      menu.push(obj);
     });
-    this.setData({
-      menu,
-    });
+    this.setData({ menu });
   },
 
   toDetail(event) {
     const type = event.currentTarget.dataset.type;
-    const dict = { '需要留意': 0, '重点关注': 1 };
-    const dict2 = { '数学': 0, '化学': 1, '物理': 2, '生物': 3, '地理': 4 };
-    if (dict[type] !== undefined) {
+    if (['需要留意', '重点关注'].includes(type)) {
       app.route('./note_list/index', {
         type,
         subjectName: Data.subjectName,
@@ -121,9 +81,9 @@ Page({
       });
     } else
 
-    if (dict2[Data.subjectName] !== undefined) {
+    if (['数学', '化学', '物理', '生物', '地理'].includes(Data.subjectName)) {
       app.route('./inner_list/index', {
-        type,
+        typeName: type,
         subjectName: Data.subjectName,
       });
     } else

@@ -43,7 +43,11 @@ Component({
         title: e.title,
       });
       this.checkImportance(e.title);
-      WxParse.wxParse('articleParse', 'html', e.content, this, 5);
+      let content = e.content;
+      if (Array.isArray(content)) {
+        content = content.reduce((p, c) => { return p + c; }, '');
+      }
+      WxParse.wxParse('articleParse', 'html', content, this, 5);
     },
   },
 

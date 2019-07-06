@@ -1,27 +1,8 @@
 const app = getApp();
 
 const Data = {
-  subjectEnum: {
-    '语文': 'chinese',
-    '数学': 'math',
-    '英语': 'english',
-    '物理': 'physics',
-    '化学': 'chemistry',
-    '生物': 'biology',
-    '政治': 'political',
-    '历史': 'history',
-    '地理': 'geography',
-  },
-  typeEnum: {
-    '知识点': 'knowledge',
-    '归纳总结': 'summary',
-    '专题': 'topic',
-    '答题模版': 'template',
-  },
-  list: [],
-  typeEng: '',
-  subjectEng: '',
-  which: '',
+  typeName: '',
+  subjectName: '',
 };
 
 Page({
@@ -31,9 +12,10 @@ Page({
   },
 
   async onLoad(options) {
-    const { type, subjectName } = options;
-    Data.typeEng = Data.typeEnum[type];
-    Data.subjectEng = Data.subjectEnum[subjectName];
+    ({
+      typeName: Data.typeName,
+      subjectName: Data.subjectName,
+    } = options);
 
     const list = await this.fetchData(this.data.page);
     if (list.length === 0) {
@@ -45,9 +27,12 @@ Page({
 
   async fetchData(page) {
     app.toast('加载中');
-    const response = await app.api.secondary.getData(Data.subjectEng, Data.typeEng, 20, page);
+    const response = await app.api.secondary.getTitle(app.subject(Data.subjectName).eng, Data.typeName, 20, page);
     app.hideToast();
-    return response.data;
+    if (response.data === null) {
+      return [];
+    }
+    return response.data.map(e => { return {title: e }; });
   },
 
   noResult() {
@@ -80,11 +65,11 @@ Page({
   },
 
   toContent(e) {
-    const index = this.data.page * 20 + e.detail.index;
+    const { title } = e.detail.data;
     app.route('../content/index', {
-      typeEng: Data.typeEng,
-      subjectEng: Data.subjectEng,
-      index,
+      typeName: Data.typeName,
+      subjectEng: app.subject(Data.subjectName).eng,
+      title,
     });
   },
 });

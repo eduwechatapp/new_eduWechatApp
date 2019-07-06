@@ -2,17 +2,18 @@ const app = getApp();
 
 const Data = {
   subjectEng: '',
-  subjectName: '',
-  typeEng: '',
-  type: '',
-  which: '',
-  typeEnum: {
-    'knowledge': '知识点',
-    'summary': '归纳总结',
-    'topic': '专题',
-    'template': '答题模版',
-  },
+  title: '',
+  typeName: '',
 };
+
+function splitContent(s) {
+  const size = 100000;
+  if (s.length > size) {
+    return [s.substring(0, size), ...splitContent(s.substring(size))];
+  } else {
+    return [s];
+  }
+}
 
 Page({
   data: {
@@ -22,30 +23,30 @@ Page({
   },
 
   async onLoad(options) {
-    const { typeEng, subjectEng, index: sindex } = options;
-    const index = parseInt(sindex);
+    const { subjectEng, title, typeName } = options;
     Data.subjectEng = subjectEng;
-    Data.typeEng = typeEng;
-    Data.type = Data.typeEnum[typeEng];
+    Data.title = title;
+    Data.typeName = typeName;
 
-    app.globalData.subjectEnum.some(e => {
-      if (e.eng === subjectEng) {
-        Data.subjectName = e.name;
-      }
-    });
+    const article = await this.fetchData(subjectEng, title);
+    const content = splitContent(article.content);
+    article.content = [];
 
-    const list = await this.fetchData(index);
-
-    if (app.globalData.lastView[Data.subjectName][Data.type] === undefined) {
-      app.globalData.lastView[Data.subjectName][Data.type] = {};
+    const subjectName = app.subject(subjectEng).name;
+    if (app.globalData.lastView[subjectName][typeName] === undefined) {
+      app.globalData.lastView[subjectName][typeName] = {};
     }
-    app.globalData.lastView[Data.subjectName][Data.type].title = list[0].title;
+    app.globalData.lastView[subjectName][typeName].title = article.title;
     app.setStore('lastView', app.globalData.lastView);
 
     this.setData({
-      cindex: index,
-      subjectName: Data.subjectName,
-      article: list[0],
+      subjectName: subjectName,
+      article,
+    });
+    content.forEach((c, i) => {
+      this.setData({
+        [`article.content[${i}]`]: c,
+      });
     });
   },
 
@@ -59,22 +60,23 @@ Page({
       app.toast('已经是第一页了');
       return;
     }
-    const response = await this.fetchData(index);
+    const article = await this.fetchData(index);
+    console.log(response);
     if (response.length === 0) {
       app.toast('没有更多数据了');
       return;
     }
-    app.globalData.lastView[Data.subjectName][Data.type].title = response[0].title;
+    const subjectName = app.subject(Data.subjectEng).name;
+    app.globalData.lastView[subjectName][Data.typeName].title = article.title;
     app.setStore('lastView', app.globalData.lastView);
     this.setData({
-      article: response[0],
-      cindex: index,
+      article,
     });
   },
 
-  async fetchData(index) {
+  async fetchData(subjectEng, title) {
     app.toast('加载中...');
-    const response = await app.api.secondary.getData(Data.subjectEng, Data.typeEng, 1, index);
+    const response = await app.api.secondary.getContent(subjectEng, title);
     app.hideToast();
     return response.data;
   },

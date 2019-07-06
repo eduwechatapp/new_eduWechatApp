@@ -5,6 +5,18 @@ const secondary = {
     return get(`/${subjectEng}/${typeEng}/mapping/get`);
   },
 
+  getYiji(subjectEng) {
+    return get(`/${subjectEng}/new/title/get/${openid()}`);
+  },
+
+  getTitle(subjectEng, typeName, pageSize, page) {
+    return get(`/${subjectEng}/new/title/get/${openid()}/${typeName}/${pageSize}/${page}`);
+  },
+
+  getContent(subjectEng, title) {
+    return get(`/${subjectEng}/new/content/get/${openid()}/${title}`);
+  },
+
   getDataByMap(subjectEng, typeEng, which, pageSize, page) {
     return get(`/${subjectEng}/${typeEng}/get/${openid()}/${which}/${pageSize}/${page}`);
   },

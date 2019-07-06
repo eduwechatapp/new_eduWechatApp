@@ -2,9 +2,9 @@
   <view wx:for="{{menu}}" wx:key='{{index}}' bindtap='toDetail' data-type='{{item.module}}'>
     <view class="card{{index % 5}}">
       <view class="circle{{index % 5}}">
-        <image src="{{menu[index].url}}" class="icon"></image>
+        <image src="{{item.url}}" class="icon"></image>
       </view>
-      <view class="title">{{menu[index].module}}</view>
+      <view class="title">{{item.module}}</view>
       <view class="bottom_text">温故而知新，可以为师矣</view>
       <view class="right_box">
         <image src="../icon/preview.png" class="right_icon"></image>
